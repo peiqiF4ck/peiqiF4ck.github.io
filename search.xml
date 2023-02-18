@@ -20,6 +20,8 @@
       
         <tags>
             
+            <tag> original </tag>
+            
             <tag> Frida </tag>
             
         </tags>
@@ -99,6 +101,8 @@
             
             <tag> PenetrationTest </tag>
             
+            <tag> original </tag>
+            
         </tags>
       
     </entry>
@@ -121,6 +125,8 @@
       
       
         <tags>
+            
+            <tag> original </tag>
             
             <tag> 0day </tag>
             
@@ -146,6 +152,8 @@
       
       
         <tags>
+            
+            <tag> original </tag>
             
             <tag> Frida </tag>
             
