@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="FriDa安装, peiqiF4ck github">
-    <meta name="description" content="Frida入门,Frida安装">
+    <meta name="keywords" content="安卓自动化渗透测试工具Brida-实战演示某聊天app, peiqiF4ck github">
+    <meta name="description" content="app请求加密的渗透测试">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>FriDa安装 | peiqiF4ck</title>
+    <title>安卓自动化渗透测试工具Brida-实战演示某聊天app | peiqiF4ck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -278,12 +278,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261952214.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041616408.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">FriDa安装</h1>
+                    <h1 class="description center-align post-title">安卓自动化渗透测试工具Brida-实战演示某聊天app</h1>
                 </div>
             </div>
         </div>
@@ -399,8 +399,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/PenetrationTest/">
+                                <span class="chip bg-color">PenetrationTest</span>
+                            </a>
+                        
                             <a href="/tags/Frida/">
                                 <span class="chip bg-color">Frida</span>
+                            </a>
+                        
+                            <a href="/tags/Brida/">
+                                <span class="chip bg-color">Brida</span>
                             </a>
                         
                     </div>
@@ -424,28 +432,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-10
+                    2023-03-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-02-12
+                    2023-03-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    658
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    5 分
                 </div>
                 
 
@@ -468,49 +476,144 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Frida 是一款基于 Python + JavaScript 的 Hook 与调试框架。<br>Firda 是一款易用的跨平 Hook 工具， Java 层到 Native 层的 Hook 无所不能，是一种 动态 的插桩工具，可以插入代码到原生 App 的内存空间中，动态的去监视和修改行为，原生平台包括 Win、Mac、Linux、Android、iOS 全平台。静态二进制插桩：在程序执行前插入额外的代码和数据，生成一个永久改变的可执行文件。动态二进制插桩：在程序运行时实时地插入额外代码和数据，对可执行文件没有任何永久改变。</p>
-<h2 id="frida和安卓平台以及python环境关系介绍"><a href="#frida和安卓平台以及python环境关系介绍" class="headerlink" title="frida和安卓平台以及python环境关系介绍"></a>frida和安卓平台以及python环境关系介绍</h2><ul>
-<li><p>由于frida基于python所以要安装python环境。不同版本的frida应用版本也不同例如:</p>
-<ul>
-<li>frida12.3.6 Android5-6 Python3.7 </li>
-<li>frida12.8.0 Android7-8 Python3.8 </li>
-<li>frida14+  Android9+ Python3.8</li>
-</ul>
+                <h1 id="Brida介绍"><a href="#Brida介绍" class="headerlink" title="Brida介绍"></a>Brida介绍</h1><ul>
+<li>
+官方解释:Brida 是 Burp Suite 扩展，它作为 Burp Suite 和 Frida 之间的桥梁，可以在篡改应用程序与后端服务/服务器之间交换的流量的同时使用和操作应用程序自己的方法。它支持 Frida 支持的所有平台（Windows、macOS、Linux、iOS、Android 和 QNX）。<br/>
+https://github.com/federicodotta/Brida <br/>
+https://github.com/vichhika/Brida  <br/>
+
+<p>自己理解:brida 可以直接和frida server配合 。brida通过frida server对app进行spwn或者attach。将brida的js脚本通过frida-server注入app内。然后通过RPC主动调用方式对请求明文进行自动加密或者自动解密。发送到服务器上。服务器收到请求。解密然后响应方式加密数据发送给brida。brida 通过主动调用接收直接对加密数据进行解密。从而达到自动化测试的目的。</p>
 </li>
 </ul>
-<h2 id="python环境安装"><a href="#python环境安装" class="headerlink" title="python环境安装"></a>python环境安装</h2><ul>
-<li><p>由于安卓版本不同我用的安卓是安卓10所以安装的python版本是 3.8以上的版本</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.python.org/downloads/">python官方网站下载</a><br> 如下图直接选择python3.8.6下载即可<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261942355.png" alt="python下载截图"></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lvtaohome/p/11121377.html">python安装参考文章太简单我就不演示了</a>注意要把python加入系统环境变量中</p>
-</li>
-<li><p>安装成功标志 如下图:<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261946578.png" alt="python安装成功标志"></p>
+
+
+<h2 id="Brida环境安装"><a href="#Brida环境安装" class="headerlink" title="Brida环境安装"></a>Brida环境安装</h2><ul>
+<li>
+安装的环境参考https://www.bilibili.com/video/av332313470/   不在过多介绍。这里我用的python环境是python3
+
 </li>
 </ul>
+
+
+<h2 id="app进行分析"><a href="#app进行分析" class="headerlink" title="app进行分析"></a>app进行分析</h2><ul>
+<li>使用jadx进行反编看看这个apk</li>
+![看到qihoo绝对360加固](https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032006200.png)
+
+<li>360加固应该是整体加固。</li>
+
+<li>脱整体加固的工具有frida-dexdump(python编写可以单独使用可以配合objection),blackDex(就是一个app直接安装就行了)。等工具我觉得这个两个工具最好用。工具百度或者github去搜索
 </li>
+
+<li>这里我使用blackDex进行脱壳</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032014948.png" alt="选择目标app点击进行脱壳"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032014057.png" alt="脱壳成功"></p>
+<li>利用adb pull命令拉下来。把打包的dex文件压缩成zip文件然后放到jadx里面即可</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032017012.png" alt="脱壳成功导入jdax里面"></p>
+<li>接下来打开postern和Charles对软件进行抓包</li>
+
+<li>刚打开手机发现提示root,我们通过截图可以看到是toast方法这是一个定位点</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032021125.png" alt="截图反应是toast标识"></p>
+<li>然后我们点击账号登陆随便输入进行抓包。这个没有检测代理也没有检测vpn可以直接抓并且是http协议所以不存在什么证书双向验证等问题。开搞</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032026906.png" alt="划红色的就是我们的目标"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032028542.png" alt="请求和响应都加密"></p>
+<li>我们看到有一个param=我们去源代码里面搜素一下发现都是关联的d.c.a.k.r.c 函数</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032033658.png" alt="搜素到不少"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032035608.png" alt="这个uc函数估计是就是加密解密逻辑"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303032037359.png" alt="确定加密解密函数"></p>
+<li>看代码是RSA的加密方式不过他这和普通的好像不太一样有一个b函数实现加密解密逻辑</li>
+
+<li>核心加密算法代码如下:</li>
+<li>
+<pre class="language-java" data-language="java"><code class="language-java">
+<span class="token keyword">package</span> <span class="token namespace">d<span class="token punctuation">.</span>c<span class="token punctuation">.</span>a<span class="token punctuation">.</span>k</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">android<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Base64</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">ByteArrayOutputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span></span><span class="token class-name">KeyFactory</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span></span><span class="token class-name">NoSuchAlgorithmException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>interfaces<span class="token punctuation">.</span></span><span class="token class-name">RSAPublicKey</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>spec<span class="token punctuation">.</span></span><span class="token class-name">InvalidKeySpecException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>spec<span class="token punctuation">.</span></span><span class="token class-name">X509EncodedKeySpec</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span></span><span class="token class-name">Cipher</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* compiled from: U.java */</span>
+<span class="token comment">/* loaded from: dex_.dex */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> u <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">RSAPublicKey</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">NoSuchAlgorithmException</span><span class="token punctuation">,</span> <span class="token class-name">InvalidKeySpecException</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token class-name">RSAPublicKey</span><span class="token punctuation">)</span> <span class="token class-name">KeyFactory</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"RSA"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">generatePublic</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">X509EncodedKeySpec</span><span class="token punctuation">(</span><span class="token class-name">Base64</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token string">"xxxx"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Cipher</span> cipher <span class="token operator">=</span> <span class="token class-name">Cipher</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"RSA/ECB/PKCS1Padding"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">RSAPublicKey</span> a2 <span class="token operator">=</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token string">"xxxx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> a2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token function">d</span><span class="token punctuation">(</span>cipher<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token class-name">Base64</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> a2<span class="token punctuation">.</span><span class="token function">getModulus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bitLength</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> unused<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            m<span class="token punctuation">.</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token string">"解密字符串["</span> <span class="token operator">+</span> str <span class="token operator">+</span> <span class="token string">"]时遇到异常"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">/* JADX INFO: Access modifiers changed from: package-private */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">c</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Cipher</span> cipher <span class="token operator">=</span> <span class="token class-name">Cipher</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"RSA/ECB/PKCS1Padding"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">RSAPublicKey</span> a2 <span class="token operator">=</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token string">"xxxx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> a2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token class-name">Base64</span><span class="token punctuation">.</span><span class="token function">encodeToString</span><span class="token punctuation">(</span><span class="token function">d</span><span class="token punctuation">(</span>cipher<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> a2<span class="token punctuation">.</span><span class="token function">getModulus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bitLength</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e2<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            m<span class="token punctuation">.</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token string">"加密字符串["</span> <span class="token operator">+</span> str <span class="token operator">+</span> <span class="token string">"]时遇到异常"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">d</span><span class="token punctuation">(</span><span class="token class-name">Cipher</span> cipher<span class="token punctuation">,</span> <span class="token keyword">int</span> i2<span class="token punctuation">,</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bArr<span class="token punctuation">,</span> <span class="token keyword">int</span> i3<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+       
+	   核心算法 由于该app目前在运行阶段所以核心代码我就忽略了。
+	   
+        <span class="token keyword">return</span> byteArray<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+</code></pre>
+</li>
+
+<li>仔细看加解密使用的都是同一个公钥。公钥我们用xxx进行代替。这种我是第一次见笑脸。</li>
 </ul>
-<h2 id="frida下载和安装-pc客户端"><a href="#frida下载和安装-pc客户端" class="headerlink" title="frida下载和安装(pc客户端)"></a>frida下载和安装(pc客户端)</h2><ul>
-<li><p>python安装frida pip install frida  这样安装默认安装最新版本如果想指定版本安装那么到<a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases/">https://github.com/frida/frida/releases/</a> 查看版本号安安装例如<br>  <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261952214.png" alt="frida版本查看"> pip install frida&#x3D;&#x3D;15.1.17   其他版本的话把15.1.17替换一下就行了我就按最新版本来说了</p>
-</li>
-<li><p>安装frida-tools 下图 pip install frida-tools&#x3D;&#x3D;10.5.4<br>  <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261959609.png" alt="frida-tools版本">  </p>
-</li>
-<li><p>注意frida版本一定要和frida-tools对应 即15.1.7 对应的frida-tools版本是 10.5.4。卸载的话把install改成uninstall即可 pip uninstall frida-tools&#x3D;&#x3D;10.5.4</p>
-</li>
-<li><p>验证frida 是否安装成功标志如下图 frida –v  import frida  没有报错说明安卓成功<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202262015412.png" alt="验证是否成功"></p>
-</li>
+
+
+<h2 id="Frida-Hook脚本编写确定猜想"><a href="#Frida-Hook脚本编写确定猜想" class="headerlink" title="Frida Hook脚本编写确定猜想"></a>Frida Hook脚本编写确定猜想</h2><ul><li>编写frida脚本需要frida api基础java和JavaScript基础如果不懂建议去学习。这里不再讲述</li></ul>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041430875.png" alt="firdahook脚本编写"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041433635.png" alt="hook效果说明脚本编写没有问题"></p>
+<h2 id="app加密通信过程"><a href="#app加密通信过程" class="headerlink" title="app加密通信过程"></a>app加密通信过程</h2><ul>
+<li>1:app明文请求通过RSA/ECB/PKCS1Padding 非对称算法对明文请求加密</li>
+<li>2:服务器收到加密请求使用秘钥对加密请求进行解密(注意这里public static String b) 对请求加密的数据无法解密因为是非对称的加密算法</li>
+<li>3:把解密的数据在服务器里面顺序执行判断等。结果在加密然后发送(响应)给app客户端。</li>
+<li>4:app客户端收到加密响应用自己的解密算法对响应进行解密</li>
 </ul>
-<h2 id="frida下载和安装-也就是安卓端服务端"><a href="#frida下载和安装-也就是安卓端服务端" class="headerlink" title="frida下载和安装(也就是安卓端服务端)"></a>frida下载和安装(也就是安卓端服务端)</h2><ul>
-<li><p>首先确定手机的型号(adb shell getprop ro.product.cpu.abi) 然后在frida搜索一下<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202262006695.png" alt="确定手机型号"><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202262010155.png" alt="下载"></p>
-</li>
-<li><p>下载完毕解压然后使用推送adb push xxxxx &#x2F;data&#x2F;local&#x2F;tmp 目录下。然后改名并且赋予执行权限 chomd 777 &#x2F;data&#x2F;local&#x2F;tmp&#x2F;fsarm64<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301081646285.png" alt="推送"></p>
-</li>
-<li><p>启动sever .&#x2F;fsarm64 没有报错说明成功<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202262017158.png" alt="没有报错成功"></p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>至此frida安装完毕。上面涉及adb 这些和手机型号我这里用的是Pixel 一代 安卓10 某宝网站有卖 可以自行购买。下课。后续我还会发表相关教程</li>
-</ul>
+
+<h2 id="frida和brida和burp与app和服务器的关系解读"><a href="#frida和brida和burp与app和服务器的关系解读" class="headerlink" title="frida和brida和burp与app和服务器的关系解读"></a>frida和brida和burp与app和服务器的关系解读</h2><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041459326.png" alt="图解说明关系"></p>
+<h2 id="brida-主动调用js编写"><a href="#brida-主动调用js编写" class="headerlink" title="brida 主动调用js编写"></a>brida 主动调用js编写</h2><ul><li>编写frida脚本需要frida api基础java和JavaScript基础 Brida 编写脚本的基础 如果不懂建议去学习。这里不再讲述</li></ul>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041502303.png" alt="brida Rpc脚本编写"></p>
+<ul><li>测试是否生效</li></ul>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041505150.png" alt="测试截图"></p>
+<h2 id="brida-主动调用插件编写"><a href="#brida-主动调用插件编写" class="headerlink" title="brida 主动调用插件编写"></a>brida 主动调用插件编写</h2><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041515403.png" alt="加密插件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041518543.png" alt="解密插件"></p>
+<h2 id="最终测试截图"><a href="#最终测试截图" class="headerlink" title="最终测试截图"></a>最终测试截图</h2><ul><li>此篇文章提供思路,具体有不会编写。插件自己思考一下。或者百度参考。涉及到的脚本和细节问题以后如果创建内部群会详细讲解。关注博主的频道和github主页。了解最新动态。至此我们可以把hook出的明文直接在repeteror中填写然后发送利用brida实现自动加密解密。测试app。不过这种需要依赖app不稳定可能。
+</li>  </ul>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041519346.png" alt="最终测试结果"></p>
 
                 
             </div>
@@ -537,7 +640,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://peiqiF4ck.github.io/androidreverse/2023/01/articles/a94394783b10c35a/">https://peiqiF4ck.github.io/androidreverse/2023/01/articles/a94394783b10c35a/</a>
+                    <a href="https://peiqiF4ck.github.io/androidreverse/2023/03/articles/4a73c3959963b967/">https://peiqiF4ck.github.io/androidreverse/2023/03/articles/4a73c3959963b967/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -575,8 +678,16 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/PenetrationTest/">
+                                    <span class="chip bg-color">PenetrationTest</span>
+                                </a>
+                            
                                 <a href="/tags/Frida/">
                                     <span class="chip bg-color">Frida</span>
+                                </a>
+                            
+                                <a href="/tags/Brida/">
+                                    <span class="chip bg-color">Brida</span>
                                 </a>
                             
                         </div>
@@ -750,28 +861,86 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/androidreverse/2023/01/articles/b9d040d0979b56be/">
+                <a href="/androidreverse/2023/03/articles/4a73c3959963b967/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301101607961.jpg" class="responsive-img" alt="直播app 获取rtmp播放地址-腾讯播放器Frida-hook">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041616408.png" class="responsive-img" alt="安卓自动化渗透测试工具Brida-实战演示某聊天app">
                         
-                        <span class="card-title">直播app 获取rtmp播放地址-腾讯播放器Frida-hook</span>
+                        <span class="card-title">安卓自动化渗透测试工具Brida-实战演示某聊天app</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            获取rtmp播放地址-腾讯播放器Frida-hook
+                            app请求加密的渗透测试
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-10
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AndroidReverse/" class="post-category">
+                                    AndroidReverse
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PenetrationTest/">
+                        <span class="chip bg-color">PenetrationTest</span>
+                    </a>
+                    
+                    <a href="/tags/Frida/">
+                        <span class="chip bg-color">Frida</span>
+                    </a>
+                    
+                    <a href="/tags/Brida/">
+                        <span class="chip bg-color">Brida</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/androidreverse/2023/02/articles/97121a1663073879/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202302182108012.png" class="responsive-img" alt="java层自吐算法脚本-原创">
+                        
+                        <span class="card-title">java层自吐算法脚本-原创</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            app请求加密的渗透测试
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -793,58 +962,6 @@
                     
                     <a href="/tags/Frida/">
                         <span class="chip bg-color">Frida</span>
-                    </a>
-                    
-                    <a href="/tags/Vip/">
-                        <span class="chip bg-color">Vip</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/androidreverse/2023/01/articles/6a83169aaad6252d/">
-                    <div class="card-image">
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301101306525.png" class="responsive-img" alt="夜神模拟器 7.0 安卓 64位安装 Xposed-并且激活">
-                        
-                        <span class="card-title">夜神模拟器 7.0 安卓 64位安装 Xposed-并且激活</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            夜神模拟器Xposed安装
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-10
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/AndroidReverse/" class="post-category">
-                                    AndroidReverse
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Xposed/">
-                        <span class="chip bg-color">Xposed</span>
                     </a>
                     
                 </div>
