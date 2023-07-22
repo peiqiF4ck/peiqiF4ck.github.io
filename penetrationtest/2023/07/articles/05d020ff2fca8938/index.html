@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="CVE-2023-32315-openfire权限绕过rce, peiqiF4ck github">
-    <meta name="description" content="漏洞复现">
+    <meta name="keywords" content="interactsh-collaborator 源码分析用.net写一个客户端, peiqiF4ck github">
+    <meta name="description" content="brup插件渗透测试工具代码分析">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>CVE-2023-32315-openfire权限绕过rce | peiqiF4ck</title>
+    <title>interactsh-collaborator 源码分析用.net写一个客户端 | peiqiF4ck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -278,12 +278,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306211008507.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221238136.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">CVE-2023-32315-openfire权限绕过rce</h1>
+                    <h1 class="description center-align post-title">interactsh-collaborator 源码分析用.net写一个客户端</h1>
                 </div>
             </div>
         </div>
@@ -424,28 +424,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-06-21
+                    2023-07-22
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-21
+                    2023-07-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    341
+                    826
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -468,10 +468,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="复现遇到的问题"><a href="#复现遇到的问题" class="headerlink" title="复现遇到的问题"></a>复现遇到的问题</h2><p>利用exp添加用户以后然后上传shell在下显示出插件名称。exp个人推荐：<br><a target="_blank" rel="noopener" href="https://github.com/miko550/CVE-2023-32315">https://github.com/miko550/CVE-2023-32315</a><br>登陆以后来到来到插件这里<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306211001134.png" alt="来到插件这里"><br>往下拉看到<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306211003080.png" alt="上传点"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306210955127.png" alt="复现遇到的问题"><br>访问出现404页面<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306210958209.png" alt="访问出现"></p>
-<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>既然那么部署不行我们换一个部署利用其它的插件进行。我测试了这个页面其它插件也不行官方的。那么只有一个问题就是插件格式不对这个不能解析所以换成可以解析的插件部署复现。那我们可以下载他来的插件源码进行编译然后。直接访问就行了。这里我们用db-access插件来复现。<br>添加shell编译然后上传。上传后来这里查看点击<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306211005566.png" alt="上传插件"><br>然后访问我们的shell。直接拿捏。<font color="red" size="4">由于这个漏洞特殊性和net的原因无法编写exp。后续群主不忙了专注研究软件的时候。会增加第三方库调用支持扩大软件使用功能。直接调用python或者go等漏洞利用程序。使我们的工具更加强大。工具和工具源代码还没有发布。请关注频道和github信息感谢大家支持。</font><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306211008507.png" alt="拿下shell"></p>
-<h2 id="遇到的工具编译后的插件下载"><a href="#遇到的工具编译后的插件下载" class="headerlink" title="遇到的工具编译后的插件下载"></a>遇到的工具编译后的插件下载</h2><p><a target="_blank" rel="noopener" href="https://t.me/SoftwareUpdateChannel/211">https://t.me/SoftwareUpdateChannel/211</a></p>
+                <h2 id="brup插件"><a href="#brup插件" class="headerlink" title="brup插件"></a>brup插件</h2><p>这是 Interact.sh 的 Burpsuite 插件<br>该插件实现了interactsh-client 的客户端逻辑。 它将允许您生成可用于 OOB 测试的新域。 如果您托管自己的 Interactsh 版本，则可以在“配置”选项卡中对其进行配置。此扩展可与 Burpsuite 的 Collaborator 服务一起使用。加载扩展后，所有结果都会记录在 Interactsh 日志选项卡中。 记录并选择 OOB 交互后，详细信息将显示在底部窗口中。<br>github地址：<a target="_blank" rel="noopener" href="https://github.com/wdahlenburg/interactsh-collaborator">https://github.com/wdahlenburg/interactsh-collaborator</a> 这个插件已经很久没有更新了</p>
+<h2 id="插件不足"><a href="#插件不足" class="headerlink" title="插件不足"></a>插件不足</h2><p>1:没有清理日志功能,目标多了无法判断是否存在漏洞<br/><br>2:只能是一个域名,频繁请求会超时<br/><br>3:ping命令测试没有回显造成ping命令测试的漏洞全部遗漏<br/><br>4:源代码中域名已经废弃不修改直接启动客户端失败<br/><br>github出现的问题截图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221254357.png" alt="出现的问题"></p>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>手下去github下载源代码。在github issue 中我们看到注册客户端的时候会报错从代码角度看一下。估计是这里的问题这里面的域名过时了可以换成我这里写的域名然后进行编译。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221256429.png" alt="更改域名"><br>编译以后如何使用。这里oast.pro 配置你自己的域名或者使用官方提供的域名<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221258692.png" alt="配置域名"><br>然后来到logs 点击生成url 然后进行测试就行了。我们刚才是说了如何使用接下来我们就开始分析一下代码。在BurpExtender 这类中是插件的入口点<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221302191.png" alt="如下图"><br>来到InteractshListener 这是生成 测试域名的url<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221305456.png"><br>1:我们看注册客户端的代码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221307192.png" alt="注册客户端代码"><br>生成公钥并且转成pem格式的。并且用base64把公钥进行编码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221308253.png" alt="生成公钥"><br>然后这些发送到服务器端使用json数据。至于如何生成这些东西的代码我就不分析了。我们主要看他这个软件的逻辑。</p>
+<pre class="language-java" data-language="java"><code class="language-java">registerData<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"public-key"</span><span class="token punctuation">,</span> pubKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+registerData<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"secret-key"</span><span class="token punctuation">,</span> secretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+registerData<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"correlation-id"</span><span class="token punctuation">,</span> correlationId<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>2:循环等待请求服务端获取数据代码。如果获取到数据那么</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">while</span> <span class="token punctuation">(</span>running <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>c<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+       <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token class-name"><span class="token namespace">burp<span class="token punctuation">.</span></span>BurpExtender</span><span class="token punctuation">.</span>pollTime<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//休眠时间你设置的的</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<p>3:使用私钥把aes加密出来,在使用aeskey 解密data 属性的加密数据。至于什么填充方式和什么的我就不分析了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221315033.png" alt="解密数据"><br>4:解密出来然后在 burp插件上面展示出来。这个如果用java写客户端直接copy代码就行了直接就写完了。我们使用.net来写总所周知java和net 字节数组不一样所以造成了这难度比较大。我在chatGpt和谷歌和百度和自己的理解调整的情况下终于编写出我们的客户端</p>
+<h2 id="net-客户端"><a href="#net-客户端" class="headerlink" title=".net 客户端"></a>.net 客户端</h2><p>下载地址:<a target="_blank" rel="noopener" href="https://github.com/peiqiF4ck/interactshCsharpclient">https://github.com/peiqiF4ck/interactshCsharpclient</a><br/><br>后续我们将把这个探测方式加入我们的webframeworktools里面。nuclei探测有我们也要加入一下。基本上上面提的问题我们全部用这个解决了。由于burp插件编写我不熟悉这个是主要的另外我们的工具也要用这个。我在github中找没有.net写的插件。所以我干脆自己写一个客户端了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307212249255.gif" alt="演示截图"></p>
 
                 
             </div>
@@ -498,7 +510,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://peiqiF4ck.github.io/penetrationtest/2023/06/articles/4d9b7730efb1222b/">https://peiqiF4ck.github.io/penetrationtest/2023/06/articles/4d9b7730efb1222b/</a>
+                    <a href="https://peiqiF4ck.github.io/penetrationtest/2023/07/articles/05d020ff2fca8938/">https://peiqiF4ck.github.io/penetrationtest/2023/07/articles/05d020ff2fca8938/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -711,28 +723,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/penetrationtest/2023/07/articles/4c6ad3c1efab8e8e/">
+                <a href="/penetrationtest/2023/07/articles/05d020ff2fca8938/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307070955954.png" class="responsive-img" alt="Nacos集群Raft反序列化漏洞(QVD-2023-13065)-复现">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221238136.png" class="responsive-img" alt="interactsh-collaborator 源码分析用.net写一个客户端">
                         
-                        <span class="card-title">Nacos集群Raft反序列化漏洞(QVD-2023-13065)-复现</span>
+                        <span class="card-title">interactsh-collaborator 源码分析用.net写一个客户端</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            漏洞复现
+                            brup插件渗透测试工具代码分析
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -745,6 +758,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -763,23 +777,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/penetrationtest/2023/06/articles/3cce7d6763611bcc/">
+                <a href="/penetrationtest/2023/07/articles/a67e92b61df29d7e/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021421494.png" class="responsive-img" alt="Struts2-DevMode漏洞渗透实战">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307141638708.png" class="responsive-img" alt="Altenergy Power System Control命令执行漏洞(CVE-2023-28343)复现">
                         
-                        <span class="card-title">Struts2-DevMode漏洞渗透实战</span>
+                        <span class="card-title">Altenergy Power System Control命令执行漏洞(CVE-2023-28343)复现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Struts2-DevMode渗透实战测试,DevMode,Struts2漏洞测试
+                            漏洞复现
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-14
                             </span>
                         <span class="publish-author">
                             

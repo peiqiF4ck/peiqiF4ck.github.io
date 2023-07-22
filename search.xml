@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>interactsh-collaborator 源码分析用.net写一个客户端</title>
+      <link href="/penetrationtest/2023/07/articles/05d020ff2fca8938/"/>
+      <url>/penetrationtest/2023/07/articles/05d020ff2fca8938/</url>
+      
+        <content type="html"><![CDATA[<h2 id="brup插件"><a href="#brup插件" class="headerlink" title="brup插件"></a>brup插件</h2><p>这是 Interact.sh 的 Burpsuite 插件<br>该插件实现了interactsh-client 的客户端逻辑。 它将允许您生成可用于 OOB 测试的新域。 如果您托管自己的 Interactsh 版本，则可以在“配置”选项卡中对其进行配置。此扩展可与 Burpsuite 的 Collaborator 服务一起使用。加载扩展后，所有结果都会记录在 Interactsh 日志选项卡中。 记录并选择 OOB 交互后，详细信息将显示在底部窗口中。<br>github地址：<a href="https://github.com/wdahlenburg/interactsh-collaborator">https://github.com/wdahlenburg/interactsh-collaborator</a> 这个插件已经很久没有更新了</p><h2 id="插件不足"><a href="#插件不足" class="headerlink" title="插件不足"></a>插件不足</h2><p>1:没有清理日志功能,目标多了无法判断是否存在漏洞<br/><br>2:只能是一个域名,频繁请求会超时<br/><br>3:ping命令测试没有回显造成ping命令测试的漏洞全部遗漏<br/><br>4:源代码中域名已经废弃不修改直接启动客户端失败<br/><br>github出现的问题截图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221254357.png" alt="出现的问题"></p><h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>手下去github下载源代码。在github issue 中我们看到注册客户端的时候会报错从代码角度看一下。估计是这里的问题这里面的域名过时了可以换成我这里写的域名然后进行编译。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221256429.png" alt="更改域名"><br>编译以后如何使用。这里oast.pro 配置你自己的域名或者使用官方提供的域名<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221258692.png" alt="配置域名"><br>然后来到logs 点击生成url 然后进行测试就行了。我们刚才是说了如何使用接下来我们就开始分析一下代码。在BurpExtender 这类中是插件的入口点<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221302191.png" alt="如下图"><br>来到InteractshListener 这是生成 测试域名的url<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221305456.png"><br>1:我们看注册客户端的代码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221307192.png" alt="注册客户端代码"><br>生成公钥并且转成pem格式的。并且用base64把公钥进行编码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221308253.png" alt="生成公钥"><br>然后这些发送到服务器端使用json数据。至于如何生成这些东西的代码我就不分析了。我们主要看他这个软件的逻辑。</p><pre class="language-java" data-language="java"><code class="language-java">registerData<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"public-key"</span><span class="token punctuation">,</span> pubKey<span class="token punctuation">)</span><span class="token punctuation">;</span>registerData<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"secret-key"</span><span class="token punctuation">,</span> secretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>registerData<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"correlation-id"</span><span class="token punctuation">,</span> correlationId<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>2:循环等待请求服务端获取数据代码。如果获取到数据那么</p><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">while</span> <span class="token punctuation">(</span>running <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>c<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>       <span class="token keyword">return</span><span class="token punctuation">;</span>  <span class="token punctuation">&#125;</span><span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token class-name"><span class="token namespace">burp<span class="token punctuation">.</span></span>BurpExtender</span><span class="token punctuation">.</span>pollTime<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//休眠时间你设置的的</span><span class="token punctuation">&#125;</span></code></pre><p>3:使用私钥把aes加密出来,在使用aeskey 解密data 属性的加密数据。至于什么填充方式和什么的我就不分析了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307221315033.png" alt="解密数据"><br>4:解密出来然后在 burp插件上面展示出来。这个如果用java写客户端直接copy代码就行了直接就写完了。我们使用.net来写总所周知java和net 字节数组不一样所以造成了这难度比较大。我在chatGpt和谷歌和百度和自己的理解调整的情况下终于编写出我们的客户端</p><h2 id="net-客户端"><a href="#net-客户端" class="headerlink" title=".net 客户端"></a>.net 客户端</h2><p>下载地址:<a href="https://github.com/peiqiF4ck/interactshCsharpclient">https://github.com/peiqiF4ck/interactshCsharpclient</a><br/><br>后续我们将把这个探测方式加入我们的webframeworktools里面。nuclei探测有我们也要加入一下。基本上上面提的问题我们全部用这个解决了。由于burp插件编写我不熟悉这个是主要的另外我们的工具也要用这个。我在github中找没有.net写的插件。所以我干脆自己写一个客户端了。</p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202307212249255.gif" alt="演示截图"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PenetrationTest </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PenetrationTestingExample </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Altenergy Power System Control命令执行漏洞(CVE-2023-28343)复现</title>
       <link href="/penetrationtest/2023/07/articles/a67e92b61df29d7e/"/>
       <url>/penetrationtest/2023/07/articles/a67e92b61df29d7e/</url>
