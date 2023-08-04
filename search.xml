@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>github .net 反序列11课反序列化漏洞代码</title>
+      <link href="/codeaudit/2023/07/articles/9c9b28d24e8ef1ac/"/>
+      <url>/codeaudit/2023/07/articles/9c9b28d24e8ef1ac/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在一次项目中得到一波.net 源码。看到了一个函数内容可以是json数据于是乎使用json数据测试。测试的时候发现 json报错 发现有一个关键字JavaScriptSerializer 立马搜索了一波。这玩意可以反序列。于是乎我用ysoserial.exe 生成poc 本以为要和java一样起飞了结果。握擦 报错了。type参数不能为null 这net反序列化漏洞之前没有遇到过。以为是姿势有问题。网上搜索了一波看到github这里<a href="https://github.com/Ivan1ee/NET-Deserialize">https://github.com/Ivan1ee/NET-Deserialize</a> 有介绍。由于没有学过看看。他这个项目没有漏洞代码。于是我自己花时间写了一个漏洞demo。打了一波发现沃日。。这玩意得满足一定条件才行要不就是报type 参数为null。搞了半天是没有反序列化漏洞啊。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202308041542668.png" alt="没漏洞的截图"></p><h2 id="补全漏洞代码"><a href="#补全漏洞代码" class="headerlink" title="补全漏洞代码"></a>补全漏洞代码</h2><p>于是乎本着送佛送到西我把这个github所涉及的11个反序列化的pdf的案例都写成了漏洞代码这到时候就省事了到底是没有漏洞还是链不行。如下图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202308041545382.png" alt="漏洞代码"></p><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p>频道地址<br><a href="https://t.me/SoftwareNoticeChannel/243">https://t.me/SoftwareNoticeChannel/243</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CodeAudit </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CodeAuditExample </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>interactsh-collaborator 源码分析用.net写一个客户端</title>
       <link href="/penetrationtest/2023/07/articles/05d020ff2fca8938/"/>
       <url>/penetrationtest/2023/07/articles/05d020ff2fca8938/</url>
@@ -492,9 +517,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
