@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>亿赛通 电子文档安全管理系统 UploadFileFromClientServiceForClient 任意文件上传漏洞poc解析</title>
+      <link href="/codeaudit/2023/09/articles/2d6e04e436b4b308/"/>
+      <url>/codeaudit/2023/09/articles/2d6e04e436b4b308/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在写hw漏洞exp的时候在佩琪文库看到亿赛通的exp如下 </p><pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span><span class="token class-name">CDGServer3</span><span class="token operator">/</span><span class="token class-name">UploadFileFromClientServiceForClient</span><span class="token operator">?</span>AFMALANMJCEOENIBDJMKFHBANGEPKHNOFJBMIFJPFNKFOKHJNMLCOIDDJGNEIPOLOKGAFAFJHDEJPHEPLFJHDGPBNELNFIICGFNGEOEFBKCDDCGJEPIKFHJFAOOHJEPNNCLFHDAFDNCGBAEELJFFHABJPDPIEEMIBOECDMDLEPBJGBGCGLEMBDFAGOGM HTTP<span class="token operator">/</span><span class="token number">1.1</span><span class="token class-name">Host</span><span class="token operator">:</span> <span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv<span class="token operator">:</span><span class="token number">109.0</span><span class="token punctuation">)</span> <span class="token class-name">Gecko</span><span class="token operator">/</span><span class="token number">20100101</span> <span class="token class-name">Firefox</span><span class="token operator">/</span><span class="token number">113.0</span><span class="token class-name">Accept</span><span class="token operator">:</span> <span class="token operator">*</span><span class="token comment">/*Content-Length: 1Test</span></code></pre><p>其中的AFMAL这玩意看着是加密过得。于是乎我顺着个exp拿下了webshell然后对代码进行分析</p><h2 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h2><p>根据多年的代码审计经验得出下图。有的人说这是咋找到的。这玩意首先你的会javase。其次你得会javaee。然后你还得会代码审计。如果展开讲篇幅太长我们重点就分析下面的代码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011850935.png" alt="漏洞点定位"><br>此代码有一个Constants.EQUAL 这个是个常量就是&#x3D;等于号。 例如我向提交<a href="https://www.baidu.com/?username=xxxxxxxxx">https://www.baidu.com?username=xxxxxxxxx</a> 。这句话的意思就是获取 xxxxxxxxx。你知道这个就行了。所以我们构造exp 的时候可以加上usernam这些参数也是可以的。然后调用 CDGUtil.decode() 函数进行解码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011853393.png" alt="看下面的代码"><br>在往下看解密以后使用&amp;分割如果有filename开头的那么获取他的值继续看<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011857516.png" alt="filename"><br>然后发现使用File file &#x3D; new File(Constant.instance.UPLOAD_PATH + fileName);这个对文件进行保存没有过滤任何文件名称的特殊字符导致漏洞存在。至于这个Constant.instance.UPLOAD_PATH 是什么默认为 C:&#x2F;fileDB&#x2F;uploaded&#x2F; 这个得配置。我们的web目录在 C:\Program Files (x86)&#x2F;ESAFENET&#x2F;CDocGuard Server&#x2F;tomcat64&#x2F;webapps&#x2F;  所以我们得跳目录..&#x2F;..&#x2F;C:&#x2F;Program Files (x86)&#x2F;ESAFENET&#x2F;CDocGuard Server&#x2F;tomcat64&#x2F;webapps&#x2F;  如果是..&#x2F;..&#x2F;..&#x2F;那么就直接省略 就是这种了Program Files (x86)&#x2F;ESAFENET&#x2F;CDocGuard Server&#x2F;tomcat64&#x2F;webapps&#x2F;<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011858699.png" alt="漏洞点"></p><h2 id="解密exp构造自己的poc"><a href="#解密exp构造自己的poc" class="headerlink" title="解密exp构造自己的poc"></a>解密exp构造自己的poc</h2><p>我们知道原理以后直接搞一个项目开搞。对了还有这个代码 ServletInputStream inputStream &#x3D; req.getInputStream();<br>这就是接受请求数据的主要content-type 不是post默认的可以不填。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011903518.png" alt="解密exp"><br>我们在调用一下加密函数直接拿捏<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011905232.png" alt="构造成功"></p><h2 id="漏洞更新详情"><a href="#漏洞更新详情" class="headerlink" title="漏洞更新详情"></a>漏洞更新详情</h2><p>上述漏洞已经集成到我们的 WebFrameworkTools  直接一键getshell。更新hw漏洞详情<br>2023-09-01 更新了hw 中漏洞24个分别为用友nc cloud 上传漏洞 一键getshell,汉得SRM tomcat.jsp 文件存在登陆绕过漏洞,深信服 应用交付管理系统 login 远程命令执行漏洞(shell拿不到),网神 SecGate 3600 防火墙 obj_app_upfile 任意文件上传漏洞,用友 移动管理系统 uploadApk.do,HiKVISION 综合安防管理平台 env 信息泄漏漏洞,锐捷 NBR 路由器 fileupload.php 任意文件上传,金盘 微信管理平台 getsysteminfo 未授权访问,网御上网行为管理系统Sql注入,用友 U8 CRM客户关系管理系统 getemaildata.php 任意文件上传漏洞,广联达sql注入,企望制造 ERP comboxstore.action 远程命令执行漏洞,大华 智慧园区综合管理平台 video 任意文件上传漏洞,大华城市安防监控系统平台管理存在任意文件下载漏洞,大华城市安防监控系统平台管理sql注入漏洞,飞企互联 FE业务协作平台 ShowImageServlet 任意文件读取漏洞,Metabase validate 远程命令执行漏洞 CVE-2023-38646(poc),大华 智慧园区综合管理平台 账号密码泄露,fficeweb365 任意文件上传漏洞,致远OA M1Server userTokenService 远程命令执行漏洞,金蝶OA 云星空 CommonFileServer 任意文件读取漏洞,新开普 前置服务管理平台 service.action 远程命令执行漏洞(勉强加上了),明源云 ERP系统 接口管家 ApiUpdate.ashx 任意文件上传漏洞,亿赛通文件上传漏洞。详情看截图2023hw漏洞。2023hw漏洞更新此次更新24个漏洞由于时间或者其他原因部分漏洞没有更新。这个不影响。我们软件新版本5.2功能可以调用任意脚本执行exp 弥补了这个不足这次更新以后我将不会再更新漏洞。后续我学习完毕以后将专注更新软件。感谢大家对软件的支持。其中这些漏洞的exp大部分我都做了变形以求绕过waf。所以写软件不光是速度还有准确度。还要有代码审计能力对于位公布的加密的exp可以解密实现自定义请求。<br>软件5.2效果测试截图。可以调用任意程序批量执行。具体看截图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011915972.png" alt="5.2效果测试"><br>更新详情见 <a href="https://github.com/peiqiF4ck/WebFrameworkTools-5.1-main">https://github.com/peiqiF4ck/WebFrameworkTools-5.1-main</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011910280.png" alt="hw漏洞更新详情"></p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>实在是没时间要不hw的漏洞全部给他加到工具里面。有的漏洞已经修复了太难了😔。大家用工具的时候很爽在这背后作者我付出不少啊😂。有的大佬想破解或者逆向工具的。就算源代码给你。我更新和你更新出来的软件。肯定是我的软件比你的牛逼。所以多学习学习思路而不是老想破解得到源代码。思想无法复制。这也就是我们的软件不仅速度快而且误报率低的原因。与其破解不如后续你购买代码。我手把手教学来的实在。既不想花钱又想搞到成果。我劝你还是洗洗睡吧。因为逆向出的是代码不是学习思路只有思路才是王道😂。后续我学习完毕以后软件这块将重点抓一波。我以后也用毕竟。以后安全的发展方向。<br>现在各种防护设备。以后是代码审计的天下。框架审计的天下。好好布局吧。以后安全将变成 代码审计 二进制漏洞挖掘(内网渗透) 移动端 物联网端 越大朝硬件。朝代码层面发展。还没有学习编程语言的你要努力学习一门语言了💪💪。等博主学习完毕以后我们将着重更新我们的软件。让他变成流弊的软件</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CodeAudit </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CodeAuditExample </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>综合性exp|poc渗透工具-WebFrameworkTools5.0</title>
       <link href="/securitytools/2023/08/articles/17280a163317a771/"/>
       <url>/securitytools/2023/08/articles/17280a163317a771/</url>
@@ -20,9 +45,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -272,9 +297,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -351,9 +376,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -378,9 +403,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -407,9 +432,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -436,9 +461,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -465,9 +490,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -492,9 +517,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -571,9 +596,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Vip </tag>
             
