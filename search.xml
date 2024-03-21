@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Linux Centos python3请求https类型网站报错问题解决-报错原因openssl版本过低</title>
+      <link href="/problemsolved/2024/03/articles/b21057b89a7d1481/"/>
+      <url>/problemsolved/2024/03/articles/b21057b89a7d1481/</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><h2>在linux centos 上运行python脚本出现错误错误</h2><pre class="language-python" data-language="python"><code class="language-python">Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>  File <span class="token string">"/usr/local/python3/lib/python3.8/site-packages/requests/adapters.py"</span><span class="token punctuation">,</span> line <span class="token number">486</span><span class="token punctuation">,</span> <span class="token keyword">in</span> send    resp <span class="token operator">=</span> conn<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>  File <span class="token string">"/usr/local/python3/lib/python3.8/site-packages/urllib3/connectionpool.py"</span><span class="token punctuation">,</span> line <span class="token number">755</span><span class="token punctuation">,</span> <span class="token keyword">in</span> urlopen    retries <span class="token operator">=</span> retries<span class="token punctuation">.</span>increment<span class="token punctuation">(</span>  File <span class="token string">"/usr/local/python3/lib/python3.8/site-packages/urllib3/util/retry.py"</span><span class="token punctuation">,</span> line <span class="token number">573</span><span class="token punctuation">,</span> <span class="token keyword">in</span> increment    <span class="token keyword">raise</span> MaxRetryError<span class="token punctuation">(</span>_pool<span class="token punctuation">,</span> url<span class="token punctuation">,</span> error <span class="token keyword">or</span> ResponseError<span class="token punctuation">(</span>cause<span class="token punctuation">)</span><span class="token punctuation">)</span>urllib3<span class="token punctuation">.</span>exceptions<span class="token punctuation">.</span>MaxRetryError<span class="token punctuation">:</span> HTTPSConnectionPool<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'xxxxxxxxx'</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">443</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Max retries exceeded <span class="token keyword">with</span> url<span class="token punctuation">:</span> <span class="token operator">/</span>admin<span class="token operator">/</span>login<span class="token punctuation">.</span>html <span class="token punctuation">(</span>Caused by SSLError<span class="token punctuation">(</span>SSLError<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'[SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol version (_ssl.c:1108)'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>During handling of the above exception<span class="token punctuation">,</span> another exception occurred<span class="token punctuation">:</span></code></pre><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>首先安装依赖</p><pre class="language-sh" data-language="sh"><code class="language-sh">yum install zlib zlib-devel bzip2-devel openssl-devel ncurses-devel libuuid-devel sqlite-devel readline-devel tcl-devel tk-devel lzma gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211557212.png" alt="依赖安装"></p><p>下载openssl源代码<br>wget <a href="https://www.openssl.org/source/openssl-1.1.1g.tar.gz">https://www.openssl.org/source/openssl-1.1.1g.tar.gz</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211558140.png" alt="下载openssl源码"></p><p>解压<br>    tar zxf openssl-1.1.1g.tar.gz<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211600372.png" alt="解压"></p><p>配置编译openssl环境<br>.&#x2F;config –prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;openssl shared zlib<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211601287.png" alt="配置openssl编译环境"><br>make编译<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211607251.png" alt="make"><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211607721.png" alt="make编译"><br>make install安装<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211608603.png" alt="make install"><br>创建软链接<br>ln -sf &#x2F;usr&#x2F;local&#x2F;openssl&#x2F;bin&#x2F;openssl &#x2F;usr&#x2F;bin&#x2F;openssl<br>ln -s &#x2F;usr&#x2F;local&#x2F;openssl&#x2F;lib&#x2F;libssl.so.1.1 &#x2F;usr&#x2F;lib64&#x2F;libssl.so.1.1<br>ln -s &#x2F;usr&#x2F;local&#x2F;openssl&#x2F;lib&#x2F;libcrypto.so.1.1 &#x2F;usr&#x2F;lib64&#x2F;libcrypto.so.1.1<br>openssl version<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211610783.png" alt="查看安装的openssl是否成功"><br>安装成功以后下载python源码<br>wget <a href="https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tgz">https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tgz</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211611279.png" alt="下载python源码"><br>解压 tar zxf Python-3.8.6.tgz<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211611486.png" alt="解压python"><br>重点链接 openssl  设置编译环境<br>.&#x2F;configure –prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;python3 –with-openssl&#x3D;&#x2F;usr&#x2F;local&#x2F;openssl&#x2F;<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211612421.png" alt="编译"><br>make编译<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211614542.png" alt="make"><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211614928.png" alt="make"><br>make install<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211615045.png" alt="make install"></p><p>python3再次测试<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211621486.png" alt="测试python3"></p><p>最终测试测试脚本情况正常运行了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211624440.png" alt="测试问题是否解决"></p><p>如果上述已经安装了requests 报错说是requests还报错尝试<br>最好把python加入到环境变量中(如果上述步骤imports requests 找不到那可以试试加入到环境变量)</p><p>export PATH&#x3D;”&#x2F;usr&#x2F;local&#x2F;python3&#x2F;bin:$PATH”<br>vim &#x2F;etc&#x2F;profile<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403211622067.png"><br>修改完毕以后source &#x2F;etc&#x2F;pfofile一下弄完以后再次尝试看看。如果不行删除在重新编译看看遗漏了哪些细节。测试在linux<br>CentOS Linux release 7.9.2009 (Core)  3.10.0-1160.102.1.el7.x86_64 #1 SMP Tue Oct 17 15:42:21 UTC 2023 x86_64 x86_64 x86_64 GNU&#x2F;Linux</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ProblemSolved </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ToolDevelopment </tag>
+            
+            <tag> ALLlanguage </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>综合性exp|poc渗透工具-WebFrameworkTools5.2 ini配置用法</title>
       <link href="/securitytools/2024/01/articles/1fee187af88e0843/"/>
       <url>/securitytools/2024/01/articles/1fee187af88e0843/</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -99,9 +126,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -351,9 +378,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> Brida </tag>
             
@@ -430,9 +457,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -457,9 +484,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> autoDecoder </tag>
             
@@ -486,9 +513,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> autoDecoder </tag>
             
@@ -515,9 +542,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> Brida </tag>
             
@@ -544,9 +571,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -571,9 +598,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -650,9 +677,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
             <tag> Vip </tag>
             
