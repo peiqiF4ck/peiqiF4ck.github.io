@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Jyso 最新版反序列化工具gradle编译</title>
+      <link href="/securitytools/2024/05/articles/c4f380e46ba1f562/"/>
+      <url>/securitytools/2024/05/articles/c4f380e46ba1f562/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 最新在搞java反序列化漏洞在github搜索 java反序列化工具突然搜索到一个项目。感觉这个项目可以。作者也在一直更新所以下载下来编译一波。没想到这个是用gradle编译的握擦。我在maven编译的都不怎么熟练。这gradle不是歇菜了。况且我这漏洞已经复现并且已经拿到了webshell。想想这要不就算了。别搞了。后来想了想这个项目作者在一直更新。那如果后续别的工具搞不定的或许可以使用这个项目进行搞。于是就开搞了。这玩意我光编译和解决问题用了两天。最后发现缺少lib包我直接在github找相同的编译成功了。但是打不成功这个不在讨论范围内。相信作者会抽时间更新项目的这么大的项目通读代码前后结合才能知道是什么问题。废话不多说了开干。<br/><br> 项目代码:<a href="https://github.com/qi4L/JYso">https://github.com/qi4L/JYso</a><br/><br>使用方法:<a href="https://github.com/qi4L/JYso/wiki/JYso%E2%80%90CN">https://github.com/qi4L/JYso/wiki/JYso%E2%80%90CN</a></p><h2 id="下载源码编译"><a href="#下载源码编译" class="headerlink" title="下载源码编译"></a>下载源码编译</h2><p> 我们从github下载代码。由于源代码使用idea 编译执行下载idea。我们对代码进行解压。<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011801876.png" alt="源码截图"><br> 解压并且删除图下面画框的.idea 和gradle 使用使用idea打开代码<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011805272.png" alt="删除文件夹"><br> 删除使用idea打开<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011806794.png" alt="删除后"><br>在file找到setting界面找到gradle。创建一个gradle文件夹选择然后按照下图配置。点击应用。点击ok就行了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011809596.png" alt="图配置"><br>然后你会看到下载jar包啥的下载完毕以后你会发现这种错误。</p><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">Could</span> not find javax<span class="token punctuation">.</span>media<span class="token punctuation">.</span>jai<span class="token operator">:</span>jai<span class="token operator">-</span>core<span class="token operator">:</span><span class="token number">1.1</span><span class="token number">.3</span><span class="token punctuation">.</span><span class="token class-name">Required</span> by<span class="token operator">:</span>    project <span class="token operator">:</span><span class="token class-name">Possible</span> solution<span class="token operator">:</span> <span class="token operator">-</span> <span class="token class-name">Declare</span> repository providing the artifact<span class="token punctuation">,</span> see the documentation at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>docs<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token operator">/</span>current<span class="token operator">/</span>userguide<span class="token operator">/</span>declaring_repositories<span class="token punctuation">.</span>html  <span class="token class-name">Could</span> not find com<span class="token punctuation">.</span>oracle<span class="token punctuation">.</span>weblogic<span class="token operator">:</span>weblogic<span class="token operator">-</span>server<span class="token operator">:</span><span class="token number">1.0</span><span class="token punctuation">.</span><span class="token class-name">Required</span> by<span class="token operator">:</span>    project <span class="token operator">:</span><span class="token class-name">Possible</span> solution<span class="token operator">:</span> <span class="token operator">-</span> <span class="token class-name">Declare</span> repository providing the artifact<span class="token punctuation">,</span> see the documentation at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>docs<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token operator">/</span>current<span class="token operator">/</span>userguide<span class="token operator">/</span>declaring_repositories<span class="token punctuation">.</span>html</code></pre><p>我第一页看到上面的错误就是百度了一波发现就是没有找到包什么的。然后我们在main下面创建一波lib目录然后从找到包。找包过程太坑爹了。所以我直接把包的名字放出来了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011812163.png" alt="创建lib目录"></p><pre class="language-java" data-language="java"><code class="language-java">jai_core<span class="token operator">-</span><span class="token number">1.1</span><span class="token number">.3</span><span class="token punctuation">.</span>jarweblogic<span class="token operator">-</span>server<span class="token punctuation">.</span>jarwlthint3client<span class="token punctuation">.</span>jar</code></pre><p>我们把包导入了如何让他识别呢这个是重点我们在build.gradle 文件中写这段代码</p><pre class="language-java" data-language="java"><code class="language-java">api <span class="token function">fileTree</span><span class="token punctuation">(</span>dir<span class="token operator">:</span>'src<span class="token operator">/</span>main<span class="token operator">/</span>lib'<span class="token punctuation">,</span>include<span class="token operator">:</span><span class="token punctuation">[</span><span class="token char">'*.jar'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>点同步两个箭头环绕的。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011820209.png" alt="点同步"><br>出现下图说明识别成功了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011819308.png" alt="识别成功"><br>我们在点同步<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011820209.png" alt="点同步"><br>还是报错。是不是这时候懵逼了。别着急我们没看其他文件我们看看哪里有javax.media.jai:jai-core<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011822054.png" alt="还是报错"><br>最后发现在libs.versions.toml 发现了我们把它注释了。有人说了这注释了不更找不到了。别忘了我们在lib目录里面已经给他jar包了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011824122.png" alt="注释这个叼毛"><br>注释这个叼毛<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011825797.png" alt="同样注释这个叼毛"><br>然后在同步后续又报错了</p><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span>InvalidUserDataException</span><span class="token operator">:</span> <span class="token class-name">Invalid</span> catalog definition<span class="token operator">:</span>  <span class="token operator">-</span> <span class="token class-name">Problem</span><span class="token operator">:</span> <span class="token class-name">In</span> version catalog libs<span class="token punctuation">,</span> version reference 'javax<span class="token punctuation">.</span>media<span class="token punctuation">.</span>jai<span class="token punctuation">.</span>jai<span class="token punctuation">.</span>core<span class="token char">' doesn'</span>t exist<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>BUILD FAILED in <span class="token number">131</span>ms</code></pre><p>走到这时候是不是有马在心中崩腾我也是沃日。我们冷静看看还有东西没有干掉。libs.versions.toml<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011829490.png" alt="在注释"><br>同步一下又报错了。这是我尼玛想摔键盘了。但是这时候他告诉我们那里有问题了。没错就是\build.gradle’ line: 37</p><pre class="language-java" data-language="java"><code class="language-java">FAILURE<span class="token operator">:</span> <span class="token class-name">Build</span> failed <span class="token keyword">with</span> <span class="token namespace">an</span> exception<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token class-name">Where</span><span class="token operator">:</span><span class="token class-name">Build</span> file '<span class="token class-name">C</span><span class="token operator">:</span>\<span class="token class-name">Users</span>\<span class="token class-name">Administrator</span>\<span class="token class-name">Desktop</span>\gradleproject\<span class="token class-name">JYso</span><span class="token operator">-</span>master\build<span class="token punctuation">.</span>gradle' line<span class="token operator">:</span> <span class="token number">37</span><span class="token operator">*</span> <span class="token class-name">What</span> went wrong<span class="token operator">:</span><span class="token class-name">A</span> problem occurred evaluating root project <span class="token char">'JYso'</span><span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">No</span> such property<span class="token operator">:</span> media <span class="token keyword">for</span> <span class="token keyword">class</span><span class="token operator">:</span> <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>accessors<span class="token punctuation">.</span>dm<span class="token punctuation">.</span></span>LibrariesForLibs</span>$<span class="token class-name">JavaxLibraryAccessors</span><span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>BUILD FAILED in <span class="token number">162</span>ms</code></pre><p>我们看看37行是有个啥。直接注释<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011831067.png" alt="这个叼毛"><br>直接注释在同步</p><pre class="language-java" data-language="java"><code class="language-java">FAILURE<span class="token operator">:</span> <span class="token class-name">Build</span> failed <span class="token keyword">with</span> <span class="token namespace">an</span> exception<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token class-name">Where</span><span class="token operator">:</span><span class="token class-name">Build</span> file '<span class="token class-name">C</span><span class="token operator">:</span>\<span class="token class-name">Users</span>\<span class="token class-name">Administrator</span>\<span class="token class-name">Desktop</span>\gradleproject\<span class="token class-name">JYso</span><span class="token operator">-</span>master\build<span class="token punctuation">.</span>gradle' line<span class="token operator">:</span> <span class="token number">39</span><span class="token operator">*</span> <span class="token class-name">What</span> went wrong<span class="token operator">:</span><span class="token class-name">A</span> problem occurred evaluating root project <span class="token char">'JYso'</span><span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">No</span> such property<span class="token operator">:</span> oracle <span class="token keyword">for</span> <span class="token keyword">class</span><span class="token operator">:</span> <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>accessors<span class="token punctuation">.</span>dm<span class="token punctuation">.</span></span>LibrariesForLibs</span>$<span class="token class-name">ComLibraryAccessors</span><span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>BUILD FAILED in <span class="token number">426</span>ms</code></pre><p>同样的手段在同步我操看到build success 了这时候是不是眼泪都要流出来了沃日。我也是<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011833104.png" alt="沃日"><br>我们点击build 点击clean<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011834856.png" alt="清理"><br>然我们点击jar。握擦又报错了。看样子是找不到jdk里面的java.exe我们配置一下<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011835902.png" alt="报错了"></p><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">Execution</span> failed <span class="token keyword">for</span> task '<span class="token operator">:</span>compileJava'<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Error</span> <span class="token keyword">while</span> evaluating property 'javaCompiler' of task '<span class="token operator">:</span>compileJava'<span class="token punctuation">.</span>   <span class="token operator">></span> <span class="token class-name">Failed</span> <span class="token keyword">to</span> <span class="token namespace">calculate</span> the value of task '<span class="token operator">:</span>compileJava' property 'javaCompiler'<span class="token punctuation">.</span>      <span class="token operator">></span> <span class="token class-name">The</span> configured executable does not exist <span class="token punctuation">(</span><span class="token class-name">C</span><span class="token operator">:</span>\env\JAVA\jdk1<span class="token punctuation">.</span><span class="token number">8.0_402</span>\bin\javac<span class="token punctuation">.</span>exe<span class="token punctuation">)</span><span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span><span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>BUILD FAILED in <span class="token number">313</span>ms<span class="token number">1</span> actionable task<span class="token operator">:</span> <span class="token number">1</span> executed</code></pre><p>我的是这个路径你们自己看自己的jdk路径。点击clean然后再点击jar<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011837688.png" alt="配置jdk路径"><br>看到下图你是不是以为成功了。我们看看生成的jar包<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011839034.png" alt="假成功"><br>这一看就是没有依赖的jar沃日。陷入怀疑了。不着急。我们在build.gradle<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011840301.png" alt="没有依赖的jar"><br>看到这个sharjar并且有入口函数那估计就是它了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011842438.png" alt="入口函数"><br>我们看到那个Jyso是红色感觉有点坑爹重新重启一下idea让它重新识别一下。当然不重启也行。强迫症可能会重启一下哈哈哈。并且我们看到showjar了。没错就是点一波<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011845330.png" alt="重启了一下果然没有爆红了"><br>我操终于成功了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011848294.png" alt="成功了"><br>测试一下<br>perfect完美。如何强制使用一个特定版本jar包版本再build.gradle里面加入.强制使用 commons-beanutils 1.6.1 版本的jar</p><pre class="language-xml" data-language="xml"><code class="language-xml">implementation('commons-beanutils:commons-beanutils:1.6.1') &#123;     version &#123;         strictly '1.6.1'    &#125;&#125;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011849362.png" alt="成功"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> lib包和编译的修改的东西我放到频道了。并且含有编译成功的。不过低版本打不了代码存在问题。主要是讲解如何编译后续作者更新以后你们可以自己编译。<br/><br> <a href="https://t.me/SoftwareNoticeChannel/418">https://t.me/SoftwareNoticeChannel/418</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SecurityTools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PenetrationTest </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>普元反序列化漏洞复现探究以及ysoserial各种工具编译鉴赏</title>
       <link href="/penetrationtest/2024/04/articles/bf2db1aeff47d7f9/"/>
       <url>/penetrationtest/2024/04/articles/bf2db1aeff47d7f9/</url>
@@ -97,9 +122,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -124,9 +149,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -176,9 +201,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -428,9 +453,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -507,9 +532,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -534,9 +559,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -563,9 +588,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -592,9 +617,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -621,9 +646,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -648,9 +673,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -727,9 +752,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Vip </tag>
             
