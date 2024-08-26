@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Jyso 最新版反序列化工具gradle编译, peiqiF4ck github">
-    <meta name="description" content="前言 最新在搞java反序列化漏洞在github搜索 java反序列化工具突然搜索到一个项目。感觉这个项目可以。作者也在一直更新所以下载下来编译一波。没想到这个是用gradle编译的握擦。我在maven编译的都不怎么熟练。这gradle不是">
+    <meta name="keywords" content="webframeworktools 漏洞集成公告一, peiqiF4ck github">
+    <meta name="description" content="exp|poc渗透工具">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Jyso 最新版反序列化工具gradle编译 | peiqiF4ck</title>
+    <title>webframeworktools 漏洞集成公告一 | peiqiF4ck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -278,12 +278,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011849362.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261636141.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Jyso 最新版反序列化工具gradle编译</h1>
+                    <h1 class="description center-align post-title">webframeworktools 漏洞集成公告一</h1>
                 </div>
             </div>
         </div>
@@ -403,6 +403,10 @@
                                 <span class="chip bg-color">PenetrationTest</span>
                             </a>
                         
+                            <a href="/tags/original/">
+                                <span class="chip bg-color">original</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -424,28 +428,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-05-01
+                    2024-08-26
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-05-01
+                    2024-08-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -468,98 +472,26 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 最新在搞java反序列化漏洞在github搜索 java反序列化工具突然搜索到一个项目。感觉这个项目可以。作者也在一直更新所以下载下来编译一波。没想到这个是用gradle编译的握擦。我在maven编译的都不怎么熟练。这gradle不是歇菜了。况且我这漏洞已经复现并且已经拿到了webshell。想想这要不就算了。别搞了。后来想了想这个项目作者在一直更新。那如果后续别的工具搞不定的或许可以使用这个项目进行搞。于是就开搞了。这玩意我光编译和解决问题用了两天。最后发现缺少lib包我直接在github找相同的编译成功了。但是打不成功这个不在讨论范围内。相信作者会抽时间更新项目的这么大的项目通读代码前后结合才能知道是什么问题。废话不多说了开干。<br/><br> 项目代码:<a target="_blank" rel="noopener" href="https://github.com/qi4L/JYso">https://github.com/qi4L/JYso</a><br/><br>使用方法:<a target="_blank" rel="noopener" href="https://github.com/qi4L/JYso/wiki/JYso%E2%80%90CN">https://github.com/qi4L/JYso/wiki/JYso%E2%80%90CN</a></p>
-<h2 id="下载源码编译"><a href="#下载源码编译" class="headerlink" title="下载源码编译"></a>下载源码编译</h2><p> 我们从github下载代码。由于源代码使用idea 编译执行下载idea。我们对代码进行解压。<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011801876.png" alt="源码截图"><br> 解压并且删除图下面画框的.idea 和gradle 使用使用idea打开代码<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011805272.png" alt="删除文件夹"><br> 删除使用idea打开<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011806794.png" alt="删除后"><br>在file找到setting界面找到gradle。创建一个gradle文件夹选择然后按照下图配置。点击应用。点击ok就行了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011809596.png" alt="图配置"><br>然后你会看到下载jar包啥的下载完毕以后你会发现这种错误。</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">Could</span> not find javax<span class="token punctuation">.</span>media<span class="token punctuation">.</span>jai<span class="token operator">:</span>jai<span class="token operator">-</span>core<span class="token operator">:</span><span class="token number">1.1</span><span class="token number">.3</span><span class="token punctuation">.</span>
-<span class="token class-name">Required</span> by<span class="token operator">:</span>
-    project <span class="token operator">:</span>
-
-<span class="token class-name">Possible</span> solution<span class="token operator">:</span>
- <span class="token operator">-</span> <span class="token class-name">Declare</span> repository providing the artifact<span class="token punctuation">,</span> see the documentation at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>docs<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token operator">/</span>current<span class="token operator">/</span>userguide<span class="token operator">/</span>declaring_repositories<span class="token punctuation">.</span>html
- 
- <span class="token class-name">Could</span> not find com<span class="token punctuation">.</span>oracle<span class="token punctuation">.</span>weblogic<span class="token operator">:</span>weblogic<span class="token operator">-</span>server<span class="token operator">:</span><span class="token number">1.0</span><span class="token punctuation">.</span>
-<span class="token class-name">Required</span> by<span class="token operator">:</span>
-    project <span class="token operator">:</span>
-
-<span class="token class-name">Possible</span> solution<span class="token operator">:</span>
- <span class="token operator">-</span> <span class="token class-name">Declare</span> repository providing the artifact<span class="token punctuation">,</span> see the documentation at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>docs<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token operator">/</span>current<span class="token operator">/</span>userguide<span class="token operator">/</span>declaring_repositories<span class="token punctuation">.</span>html
-</code></pre>
-<p>我第一页看到上面的错误就是百度了一波发现就是没有找到包什么的。然后我们在main下面创建一波lib目录然后从找到包。找包过程太坑爹了。所以我直接把包的名字放出来了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011812163.png" alt="创建lib目录"></p>
-<pre class="language-java" data-language="java"><code class="language-java">jai_core<span class="token operator">-</span><span class="token number">1.1</span><span class="token number">.3</span><span class="token punctuation">.</span>jar
-weblogic<span class="token operator">-</span>server<span class="token punctuation">.</span>jar
-wlthint3client<span class="token punctuation">.</span>jar</code></pre>
-<p>我们把包导入了如何让他识别呢这个是重点我们在build.gradle 文件中写这段代码</p>
-<pre class="language-java" data-language="java"><code class="language-java">api <span class="token function">fileTree</span><span class="token punctuation">(</span>dir<span class="token operator">:</span>'src<span class="token operator">/</span>main<span class="token operator">/</span>lib'<span class="token punctuation">,</span>include<span class="token operator">:</span><span class="token punctuation">[</span><span class="token char">'*.jar'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>点同步两个箭头环绕的。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011820209.png" alt="点同步"><br>出现下图说明识别成功了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011819308.png" alt="识别成功"><br>我们在点同步<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011820209.png" alt="点同步"><br>还是报错。是不是这时候懵逼了。别着急我们没看其他文件我们看看哪里有javax.media.jai:jai-core<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011822054.png" alt="还是报错"><br>最后发现在libs.versions.toml 发现了我们把它注释了。有人说了这注释了不更找不到了。别忘了我们在lib目录里面已经给他jar包了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011824122.png" alt="注释这个叼毛"><br>注释这个叼毛<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011825797.png" alt="同样注释这个叼毛"><br>然后在同步后续又报错了</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span>InvalidUserDataException</span><span class="token operator">:</span> <span class="token class-name">Invalid</span> catalog definition<span class="token operator">:</span>
-  <span class="token operator">-</span> <span class="token class-name">Problem</span><span class="token operator">:</span> <span class="token class-name">In</span> version catalog libs<span class="token punctuation">,</span> version reference 'javax<span class="token punctuation">.</span>media<span class="token punctuation">.</span>jai<span class="token punctuation">.</span>jai<span class="token punctuation">.</span>core<span class="token char">' doesn'</span>t exist<span class="token punctuation">.</span>
-
-<span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>
-BUILD FAILED in <span class="token number">131</span>ms
-</code></pre>
-<p>走到这时候是不是有马在心中崩腾我也是沃日。我们冷静看看还有东西没有干掉。libs.versions.toml<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011829490.png" alt="在注释"><br>同步一下又报错了。这是我尼玛想摔键盘了。但是这时候他告诉我们那里有问题了。没错就是\build.gradle’ line: 37</p>
-<pre class="language-java" data-language="java"><code class="language-java">
-FAILURE<span class="token operator">:</span> <span class="token class-name">Build</span> failed <span class="token keyword">with</span> <span class="token namespace">an</span> exception<span class="token punctuation">.</span>
-
-<span class="token operator">*</span> <span class="token class-name">Where</span><span class="token operator">:</span>
-<span class="token class-name">Build</span> file '<span class="token class-name">C</span><span class="token operator">:</span>\<span class="token class-name">Users</span>\<span class="token class-name">Administrator</span>\<span class="token class-name">Desktop</span>\gradleproject\<span class="token class-name">JYso</span><span class="token operator">-</span>master\build<span class="token punctuation">.</span>gradle' line<span class="token operator">:</span> <span class="token number">37</span>
-
-<span class="token operator">*</span> <span class="token class-name">What</span> went wrong<span class="token operator">:</span>
-<span class="token class-name">A</span> problem occurred evaluating root project <span class="token char">'JYso'</span><span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">No</span> such property<span class="token operator">:</span> media <span class="token keyword">for</span> <span class="token keyword">class</span><span class="token operator">:</span> <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>accessors<span class="token punctuation">.</span>dm<span class="token punctuation">.</span></span>LibrariesForLibs</span>$<span class="token class-name">JavaxLibraryAccessors</span>
-
-<span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>
-
-BUILD FAILED in <span class="token number">162</span>ms
-</code></pre>
-<p>我们看看37行是有个啥。直接注释<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011831067.png" alt="这个叼毛"><br>直接注释在同步</p>
-<pre class="language-java" data-language="java"><code class="language-java">
-FAILURE<span class="token operator">:</span> <span class="token class-name">Build</span> failed <span class="token keyword">with</span> <span class="token namespace">an</span> exception<span class="token punctuation">.</span>
-
-<span class="token operator">*</span> <span class="token class-name">Where</span><span class="token operator">:</span>
-<span class="token class-name">Build</span> file '<span class="token class-name">C</span><span class="token operator">:</span>\<span class="token class-name">Users</span>\<span class="token class-name">Administrator</span>\<span class="token class-name">Desktop</span>\gradleproject\<span class="token class-name">JYso</span><span class="token operator">-</span>master\build<span class="token punctuation">.</span>gradle' line<span class="token operator">:</span> <span class="token number">39</span>
-
-<span class="token operator">*</span> <span class="token class-name">What</span> went wrong<span class="token operator">:</span>
-<span class="token class-name">A</span> problem occurred evaluating root project <span class="token char">'JYso'</span><span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">No</span> such property<span class="token operator">:</span> oracle <span class="token keyword">for</span> <span class="token keyword">class</span><span class="token operator">:</span> <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>accessors<span class="token punctuation">.</span>dm<span class="token punctuation">.</span></span>LibrariesForLibs</span>$<span class="token class-name">ComLibraryAccessors</span>
-
-<span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>
-
-BUILD FAILED in <span class="token number">426</span>ms</code></pre>
-<p>同样的手段在同步我操看到build success 了这时候是不是眼泪都要流出来了沃日。我也是<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011833104.png" alt="沃日"><br>我们点击build 点击clean<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011834856.png" alt="清理"><br>然我们点击jar。握擦又报错了。看样子是找不到jdk里面的java.exe我们配置一下<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011835902.png" alt="报错了"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">Execution</span> failed <span class="token keyword">for</span> task '<span class="token operator">:</span>compileJava'<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Error</span> <span class="token keyword">while</span> evaluating property 'javaCompiler' of task '<span class="token operator">:</span>compileJava'<span class="token punctuation">.</span>
-   <span class="token operator">></span> <span class="token class-name">Failed</span> <span class="token keyword">to</span> <span class="token namespace">calculate</span> the value of task '<span class="token operator">:</span>compileJava' property 'javaCompiler'<span class="token punctuation">.</span>
-      <span class="token operator">></span> <span class="token class-name">The</span> configured executable does not exist <span class="token punctuation">(</span><span class="token class-name">C</span><span class="token operator">:</span>\env\JAVA\jdk1<span class="token punctuation">.</span><span class="token number">8.0_402</span>\bin\javac<span class="token punctuation">.</span>exe<span class="token punctuation">)</span>
-
-<span class="token operator">*</span> <span class="token class-name">Try</span><span class="token operator">:</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>stacktrace option <span class="token keyword">to</span> <span class="token namespace">get</span> the stack trace<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>info or <span class="token operator">--</span>debug option <span class="token keyword">to</span> <span class="token namespace">get</span> more log output<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Run</span> <span class="token keyword">with</span> <span class="token operator">--</span>scan <span class="token keyword">to</span> <span class="token namespace">get</span> full insights<span class="token punctuation">.</span>
-<span class="token operator">></span> <span class="token class-name">Get</span> more help at https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>help<span class="token punctuation">.</span>gradle<span class="token punctuation">.</span>org<span class="token punctuation">.</span>
-BUILD FAILED in <span class="token number">313</span>ms
-<span class="token number">1</span> actionable task<span class="token operator">:</span> <span class="token number">1</span> executed
-</code></pre>
-<p>我的是这个路径你们自己看自己的jdk路径。点击clean然后再点击jar<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011837688.png" alt="配置jdk路径"><br>看到下图你是不是以为成功了。我们看看生成的jar包<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011839034.png" alt="假成功"><br>这一看就是没有依赖的jar沃日。陷入怀疑了。不着急。我们在build.gradle<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011840301.png" alt="没有依赖的jar"><br>看到这个sharjar并且有入口函数那估计就是它了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011842438.png" alt="入口函数"><br>我们看到那个Jyso是红色感觉有点坑爹重新重启一下idea让它重新识别一下。当然不重启也行。强迫症可能会重启一下哈哈哈。并且我们看到showjar了。没错就是点一波<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011845330.png" alt="重启了一下果然没有爆红了"><br>我操终于成功了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011848294.png" alt="成功了"><br>测试一下<br>perfect完美。如何强制使用一个特定版本jar包版本再build.gradle里面加入.强制使用 commons-beanutils 1.6.1 版本的jar</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml">implementation('commons-beanutils:commons-beanutils:1.6.1') &#123;
-     version &#123;
-         strictly '1.6.1'
-    &#125;
-&#125;</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011849362.png" alt="成功"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> lib包和编译的修改的东西我放到频道了。并且含有编译成功的。不过低版本打不了代码存在问题。主要是讲解如何编译后续作者更新以后你们可以自己编译。<br/><br> <a target="_blank" rel="noopener" href="https://t.me/SoftwareNoticeChannel/418">https://t.me/SoftwareNoticeChannel/418</a></p>
+                <h2 id="漏洞更新情况"><a href="#漏洞更新情况" class="headerlink" title="漏洞更新情况"></a>漏洞更新情况</h2><p>漏洞更新如下:<br/><br>  更新时空erpshiro 反序列化漏洞 erp<br/><br> 友点cms上传漏洞<br/><br> hospital后勤系统上传漏洞  hospital<br/><br> 大华智慧园区bitmap上传漏洞<br/><br> 泛微任意文件读取漏洞。泛微任意用户登录绕过<br/><br> 联达OA上传漏洞(不知名oa)<br/><br> 鸿宇多用户商城 user.php 反序列化漏洞<br/><br> 泛微e-office发序列化漏洞<br/><br> 太阳能系统DataCube3(cve)<br/><br> wordpress ticket 文件上传漏洞<br/><br> wordpress booking 代码执行<br/><br> 蓝凌智慧协同平台eis 文件上传漏洞<br/><br> 可视化融合指挥调度平台上传漏洞<br/><br> JeeSpringCloud uploadFile.jsp 文件上传<br/><br> 用友U8 cloud servicedispatcher 反序列化rce漏洞 yongyouu8<br/><br> 用友GRP-U8 operOriztion SQL注入漏洞<br/><br> 用友GRP-U8 fastjson 漏洞<br/><br> 富通天下外贸ERP任意文件上传漏洞<br/><br> 普元eos 反序列化漏洞<br/><br> 迅饶科技 X2View物联网设备存在任意用户添加漏洞<br/><br> 中成科信票务管理平台任意文件上传漏洞<br/><br> 魔方网表ERP存在文件上传漏洞<br/><br> 电信网关配置管理系统RCE<br/><br> H5云商城-任意文件上传(othercms)<br/><br> 红海任意文件上传(othersystem)<br/><br> 微擎系统-任意文件上传-AccountEdit(站很少没啥用容易修改配置 未集成)<br/><br> 微厦在线学习平台OrganSetup存在任意文件上传漏洞(可能会触发问题未集成)<br/><br> 分诊叫号系统任意文件上传漏洞(医院)<br/><br> 泛微e-cology OA action.jsp 文件上传漏洞<br/><br> 申欧录音系统rce漏洞<br/><br> wordpress CVE-2024-5084 上传漏洞<br/><br> 万户ezEip 上传漏洞,反序列化漏洞<br/><br> LyLme Spage上传漏洞<br/><br> 泛微OA-E-Mobile移动管理平台lang2sql任意文件上传漏洞<br/><br> 迈普多命令执行漏洞<br/><br> 云匣子堡垒机 fastjson漏洞<br/><br>Hikvision综合安防管理平台  applyAutoLoginTicket任意代码执行    <br/><br>Hikvision综合安防管理平台  applyCT任意代码执行    <br/><br>Hikvision综合安防管理平台  config-properties信息泄露    <br/><br>Hikvision综合安防管理平台  env信息泄露    <br/><br>Hikvision综合安防管理平台  find信息泄露    <br/><br>Hikvision综合安防管理平台  keepAlive任意代码执行      <br/><br>Hikvision综合安防管理平台  session任意代码执行       <br/><br>Hikvision综合安防管理平台  env_heapdump信息泄露    <br/><br>CVE-2024-4577 php cgi 远程命令执行<br/><br>CVE-2024-23692 HFS 远程命令执行<br/><br>课交单对接平台sql注入<br/><br>新增tp5 内置三种常用getshell方式。由于日志方式这个比较复杂将会在这三种方式都不管用的情况下使用日志方式手工getshell。<br/><br> yzmcms rce漏洞<br/><br> 和丰山海-数字标牌 任意文件上传<br/><br> Chatgpt ai 弱口令<br/><br> NetMizer RCE<br/><br> X-NAS&#x2F;Main RCE漏洞<br/><br> pyq 上传漏洞<br/><br> 极验xx任意文件读取漏洞<br/><br> 短视频系统漏洞<br/><br> geoserver 远程命令执行<br/><br> ZXUi 文件上传漏洞<br/><br> jx彩票漏洞<br/><br> h*y发卡平台漏洞<br/><br> jy cat 系统上传漏洞<br/><br> qt 交易所漏洞<br/><br> 3g shop 漏洞<br/><br> jeecgboot漏洞<br/><br> EKing-管理易 FileUpload存在任意文件上传漏洞<br/><br> Apace OFBiz 授权不当致远程代码执行漏洞(CVE-2024-38856)<br/><br> H3C iMC智能管理中心byod_index.xhtml远程代码执行漏洞<br/><br> pbootcms rce漏洞<br/><br> 同享人力资源管理系统-任意文件上传<br/><br> 赛蓝企业管理系统-任意文件上传-SubmitUploadify<br/><br> 瑞斯康达-多业务智能网关-远程命令执行<br/><br> 喰星云-数字化餐饮服务系统任意用户添加漏洞<br/><br> 时空智友ERP-任意文件上传<br/><br> App托管服务分发平台-任意文件上传<br/><br> 禅道任意用户添加漏洞<br/><br> 金慧-综合管理信息系统-SQL注入<br/><br> PEPM系统存在远程代码执行漏洞<br/><br> LiveBOS 任意文件上传漏洞<br/><br> 智慧校园(安校易)管理系统 任意文件上传<br/><br> 中小学智慧校园信息管理系统 任意文件上传<br/><br> 章管家 saveUser.htm 任意用户创建漏洞<br/><br> ALR-F800命令执行漏洞<br/><br> 赛企业管理系统 AuthToken&#x2F;Index 身份认证绕过漏洞<br/><br> 云时空社会化商业ERP系统 user&#x2F;online 身份认证绕过漏洞<br/><br> WookTeam sql注入和xxx漏洞<br/><br> 九思OA文件读取漏洞<br/><br> 用友U8-CRM import任意文件上传漏洞<br/><br> 息AI网络运维平台RCE<br/><br> 泛微  e-cology 9 sql注入漏洞<br/><br> 蓝凌EKP存在sys_ui_component远程命令执行漏洞<br/><br> 杭州三汇网debug rce<br/><br> 用友NC系统FileManager任意文件上传<br/><br> 赛通文档安全管理系统getAllUsers信息泄露<br/><br> 某服装品牌系统任意文件上传<br/><br> 指挥调度平台rce漏洞(绕过waf)<br/><br> 致远OA任意文件上传漏洞<br/><br> 致远互联FE 任意文件上传<br/><br> 教学视频应用云任意文件上传<br/><br> 潮GS企业管理软件反序列化<br/></p>
+<p>预计hw结束后放出最大条数10万条的软件并且集成最新漏洞exp。敬请期待!!!。框架为2024-04 exp为最新版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261636141.png" alt="最新版本截图"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261639801.png" alt="模块列表一"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261638819.png" alt="模块列表二"></p>
+<h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>WebFrameworkTools 5.3 - 红队综合渗透测试利器<br>来源网站: <a target="_blank" rel="noopener" href="https://blog.csdn.net/gitblog_00073/article/details/139490114">https://blog.csdn.net/gitblog_00073/article/details/139490114</a></p>
+<p><strong>项目介绍</strong></p> 
+<p>WebFrameworkTools 是一款强大的红队渗透测试工具&#xff0c;专为专业安全研究人员和渗透测试者设计。它集成了多种Web漏洞的POC和EXP&#xff0c;旨在简化和加速Web应用的安全评估过程。软件的最新版本5.3带来了诸多改进和新的漏洞库&#xff0c;使得安全专家能够快速响应新出现的威胁。</p> 
+<p><strong>项目技术分析</strong></p> 
+<p>该工具基于C#编程语言构建&#xff0c;其核心特性包括&#xff1a;</p> 
+<ol><li><strong>一键生成利用EXP</strong>: 即使不具备编程背景的用户也能轻松生成exploit。</li><li><strong>自定义DLL功能</strong>: 对于有经验的开发者来说&#xff0c;可以通过编写自己的插件来扩展工具功能。</li><li><strong>内置漏洞库</strong>: 包含了大量的Web漏洞exploits&#xff0c;涵盖各种流行框架和平台。</li><li><strong>模块内部化</strong>: 优化了软件结构&#xff0c;减小体积&#xff0c;便于携带和使用。</li><li><strong>支持.NET Core线程池</strong>: 提高性能&#xff0c;增强DLL执行效率。</li><li><strong>智能HTTP头部Fuzzer</strong>: 帮助识别潜在的脆弱点。</li><li><strong>自动化漏洞检测</strong>: 可处理大量URL&#xff0c;实现大规模测试。</li></ol> 
+<p><strong>应用场景</strong></p> 
+<p>WebFrameworkTools适用于以下场景&#xff1a;</p> 
+<ol><li><strong>企业安全建设</strong>: 用于合法授权的安全测试&#xff0c;帮助加强系统防护。</li><li><strong>渗透测试</strong>: 快速验证Web应用中的安全漏洞&#xff0c;有效提升测试效率。</li><li><strong>教育研究</strong>: 学习Web安全和渗透测试技巧&#xff0c;实践安全攻防。</li><li><strong>安全应急响应</strong>: 当新漏洞披露时&#xff0c;快速对目标环境进行安全扫描。</li></ol> 
+<p><strong>项目特点</strong></p> 
+<ol><li><strong>高度集成</strong>: 将多种工具&#xff08;如Vulmap、Http Fuzzer和Exploit Generator&#xff09;的功能融为一体&#xff0c;实现多功能一站式操作。</li><li><strong>便捷易用</strong>: 用户友好界面和一键式操作降低了使用门槛。</li><li><strong>持续更新</strong>: 持续跟进最新的漏洞信息&#xff0c;保持漏洞数据库的实时性。</li><li><strong>源代码安全</strong>: 开源计划即将启动&#xff0c;用户可审查代码确保透明度和安全性。</li><li><strong>合规性</strong>: 明确使用条款&#xff0c;强调合法使用&#xff0c;保护用户免受法律风险。</li></ol> 
+<p><strong>结论</strong></p> 
+<p>WebFrameworkTools 5.3以其全面的功能和易用性&#xff0c;成为了红队渗透测试领域的一款必备工具。无论是新手还是经验丰富的安全专家&#xff0c;都能从中受益。随着源代码即将对外开源&#xff0c;更多安全社区的贡献将会进一步丰富和完善这个项目。如果你从事相关领域的工作&#xff0c;不妨尝试一下WebFrameworkTools&#xff0c;让安全测试变得更加高效。</p>
+               
+<p>使用方式请参考博客或者github。或者加入频道。<br>下载地址:<br><a target="_blank" rel="noopener" href="https://www.upload.ee/files/16822507/hwok.7z.html">https://www.upload.ee/files/16822507/hwok.7z.html</a> 软件4月份版本exp更新至最新版本。框架是4月份的这个版本达到一定程度就会出现奔溃。所以设置了最大条数5000条。2024-10-31日软件过期。慢慢用吧。就别分享了自己用就行了。授权文件下载:<a target="_blank" rel="noopener" href="https://www.upload.ee/files/16851948/license.7z.html">https://www.upload.ee/files/16851948/license.7z.html</a> 解压密码:GL@kEzDu&amp;lh7 注意:下载的时候有广告如果弹到别的网站关闭。回到原来的地方在点击下载。直到弹出hwok.7z才是真正下载的软件。另一个也一样。自己琢磨吧。</p>
 
                 
             </div>
@@ -586,7 +518,7 @@ BUILD FAILED in <span class="token number">313</span>ms
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://peiqiF4ck.github.io/securitytools/2024/05/articles/c4f380e46ba1f562/">https://peiqiF4ck.github.io/securitytools/2024/05/articles/c4f380e46ba1f562/</a>
+                    <a href="https://peiqiF4ck.github.io/securitytools/2024/08/articles/f7e10f7c4ce3b984/">https://peiqiF4ck.github.io/securitytools/2024/08/articles/f7e10f7c4ce3b984/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -626,6 +558,10 @@ BUILD FAILED in <span class="token number">313</span>ms
                             
                                 <a href="/tags/PenetrationTest/">
                                     <span class="chip bg-color">PenetrationTest</span>
+                                </a>
+                            
+                                <a href="/tags/original/">
+                                    <span class="chip bg-color">original</span>
                                 </a>
                             
                         </div>
@@ -799,45 +735,51 @@ BUILD FAILED in <span class="token number">313</span>ms
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/codeaudit/2024/05/articles/c5b634cfecad72ae/">
+                <a href="/securitytools/2024/08/articles/f7e10f7c4ce3b984/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405311501204.png" class="responsive-img" alt="申瓯任意文件下载命令执行复盘审计">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261636141.png" class="responsive-img" alt="webframeworktools 漏洞集成公告一">
                         
-                        <span class="card-title">申瓯任意文件下载命令执行复盘审计</span>
+                        <span class="card-title">webframeworktools 漏洞集成公告一</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            申瓯RCE C++代码审计
+                            exp|poc渗透工具
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-05-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CodeAudit/" class="post-category">
-                                    CodeAudit
+                            <a href="/categories/SecurityTools/" class="post-category">
+                                    SecurityTools
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CodeAuditExample/">
-                        <span class="chip bg-color">CodeAuditExample</span>
+                    <a href="/tags/PenetrationTest/">
+                        <span class="chip bg-color">PenetrationTest</span>
+                    </a>
+                    
+                    <a href="/tags/original/">
+                        <span class="chip bg-color">original</span>
                     </a>
                     
                 </div>
@@ -851,23 +793,23 @@ BUILD FAILED in <span class="token number">313</span>ms
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/penetrationtest/2024/04/articles/bf2db1aeff47d7f9/">
+                <a href="/penetrationtest/2024/07/articles/9c5868b69dac664d/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301522728.png" class="responsive-img" alt="普元反序列化漏洞复现探究以及ysoserial各种工具编译鉴赏">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271556104.png" class="responsive-img" alt="thinkphp 5.x rce 打法总结">
                         
-                        <span class="card-title">普元反序列化漏洞复现探究以及ysoserial各种工具编译鉴赏</span>
+                        <span class="card-title">thinkphp 5.x rce 打法总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            漏洞复现或者exp编写java反序列化工具使用和编译
+                            thinkphp 5.x rce 打法总结 thinkphp5.x
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-27
                             </span>
                         <span class="publish-author">
                             
