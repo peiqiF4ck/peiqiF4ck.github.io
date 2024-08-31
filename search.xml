@@ -8,7 +8,7 @@
       <link href="/securitytools/2024/08/articles/f7e10f7c4ce3b984/"/>
       <url>/securitytools/2024/08/articles/f7e10f7c4ce3b984/</url>
       
-        <content type="html"><![CDATA[<h2 id="漏洞更新情况"><a href="#漏洞更新情况" class="headerlink" title="漏洞更新情况"></a>漏洞更新情况</h2><p>漏洞更新如下:<br/><br>  更新时空erpshiro 反序列化漏洞 erp<br/><br> 友点cms上传漏洞<br/><br> hospital后勤系统上传漏洞  hospital<br/><br> 大华智慧园区bitmap上传漏洞<br/><br> 泛微任意文件读取漏洞。泛微任意用户登录绕过<br/><br> 联达OA上传漏洞(不知名oa)<br/><br> 鸿宇多用户商城 user.php 反序列化漏洞<br/><br> 泛微e-office发序列化漏洞<br/><br> 太阳能系统DataCube3(cve)<br/><br> wordpress ticket 文件上传漏洞<br/><br> wordpress booking 代码执行<br/><br> 蓝凌智慧协同平台eis 文件上传漏洞<br/><br> 可视化融合指挥调度平台上传漏洞<br/><br> JeeSpringCloud uploadFile.jsp 文件上传<br/><br> 用友U8 cloud servicedispatcher 反序列化rce漏洞 yongyouu8<br/><br> 用友GRP-U8 operOriztion SQL注入漏洞<br/><br> 用友GRP-U8 fastjson 漏洞<br/><br> 富通天下外贸ERP任意文件上传漏洞<br/><br> 普元eos 反序列化漏洞<br/><br> 迅饶科技 X2View物联网设备存在任意用户添加漏洞<br/><br> 中成科信票务管理平台任意文件上传漏洞<br/><br> 魔方网表ERP存在文件上传漏洞<br/><br> 电信网关配置管理系统RCE<br/><br> H5云商城-任意文件上传(othercms)<br/><br> 红海任意文件上传(othersystem)<br/><br> 微擎系统-任意文件上传-AccountEdit(站很少没啥用容易修改配置 未集成)<br/><br> 微厦在线学习平台OrganSetup存在任意文件上传漏洞(可能会触发问题未集成)<br/><br> 分诊叫号系统任意文件上传漏洞(医院)<br/><br> 泛微e-cology OA action.jsp 文件上传漏洞<br/><br> 申欧录音系统rce漏洞<br/><br> wordpress CVE-2024-5084 上传漏洞<br/><br> 万户ezEip 上传漏洞,反序列化漏洞<br/><br> LyLme Spage上传漏洞<br/><br> 泛微OA-E-Mobile移动管理平台lang2sql任意文件上传漏洞<br/><br> 迈普多命令执行漏洞<br/><br> 云匣子堡垒机 fastjson漏洞<br/><br>Hikvision综合安防管理平台  applyAutoLoginTicket任意代码执行    <br/><br>Hikvision综合安防管理平台  applyCT任意代码执行    <br/><br>Hikvision综合安防管理平台  config-properties信息泄露    <br/><br>Hikvision综合安防管理平台  env信息泄露    <br/><br>Hikvision综合安防管理平台  find信息泄露    <br/><br>Hikvision综合安防管理平台  keepAlive任意代码执行      <br/><br>Hikvision综合安防管理平台  session任意代码执行       <br/><br>Hikvision综合安防管理平台  env_heapdump信息泄露    <br/><br>CVE-2024-4577 php cgi 远程命令执行<br/><br>CVE-2024-23692 HFS 远程命令执行<br/><br>课交单对接平台sql注入<br/><br>新增tp5 内置三种常用getshell方式。由于日志方式这个比较复杂将会在这三种方式都不管用的情况下使用日志方式手工getshell。<br/><br> yzmcms rce漏洞<br/><br> 和丰山海-数字标牌 任意文件上传<br/><br> Chatgpt ai 弱口令<br/><br> NetMizer RCE<br/><br> X-NAS&#x2F;Main RCE漏洞<br/><br> pyq 上传漏洞<br/><br> 极验xx任意文件读取漏洞<br/><br> 短视频系统漏洞<br/><br> geoserver 远程命令执行<br/><br> ZXUi 文件上传漏洞<br/><br> jx彩票漏洞<br/><br> h*y发卡平台漏洞<br/><br> jy cat 系统上传漏洞<br/><br> qt 交易所漏洞<br/><br> 3g shop 漏洞<br/><br> jeecgboot漏洞<br/><br> EKing-管理易 FileUpload存在任意文件上传漏洞<br/><br> Apace OFBiz 授权不当致远程代码执行漏洞(CVE-2024-38856)<br/><br> H3C iMC智能管理中心byod_index.xhtml远程代码执行漏洞<br/><br> pbootcms rce漏洞<br/><br> 同享人力资源管理系统-任意文件上传<br/><br> 赛蓝企业管理系统-任意文件上传-SubmitUploadify<br/><br> 瑞斯康达-多业务智能网关-远程命令执行<br/><br> 喰星云-数字化餐饮服务系统任意用户添加漏洞<br/><br> 时空智友ERP-任意文件上传<br/><br> App托管服务分发平台-任意文件上传<br/><br> 禅道任意用户添加漏洞<br/><br> 金慧-综合管理信息系统-SQL注入<br/><br> PEPM系统存在远程代码执行漏洞<br/><br> LiveBOS 任意文件上传漏洞<br/><br> 智慧校园(安校易)管理系统 任意文件上传<br/><br> 中小学智慧校园信息管理系统 任意文件上传<br/><br> 章管家 saveUser.htm 任意用户创建漏洞<br/><br> ALR-F800命令执行漏洞<br/><br> 赛企业管理系统 AuthToken&#x2F;Index 身份认证绕过漏洞<br/><br> 云时空社会化商业ERP系统 user&#x2F;online 身份认证绕过漏洞<br/><br> WookTeam sql注入和xxx漏洞<br/><br> 九思OA文件读取漏洞<br/><br> 用友U8-CRM import任意文件上传漏洞<br/><br> 息AI网络运维平台RCE<br/><br> 泛微  e-cology 9 sql注入漏洞<br/><br> 蓝凌EKP存在sys_ui_component远程命令执行漏洞<br/><br> 杭州三汇网debug rce<br/><br> 用友NC系统FileManager任意文件上传<br/><br> 赛通文档安全管理系统getAllUsers信息泄露<br/><br> 某服装品牌系统任意文件上传<br/><br> 指挥调度平台rce漏洞(绕过waf)<br/><br> 致远OA任意文件上传漏洞<br/><br> 致远互联FE 任意文件上传<br/><br> 教学视频应用云任意文件上传<br/><br> 潮GS企业管理软件反序列化<br/></p><p>预计hw结束后放出最大条数10万条的软件并且集成最新漏洞exp。敬请期待!!!。框架为2024-04 exp为最新版本</p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261636141.png" alt="最新版本截图"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261639801.png" alt="模块列表一"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261638819.png" alt="模块列表二"></p><h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>WebFrameworkTools 5.3 - 红队综合渗透测试利器<br>来源网站: <a href="https://blog.csdn.net/gitblog_00073/article/details/139490114">https://blog.csdn.net/gitblog_00073/article/details/139490114</a></p><p><strong>项目介绍</strong></p> <p>WebFrameworkTools 是一款强大的红队渗透测试工具&#xff0c;专为专业安全研究人员和渗透测试者设计。它集成了多种Web漏洞的POC和EXP&#xff0c;旨在简化和加速Web应用的安全评估过程。软件的最新版本5.3带来了诸多改进和新的漏洞库&#xff0c;使得安全专家能够快速响应新出现的威胁。</p> <p><strong>项目技术分析</strong></p> <p>该工具基于C#编程语言构建&#xff0c;其核心特性包括&#xff1a;</p> <ol><li><strong>一键生成利用EXP</strong>: 即使不具备编程背景的用户也能轻松生成exploit。</li><li><strong>自定义DLL功能</strong>: 对于有经验的开发者来说&#xff0c;可以通过编写自己的插件来扩展工具功能。</li><li><strong>内置漏洞库</strong>: 包含了大量的Web漏洞exploits&#xff0c;涵盖各种流行框架和平台。</li><li><strong>模块内部化</strong>: 优化了软件结构&#xff0c;减小体积&#xff0c;便于携带和使用。</li><li><strong>支持.NET Core线程池</strong>: 提高性能&#xff0c;增强DLL执行效率。</li><li><strong>智能HTTP头部Fuzzer</strong>: 帮助识别潜在的脆弱点。</li><li><strong>自动化漏洞检测</strong>: 可处理大量URL&#xff0c;实现大规模测试。</li></ol> <p><strong>应用场景</strong></p> <p>WebFrameworkTools适用于以下场景&#xff1a;</p> <ol><li><strong>企业安全建设</strong>: 用于合法授权的安全测试&#xff0c;帮助加强系统防护。</li><li><strong>渗透测试</strong>: 快速验证Web应用中的安全漏洞&#xff0c;有效提升测试效率。</li><li><strong>教育研究</strong>: 学习Web安全和渗透测试技巧&#xff0c;实践安全攻防。</li><li><strong>安全应急响应</strong>: 当新漏洞披露时&#xff0c;快速对目标环境进行安全扫描。</li></ol> <p><strong>项目特点</strong></p> <ol><li><strong>高度集成</strong>: 将多种工具&#xff08;如Vulmap、Http Fuzzer和Exploit Generator&#xff09;的功能融为一体&#xff0c;实现多功能一站式操作。</li><li><strong>便捷易用</strong>: 用户友好界面和一键式操作降低了使用门槛。</li><li><strong>持续更新</strong>: 持续跟进最新的漏洞信息&#xff0c;保持漏洞数据库的实时性。</li><li><strong>源代码安全</strong>: 开源计划即将启动&#xff0c;用户可审查代码确保透明度和安全性。</li><li><strong>合规性</strong>: 明确使用条款&#xff0c;强调合法使用&#xff0c;保护用户免受法律风险。</li></ol> <p><strong>结论</strong></p> <p>WebFrameworkTools 5.3以其全面的功能和易用性&#xff0c;成为了红队渗透测试领域的一款必备工具。无论是新手还是经验丰富的安全专家&#xff0c;都能从中受益。随着源代码即将对外开源&#xff0c;更多安全社区的贡献将会进一步丰富和完善这个项目。如果你从事相关领域的工作&#xff0c;不妨尝试一下WebFrameworkTools&#xff0c;让安全测试变得更加高效。</p>               <p>使用方式请参考博客或者github。或者加入频道。<br>下载地址:<br><a href="https://www.upload.ee/files/16822507/hwok.7z.html">https://www.upload.ee/files/16822507/hwok.7z.html</a> 软件4月份版本exp更新至最新版本。框架是4月份的这个版本达到一定程度就会出现奔溃。所以设置了最大条数5000条。2024-10-31日软件过期。慢慢用吧。就别分享了自己用就行了。授权文件下载:<a href="https://www.upload.ee/files/16851948/license.7z.html">https://www.upload.ee/files/16851948/license.7z.html</a> 解压密码:GL@kEzDu&amp;lh7 注意:下载的时候有广告如果弹到别的网站关闭。回到原来的地方在点击下载。直到弹出hwok.7z才是真正下载的软件。另一个也一样。自己琢磨吧。</p><h2 id="软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26"><a href="#软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26" class="headerlink" title="软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26"></a>软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26</h2><p>软件最新版本界面:</p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408311201633.png" alt="软件最新版本界面"></p><p>软件下载地址:<br>  <a href="https://www.upload.ee/files/17042504/webframeworkstools-10w.7z.html">https://www.upload.ee/files/17042504/webframeworkstools-10w.7z.html</a><br/><br>软件key下载地址:<br>  <a href="https://www.upload.ee/files/17043398/license-10w.7z.html">https://www.upload.ee/files/17043398/license-10w.7z.html</a><br/><br>另外dll生成工具如果不能使用下载 5.3 beta版本中的修改本地时间就可以使用了。没有单独生成dll生成器。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="漏洞更新情况"><a href="#漏洞更新情况" class="headerlink" title="漏洞更新情况"></a>漏洞更新情况</h2><p>漏洞更新如下:<br/><br>  更新时空erpshiro 反序列化漏洞 erp<br/><br> 友点cms上传漏洞<br/><br> hospital后勤系统上传漏洞  hospital<br/><br> 大华智慧园区bitmap上传漏洞<br/><br> 泛微任意文件读取漏洞。泛微任意用户登录绕过<br/><br> 联达OA上传漏洞(不知名oa)<br/><br> 鸿宇多用户商城 user.php 反序列化漏洞<br/><br> 泛微e-office发序列化漏洞<br/><br> 太阳能系统DataCube3(cve)<br/><br> wordpress ticket 文件上传漏洞<br/><br> wordpress booking 代码执行<br/><br> 蓝凌智慧协同平台eis 文件上传漏洞<br/><br> 可视化融合指挥调度平台上传漏洞<br/><br> JeeSpringCloud uploadFile.jsp 文件上传<br/><br> 用友U8 cloud servicedispatcher 反序列化rce漏洞 yongyouu8<br/><br> 用友GRP-U8 operOriztion SQL注入漏洞<br/><br> 用友GRP-U8 fastjson 漏洞<br/><br> 富通天下外贸ERP任意文件上传漏洞<br/><br> 普元eos 反序列化漏洞<br/><br> 迅饶科技 X2View物联网设备存在任意用户添加漏洞<br/><br> 中成科信票务管理平台任意文件上传漏洞<br/><br> 魔方网表ERP存在文件上传漏洞<br/><br> 电信网关配置管理系统RCE<br/><br> H5云商城-任意文件上传(othercms)<br/><br> 红海任意文件上传(othersystem)<br/><br> 微擎系统-任意文件上传-AccountEdit(站很少没啥用容易修改配置 未集成)<br/><br> 微厦在线学习平台OrganSetup存在任意文件上传漏洞(可能会触发问题未集成)<br/><br> 分诊叫号系统任意文件上传漏洞(医院)<br/><br> 泛微e-cology OA action.jsp 文件上传漏洞<br/><br> 申欧录音系统rce漏洞<br/><br> wordpress CVE-2024-5084 上传漏洞<br/><br> 万户ezEip 上传漏洞,反序列化漏洞<br/><br> LyLme Spage上传漏洞<br/><br> 泛微OA-E-Mobile移动管理平台lang2sql任意文件上传漏洞<br/><br> 迈普多命令执行漏洞<br/><br> 云匣子堡垒机 fastjson漏洞<br/><br>Hikvision综合安防管理平台  applyAutoLoginTicket任意代码执行    <br/><br>Hikvision综合安防管理平台  applyCT任意代码执行    <br/><br>Hikvision综合安防管理平台  config-properties信息泄露    <br/><br>Hikvision综合安防管理平台  env信息泄露    <br/><br>Hikvision综合安防管理平台  find信息泄露    <br/><br>Hikvision综合安防管理平台  keepAlive任意代码执行      <br/><br>Hikvision综合安防管理平台  session任意代码执行       <br/><br>Hikvision综合安防管理平台  env_heapdump信息泄露    <br/><br>CVE-2024-4577 php cgi 远程命令执行<br/><br>CVE-2024-23692 HFS 远程命令执行<br/><br>课交单对接平台sql注入<br/><br>新增tp5 内置三种常用getshell方式。由于日志方式这个比较复杂将会在这三种方式都不管用的情况下使用日志方式手工getshell。<br/><br> yzmcms rce漏洞<br/><br> 和丰山海-数字标牌 任意文件上传<br/><br> Chatgpt ai 弱口令<br/><br> NetMizer RCE<br/><br> X-NAS&#x2F;Main RCE漏洞<br/><br> pyq 上传漏洞<br/><br> 极验xx任意文件读取漏洞<br/><br> 短视频系统漏洞<br/><br> geoserver 远程命令执行<br/><br> ZXUi 文件上传漏洞<br/><br> jx彩票漏洞<br/><br> h*y发卡平台漏洞<br/><br> jy cat 系统上传漏洞<br/><br> qt 交易所漏洞<br/><br> 3g shop 漏洞<br/><br> jeecgboot漏洞<br/><br> EKing-管理易 FileUpload存在任意文件上传漏洞<br/><br> Apace OFBiz 授权不当致远程代码执行漏洞(CVE-2024-38856)<br/><br> H3C iMC智能管理中心byod_index.xhtml远程代码执行漏洞<br/><br> pbootcms rce漏洞<br/><br> 同享人力资源管理系统-任意文件上传<br/><br> 赛蓝企业管理系统-任意文件上传-SubmitUploadify<br/><br> 瑞斯康达-多业务智能网关-远程命令执行<br/><br> 喰星云-数字化餐饮服务系统任意用户添加漏洞<br/><br> 时空智友ERP-任意文件上传<br/><br> App托管服务分发平台-任意文件上传<br/><br> 禅道任意用户添加漏洞<br/><br> 金慧-综合管理信息系统-SQL注入<br/><br> PEPM系统存在远程代码执行漏洞<br/><br> LiveBOS 任意文件上传漏洞<br/><br> 智慧校园(安校易)管理系统 任意文件上传<br/><br> 中小学智慧校园信息管理系统 任意文件上传<br/><br> 章管家 saveUser.htm 任意用户创建漏洞<br/><br> ALR-F800命令执行漏洞<br/><br> 赛企业管理系统 AuthToken&#x2F;Index 身份认证绕过漏洞<br/><br> 云时空社会化商业ERP系统 user&#x2F;online 身份认证绕过漏洞<br/><br> WookTeam sql注入和xxx漏洞<br/><br> 九思OA文件读取漏洞<br/><br> 用友U8-CRM import任意文件上传漏洞<br/><br> 息AI网络运维平台RCE<br/><br> 泛微  e-cology 9 sql注入漏洞<br/><br> 蓝凌EKP存在sys_ui_component远程命令执行漏洞<br/><br> 杭州三汇网debug rce<br/><br> 用友NC系统FileManager任意文件上传<br/><br> 赛通文档安全管理系统getAllUsers信息泄露<br/><br> 某服装品牌系统任意文件上传<br/><br> 指挥调度平台rce漏洞(绕过waf)<br/><br> 致远OA任意文件上传漏洞<br/><br> 致远互联FE 任意文件上传<br/><br> 教学视频应用云任意文件上传<br/><br> 潮GS企业管理软件反序列化<br/></p><p>预计hw结束后放出最大条数10万条的软件并且集成最新漏洞exp。敬请期待!!!。框架为2024-04 exp为最新版本</p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261636141.png" alt="最新版本截图"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261639801.png" alt="模块列表一"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261638819.png" alt="模块列表二"></p><h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>WebFrameworkTools 5.3 - 红队综合渗透测试利器<br>来源网站: <a href="https://blog.csdn.net/gitblog_00073/article/details/139490114">https://blog.csdn.net/gitblog_00073/article/details/139490114</a></p><p><strong>项目介绍</strong></p> <p>WebFrameworkTools 是一款强大的红队渗透测试工具&#xff0c;专为专业安全研究人员和渗透测试者设计。它集成了多种Web漏洞的POC和EXP&#xff0c;旨在简化和加速Web应用的安全评估过程。软件的最新版本5.3带来了诸多改进和新的漏洞库&#xff0c;使得安全专家能够快速响应新出现的威胁。</p> <p><strong>项目技术分析</strong></p> <p>该工具基于C#编程语言构建&#xff0c;其核心特性包括&#xff1a;</p> <ol><li><strong>一键生成利用EXP</strong>: 即使不具备编程背景的用户也能轻松生成exploit。</li><li><strong>自定义DLL功能</strong>: 对于有经验的开发者来说&#xff0c;可以通过编写自己的插件来扩展工具功能。</li><li><strong>内置漏洞库</strong>: 包含了大量的Web漏洞exploits&#xff0c;涵盖各种流行框架和平台。</li><li><strong>模块内部化</strong>: 优化了软件结构&#xff0c;减小体积&#xff0c;便于携带和使用。</li><li><strong>支持.NET Core线程池</strong>: 提高性能&#xff0c;增强DLL执行效率。</li><li><strong>智能HTTP头部Fuzzer</strong>: 帮助识别潜在的脆弱点。</li><li><strong>自动化漏洞检测</strong>: 可处理大量URL&#xff0c;实现大规模测试。</li></ol> <p><strong>应用场景</strong></p> <p>WebFrameworkTools适用于以下场景&#xff1a;</p> <ol><li><strong>企业安全建设</strong>: 用于合法授权的安全测试&#xff0c;帮助加强系统防护。</li><li><strong>渗透测试</strong>: 快速验证Web应用中的安全漏洞&#xff0c;有效提升测试效率。</li><li><strong>教育研究</strong>: 学习Web安全和渗透测试技巧&#xff0c;实践安全攻防。</li><li><strong>安全应急响应</strong>: 当新漏洞披露时&#xff0c;快速对目标环境进行安全扫描。</li></ol> <p><strong>项目特点</strong></p> <ol><li><strong>高度集成</strong>: 将多种工具&#xff08;如Vulmap、Http Fuzzer和Exploit Generator&#xff09;的功能融为一体&#xff0c;实现多功能一站式操作。</li><li><strong>便捷易用</strong>: 用户友好界面和一键式操作降低了使用门槛。</li><li><strong>持续更新</strong>: 持续跟进最新的漏洞信息&#xff0c;保持漏洞数据库的实时性。</li><li><strong>源代码安全</strong>: 开源计划即将启动&#xff0c;用户可审查代码确保透明度和安全性。</li><li><strong>合规性</strong>: 明确使用条款&#xff0c;强调合法使用&#xff0c;保护用户免受法律风险。</li></ol> <p><strong>结论</strong></p> <p>WebFrameworkTools 5.3以其全面的功能和易用性&#xff0c;成为了红队渗透测试领域的一款必备工具。无论是新手还是经验丰富的安全专家&#xff0c;都能从中受益。随着源代码即将对外开源&#xff0c;更多安全社区的贡献将会进一步丰富和完善这个项目。如果你从事相关领域的工作&#xff0c;不妨尝试一下WebFrameworkTools&#xff0c;让安全测试变得更加高效。</p>               <p>使用方式请参考博客或者github。或者加入频道。<br>下载地址:<br><a href="https://www.upload.ee/files/16822507/hwok.7z.html">https://www.upload.ee/files/16822507/hwok.7z.html</a> 软件4月份版本exp更新至最新版本。框架是4月份的这个版本达到一定程度就会出现奔溃。所以设置了最大条数5000条。2024-10-31日软件过期。慢慢用吧。就别分享了自己用就行了。授权文件下载:<a href="https://www.upload.ee/files/16851948/license.7z.html">https://www.upload.ee/files/16851948/license.7z.html</a> 解压密码:GL@kEzDu&amp;lh7 注意:下载的时候有广告如果弹到别的网站关闭。回到原来的地方在点击下载。直到弹出hwok.7z才是真正下载的软件。另一个也一样。自己琢磨吧。</p><h2 id="软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26"><a href="#软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26" class="headerlink" title="软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26"></a>软件已经发布最新版本最新版本上述漏洞exp全部集成并且exp更新到2024-08-26</h2><p>软件最新版本界面:</p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408311201633.png" alt="软件最新版本界面"></p><p>软件下载地址:<br> <a href="https://www.upload.ee/files/17043937/webframeworkstools-10w-new.7z.html">https://www.upload.ee/files/17043937/webframeworkstools-10w-new.7z.html</a> (无bug版本)<br/><br>软件key下载地址:<br>  <a href="https://www.upload.ee/files/17043398/license-10w.7z.html">https://www.upload.ee/files/17043398/license-10w.7z.html</a> (key 10w条)<br/><br>另外dll生成工具如果不能使用下载 5.3 beta版本中的修改本地时间就可以使用了。没有单独生成dll生成器。注意!!!之前下载的版本存在bug请重新下载 无bug版本和key10 w条软件和key。</p>]]></content>
       
       
       <categories>
@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -199,9 +199,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -226,9 +226,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -278,9 +278,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -530,9 +530,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> Brida </tag>
             
@@ -609,9 +609,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -636,9 +636,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> autoDecoder </tag>
             
@@ -665,9 +665,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> autoDecoder </tag>
             
@@ -694,9 +694,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> Brida </tag>
             
@@ -723,9 +723,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -750,9 +750,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
@@ -829,9 +829,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
             <tag> Vip </tag>
             
