@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>关于2025年预售webframeworkTools源代码公告</title>
+      <link href="/securitytools/2024/09/articles/f76f746f1b80cfc9/"/>
+      <url>/securitytools/2024/09/articles/f76f746f1b80cfc9/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p> webframeworkTools 工具自2021年开始开发已经经历了3个年头。期间大家使用的觉得不错。说url条数太少。由于国内大环境所以我们开放的url条数比较少。在tg群有人提出付费购买但是由于2024年比较忙。未能开启付费我们已经发布了url为10w条的软件测试版本 exp 更新到2024-08-26 exp框架更新在2023年11月份。请到博客中自行寻找下载地址。</p><h2 id="软件100万条url实战全模块测试"><a href="#软件100万条url实战全模块测试" class="headerlink" title="软件100万条url实战全模块测试"></a>软件100万条url实战全模块测试</h2><p> 我们已经内测了在100万条url全模块测试下软件表现如下图:<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202409061722641.jpg" alt="软件内测100万条url表现"><br>测试详情如下:<br>测试结束日期2024-06-14 结束时间 14:00<br>测试网站条数100万条<br>全模块耗时6天6夜<br>堪称完美测试。测试总流量434 GB。这标志着我们软件在100万网站的url下表现很完美。定最大url条数100万条。接下来会对漏洞进行优化避免出现误报情况。😏😏😏😏😏😏。接下来调整完毕后在进行一次测试。然后以后我们将专注漏洞漏洞越多越好。因为数量上已经足够了我们最起码可以自动化攻击100万个网站。。测试详细参数<br>测试cpu Intel(R) Xeon(R) CPU E5-2620 0 @ 2.00GHz (2个处理器)<br>服务器 windows Server 2019 Standard<br>操作系统:64位操作系统,基于x64 的处理器<br>内存:64.0GB(63.8 GB可用)<br>下载速度:1-2MB&#x2F;s 我们是用事实说话从来不说我们的软件牛逼。市面上可以承载百万url不奔溃的少之又少。所以后续是集成越来越多漏洞。一体化批量全球。批量全球我们是认真的。现在缺的就是漏洞和时间更多的是缺时间哈哈哈<br><br/><br>也就是说我们的软件最大可以搭载100万条url进行全模块自动化攻击。并且速度也很快。<br>源代码截图:<br>预售源代码截图:<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202409061729585.png" alt="源代码1"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202409061729307.png" alt="源代码2"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202409061730582.png" alt="源代码3"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于软件我就不多介绍了可以看博客或者github的介绍。另外绝大多数bug已经修复完毕。俗话说授人鱼不如授人以渔。我们2025年打算授人以渔。将开启webframeworktools源代码预售。目前计划最大预售套数为50套。其中包含2套源代码一套是测试exp的代码。另外一套是搭载exp的代码也就是webframeworkTools V5.3 发布版本。另外购买代码的需要会渗透测试,能看懂http报文这个不会的话后续我们但是可以给你说说。渗透测试这个必须你们自己得会。毕竟2024年了不会编程也不行你们说呢 第一:编程语言建议学习c# 另外如果比较难学觉得c#你们就学习php语言编程要必须学习。第二:另外必须要熟悉软件使用方式。⚠️⚠️两个硬性条件必须要达到才有资格购买⚠️⚠️。详情请见频道。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SecurityTools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>webframeworktools 漏洞集成公告一</title>
       <link href="/securitytools/2024/08/articles/f7e10f7c4ce3b984/"/>
       <url>/securitytools/2024/08/articles/f7e10f7c4ce3b984/</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -199,9 +226,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -226,9 +253,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -278,9 +305,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -530,9 +557,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -609,9 +636,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -636,9 +663,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -665,9 +692,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -694,9 +721,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -723,9 +750,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -750,9 +777,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -829,9 +856,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Vip </tag>
             
