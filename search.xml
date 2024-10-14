@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>webframeworktools dll模式简单批量使用</title>
+      <link href="/securitytools/2024/10/articles/039303a532fb37a7/"/>
+      <url>/securitytools/2024/10/articles/039303a532fb37a7/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 大家在看某些小密圈或者github某些漏洞有exp我们需要批量利用不想写nuclei和xray这些东西。如何使用webframeworktools dll模式进行批量利用。我们来看从某小密圈获取到的exp poc。通过测绘工具批量导出漏洞网站。准备好批量url dllurl.txt 。由于我们没有漏洞网站所以需要打开工具 UserDllpluginExpGenerate.exe 生成利用工具。</p><h2 id="漏洞特征"><a href="#漏洞特征" class="headerlink" title="漏洞特征"></a>漏洞特征</h2><p> 此漏洞接口为xxx&#x2F;reg.php。并且源码中有password关键字和not found关键字我们通过工具生成。如下图: 主要由于没有漏洞网站并不会显示结果。生成dll并且加载进行批量利用。如下图利用成功并且结果写入到txt中。<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202410141718420.jpg" alt="生成如下图并且利用"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> 多练习工具,相比于写xray和nuclei简单太多了。另外最好是会点代码审计语言效果更佳。今天就说到这里。后续会继续出点工具实战使用教程。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SecurityTools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PenetrationTestingExample </tag>
+            
+            <tag> original </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于2025年预售webframeworkTools源代码公告</title>
       <link href="/securitytools/2024/09/articles/f76f746f1b80cfc9/"/>
       <url>/securitytools/2024/09/articles/f76f746f1b80cfc9/</url>
@@ -557,9 +584,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -636,9 +663,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -663,9 +690,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -692,9 +719,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -721,9 +748,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -750,9 +777,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -777,9 +804,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -856,9 +883,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Vip </tag>
             
