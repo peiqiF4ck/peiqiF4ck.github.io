@@ -8,7 +8,7 @@
       <link href="/penetrationtest/2024/11/articles/fc5bf840d76e8ebd/"/>
       <url>/penetrationtest/2024/11/articles/fc5bf840d76e8ebd/</url>
       
-        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在测试工具的时候工具扫描到一个网站但是没有直接自动getshell。这个站点有wts waf和云网盾waf导致并且还有其他一些阻碍另外是windows的系统当时没有写windows下session包含一键getshell漏洞。导致没有直接getshell另外存在waf的情况下可能无法直接getshell。最后是通过手工艰难getshell。后续将exp写入软件里面。我们在getshell以后发现使用冰蝎马waf有时候会重置连接。导致连接不上。最后我们使用蚁剑 自定义流量getshell并且连接成功过了。但是相对来说哥斯拉还是不错的。但是之前没有做个哥斯拉的马。正好趁着这个机会做个哥斯拉的免杀马。</p><h2 id="查杀点"><a href="#查杀点" class="headerlink" title="查杀点"></a>查杀点</h2><p>我们在做webshell免杀的时候首先要搞清楚它杀的是啥。不管是小密圈还是什么很少有人提到核心问题就是它到底是杀的是什么。我们接下来就讲一下如何使用笨办法判断它的是啥我们使用哥斯拉生成默认的shell看看。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071628697.jpg" alt="默认shell被杀"><br>我们先把它从火绒中放出来。这小小的火绒就杀了别说D盾了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071630180.png" alt="默认shell的内容"><br>对于什么笨办法呢就是你把一个函数一个函数或者一个if 一个else的去掉测试他是不是被杀。D盾也是同样的手法。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071633777.png" alt="去掉判断"><br>最后确定查杀点在eval没错我相信你也看到了<br>eval($payload);<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071636684.png" alt="确定杀点"><br>我们知道eval函数是把字符串当成代码执行的那么我们是否可以加入干扰字符串让他执行呢。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071645252.png" alt="免杀并且可以连接"><br>免杀核心就是加入了一个可以执行的代码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071646973.png" alt="直接免杀"></p><p>D盾和火绒规则更新情况<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071650411.png" alt="均为最新版本"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不管是什么免杀别人总是教你皮毛。从来不教你杀点在哪里。我们直接使用二步免杀D盾和火绒其他查杀类似。你要知道他杀什么才行。关于webshell免杀你首要要对脚本语言很熟悉。另外知道他杀什么这样就好搞了。这比二进制好搞多了。讲二进制免杀的他们只会告诉你杀哪里不告诉你是怎么知道杀的那里导致你报什么班都没啥乱用。因为核心没有告你。另外二进制免杀你要对操作系统 windows api 比较了解和内存这些要了解。学习的东西很多。学习二进制前提是你要会语言在报培训什么的否则。不要报了都是韭菜。另外最重要的一点就是不要看见别人免杀这个免杀那个你觉得你也可以。当然你或许学几年才可以。你觉得你立马就可以了。所以你就去报班被割韭菜了。话说回来了。要购买软件源代码的你首先要会编程。最好是会点C#那样你买上软件才是你的。当然我们只要$到位我们会手把手教你编写exp。我们教的肯定是有核心。我相信通过我们教的这个免杀D盾和火绒让小白也能知道(前提是你得会php语言的小白)。关于实战thinkphp 绕waf getshell的文章后续发布还没写。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在测试工具的时候工具扫描到一个网站但是没有直接自动getshell。这个站点有wts waf和云网盾waf导致并且还有其他一些阻碍另外是windows的系统当时没有写windows下session包含一键getshell漏洞。导致没有直接getshell另外存在waf的情况下可能无法直接getshell。最后是通过手工艰难getshell。后续将exp写入软件里面。我们在getshell以后发现使用冰蝎马waf有时候会重置连接。导致连接不上。最后我们使用蚁剑 自定义流量getshell并且连接成功过了。但是相对来说哥斯拉还是不错的。但是之前没有做个哥斯拉的马。正好趁着这个机会做个哥斯拉的免杀马。</p><h2 id="查杀点"><a href="#查杀点" class="headerlink" title="查杀点"></a>查杀点</h2><p>我们在做webshell免杀的时候首先要搞清楚它杀的是啥。不管是小密圈还是什么很少有人提到核心问题就是它到底是杀的是什么。我们接下来就讲一下如何使用笨办法判断它的是啥我们使用哥斯拉生成默认的shell看看。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071628697.jpg" alt="默认shell被杀"><br>我们先把它从火绒中放出来。这小小的火绒就杀了别说D盾了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071630180.png" alt="默认shell的内容"><br>对于什么笨办法呢就是你把一个函数一个函数或者一个if 一个else的去掉测试他是不是被杀。D盾也是同样的手法。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071633777.png" alt="去掉判断"><br>最后确定查杀点在eval没错我相信你也看到了<br>eval($payload);<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071636684.png" alt="确定杀点"><br>我们知道eval函数是把字符串当成代码执行的那么我们是否可以加入干扰字符串让他执行呢。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071711070.png" alt="免杀并且可以连接"><br>免杀核心就是加入了一个可以执行的代码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071646973.png" alt="直接免杀"></p><p>D盾和火绒规则更新情况<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071650411.png" alt="均为最新版本"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不管是什么免杀别人总是教你皮毛。从来不教你杀点在哪里。我们直接使用二步免杀D盾和火绒其他查杀类似。你要知道他杀什么才行。关于webshell免杀你首要要对脚本语言很熟悉。另外知道他杀什么这样就好搞了。这比二进制好搞多了。讲二进制免杀的他们只会告诉你杀哪里不告诉你是怎么知道杀的那里导致你报什么班都没啥乱用。因为核心没有告你。另外二进制免杀你要对操作系统 windows api 比较了解和内存这些要了解。学习的东西很多。学习二进制前提是你要会语言在报培训什么的否则。不要报了都是韭菜。另外最重要的一点就是不要看见别人免杀这个免杀那个你觉得你也可以。当然你或许学几年才可以。你觉得你立马就可以了。所以你就去报班被割韭菜了。话说回来了。要购买软件源代码的你首先要会编程。最好是会点C#那样你买上软件才是你的。当然我们只要$到位我们会手把手教你编写exp。我们教的肯定是有核心。我相信通过我们教的这个免杀D盾和火绒让小白也能知道(前提是你得会php语言的小白)。关于实战thinkphp 绕waf getshell的文章后续发布还没写。</p>]]></content>
       
       
       <categories>
@@ -636,9 +636,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -742,9 +742,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -771,9 +771,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -800,9 +800,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -856,9 +856,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
