@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Struts2-DevMode漏洞渗透实战, peiqiF4ck github">
-    <meta name="description" content="Struts2-DevMode渗透实战测试,DevMode,Struts2漏洞测试">
+    <meta name="keywords" content="从哥斯拉默认php木马揭开最新版D盾和火绒的查杀规则, peiqiF4ck github">
+    <meta name="description" content="哥斯拉马加一行代码免杀D盾和火绒">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Struts2-DevMode漏洞渗透实战 | peiqiF4ck</title>
+    <title>从哥斯拉默认php木马揭开最新版D盾和火绒的查杀规则 | peiqiF4ck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -278,12 +278,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021421494.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071650411.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Struts2-DevMode漏洞渗透实战</h1>
+                    <h1 class="description center-align post-title">从哥斯拉默认php木马揭开最新版D盾和火绒的查杀规则</h1>
                 </div>
             </div>
         </div>
@@ -399,8 +399,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/PenetrationTestingExample/">
-                                <span class="chip bg-color">PenetrationTestingExample</span>
+                            <a href="/tags/original/">
+                                <span class="chip bg-color">original</span>
+                            </a>
+                        
+                            <a href="/tags/webshellbypass/">
+                                <span class="chip bg-color">webshellbypass</span>
                             </a>
                         
                     </div>
@@ -424,28 +428,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-06-02
+                    2024-11-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-02
+                    2024-11-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    958
+                    838
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
 
@@ -468,61 +472,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
-<li>看博客看了这么长时间的兄弟估计有点疑惑这人。老发安卓到底是会不会渗透测试。我是在学习安卓逆向所以找点案例练练手。所以我发的安卓逆向的比较多。后续准备学习内网渗透测试。我是想自己可以掌握 包含 渗透测试 ,代码审计,安卓逆向,内网渗透,免杀这些所有的能力。为以后为了我们的工具和内部群和大家一起交流。所以我在不断努力中。
-</li>
-<li>这篇文章带大家来看看渗透实战测试。这个遇到的实战比较少。之前有朋友在项目中也遇到没怎么搞。因为学习比较忙。前段时间闲来无事帮忙搞了一个渗透测试项目。又碰到这个漏洞了。这个漏洞碰到的比较少所以很少人可以搞定。吐司貌似也有一篇文章说的是这个漏洞如何利用。开始正题吧
-</li>
-</ul>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在测试工具的时候工具扫描到一个网站但是没有直接自动getshell。这个站点有wts waf和云网盾waf导致并且还有其他一些阻碍另外是windows的系统当时没有写windows下session包含一键getshell漏洞。导致没有直接getshell另外存在waf的情况下可能无法直接getshell。最后是通过手工艰难getshell。后续将exp写入软件里面。我们在getshell以后发现使用冰蝎马waf有时候会重置连接。导致连接不上。最后我们使用蚁剑 自定义流量getshell并且连接成功过了。但是相对来说哥斯拉还是不错的。但是之前没有做个哥斯拉的马。正好趁着这个机会做个哥斯拉的免杀马。</p>
+<h2 id="查杀点"><a href="#查杀点" class="headerlink" title="查杀点"></a>查杀点</h2><p>我们在做webshell免杀的时候首先要搞清楚它杀的是啥。不管是小密圈还是什么很少有人提到核心问题就是它到底是杀的是什么。我们接下来就讲一下如何使用笨办法判断它的是啥我们使用哥斯拉生成默认的shell看看。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071628697.jpg" alt="默认shell被杀"><br>我们先把它从火绒中放出来。这小小的火绒就杀了别说D盾了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071630180.png" alt="默认shell的内容"><br>对于什么笨办法呢就是你把一个函数一个函数或者一个if 一个else的去掉测试他是不是被杀。D盾也是同样的手法。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071633777.png" alt="去掉判断"><br>最后确定查杀点在eval没错我相信你也看到了<br>eval($payload);<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071636684.png" alt="确定杀点"><br>我们知道eval函数是把字符串当成代码执行的那么我们是否可以加入干扰字符串让他执行呢。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071645252.png" alt="免杀并且可以连接"><br>免杀核心就是加入了一个可以执行的代码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071646973.png" alt="直接免杀"></p>
+<p>D盾和火绒规则更新情况<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071650411.png" alt="均为最新版本"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不管是什么免杀别人总是教你皮毛。从来不教你杀点在哪里。我们直接使用二步免杀D盾和火绒其他查杀类似。你要知道他杀什么才行。关于webshell免杀你首要要对脚本语言很熟悉。另外知道他杀什么这样就好搞了。这比二进制好搞多了。讲二进制免杀的他们只会告诉你杀哪里不告诉你是怎么知道杀的那里导致你报什么班都没啥乱用。因为核心没有告你。另外二进制免杀你要对操作系统 windows api 比较了解和内存这些要了解。学习的东西很多。学习二进制前提是你要会语言在报培训什么的否则。不要报了都是韭菜。另外最重要的一点就是不要看见别人免杀这个免杀那个你觉得你也可以。当然你或许学几年才可以。你觉得你立马就可以了。所以你就去报班被割韭菜了。话说回来了。要购买软件源代码的你首先要会编程。最好是会点C#那样你买上软件才是你的。当然我们只要$到位我们会手把手教你编写exp。我们教的肯定是有核心。我相信通过我们教的这个免杀D盾和火绒让小白也能知道(前提是你得会php语言的小白)。</p>
 
-<h2 id="发现目标"><a href="#发现目标" class="headerlink" title="发现目标"></a>发现目标</h2><ul>
-<li>使用ABC_123 大佬的struts2 工具扫描出Struts2-DevMode见下图。</li>
-
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021416291.png" alt="发现目标"></p>
-<li>因为是工具扫描出来的漏洞不确定他是否存在漏洞所以我们。要手工对这个网站进行测试。确定是否存在漏洞。另外确定网站是否存在waf等所以我们构造payload进行手工测试见下图:我们请求构造一个不存在的url然后报错了。说明开启了debug模式</li>
-
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021421494.png" alt="开启了debug模式"></p>
-</ul>
-
-<h2 id="确定是否存在漏洞"><a href="#确定是否存在漏洞" class="headerlink" title="确定是否存在漏洞"></a>确定是否存在漏洞</h2><ul>
-<li>我们使用payload打一下,回显了freemarker。所以我们确定这个100%是存在漏洞了</li>
-
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021500117.png" alt="存在漏洞"></p>
-</ul>
-
-<h2 id="确定是否存在waf"><a href="#确定是否存在waf" class="headerlink" title="确定是否存在waf"></a>确定是否存在waf</h2><ul>
-<li>
-祭出宽字节 struts-061的payload 打一下,确定不存在waf。但是没有打成功。尝试了许多exp。都返回null. 他们的exp都是在body里面返回结果。那么是不是body里面返回的不行呢。我们在header里面返回结果行不行(这个思路比较重要如果没有这个这个网站拿不下)
-</li>
-
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021428973.png" alt="不存在waf"></p>
-</ul>
-
-<h2 id="改变exp思路成功执行命令"><a href="#改变exp思路成功执行命令" class="headerlink" title="改变exp思路成功执行命令"></a>改变exp思路成功执行命令</h2><ul>
-<li>
-那我们找一个header返回的exp打一下。由于之前写我们的webframeworktools 工具的时候我们对struts2 工具的exp进行深入研究。所以直接找到可以在header里面执行payload的工具转换成执行命令的成功执行命令。由于这个比较隐秘exp我就打码处理了。</li>
-
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021458161.png" alt="成功执行命令"></p>
-</li>
-</ul>
-
-<h2 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h2><ul>
-<li>看到可以只命令估计大部分的思路是反弹shell。然后就行了。但是我测试大部分反弹shell的东东反弹shell都不行。我用curl 测试可以出网。现有阶段我们不能反弹。只能看看能不能拿下webshell。有tomcat说可以解析jsp。那我们能不能利用wget下载然后getshell通过找网站特征图片.css，js，html。等后续最终确定了web路径。然后wget下载拿到shell了。后来想了一下我们能不能直接上传webshell呢。</li>
-
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021443322.png" alt="拿到webshell"></p>
-</ul>
-
-<h2 id="构造exp上传webshell"><a href="#构造exp上传webshell" class="headerlink" title="构造exp上传webshell"></a>构造exp上传webshell</h2><ul>
-<li>根据工具的exp构造包上传webshell。此exp已经集成到工具里面了详情看更新https://github.com/peiqiF4ck/WebFrameworkTools-5.1-main</li>
-
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021448694.png" alt="通过上传拿到webshell"></p>
-</ul>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>
-之所以能成功getshell就是我们打破常规思路。在header头部显示结果。成功了。后续内网渗透什么的。等我研究了后续有我自己实战渗透内网的东东或者是靶场什么的只要我觉得这个不错我会写文章。共享的。不管是渗透话是什么我们一定不能按照常规思路进行测试。因为常规测试的路子已经被别人知道了堵死了。至于如何练习自己的渗透思维。多练习。加自己的总结。
-</li>
-</ul>
                 
             </div>
             <hr/>
@@ -548,7 +502,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://peiqiF4ck.github.io/penetrationtest/2023/06/articles/3cce7d6763611bcc/">https://peiqiF4ck.github.io/penetrationtest/2023/06/articles/3cce7d6763611bcc/</a>
+                    <a href="https://peiqiF4ck.github.io/penetrationtest/2024/11/articles/fc5bf840d76e8ebd/">https://peiqiF4ck.github.io/penetrationtest/2024/11/articles/fc5bf840d76e8ebd/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,8 +540,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/PenetrationTestingExample/">
-                                    <span class="chip bg-color">PenetrationTestingExample</span>
+                                <a href="/tags/original/">
+                                    <span class="chip bg-color">original</span>
+                                </a>
+                            
+                                <a href="/tags/webshellbypass/">
+                                    <span class="chip bg-color">webshellbypass</span>
                                 </a>
                             
                         </div>
@@ -761,16 +719,70 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/penetrationtest/2023/06/articles/4d9b7730efb1222b/">
+                <a href="/penetrationtest/2024/11/articles/fc5bf840d76e8ebd/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306211008507.png" class="responsive-img" alt="CVE-2023-32315-openfire权限绕过rce">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411071650411.png" class="responsive-img" alt="从哥斯拉默认php木马揭开最新版D盾和火绒的查杀规则">
                         
-                        <span class="card-title">CVE-2023-32315-openfire权限绕过rce</span>
+                        <span class="card-title">从哥斯拉默认php木马揭开最新版D盾和火绒的查杀规则</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            哥斯拉马加一行代码免杀D盾和火绒
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/PenetrationTest/" class="post-category">
+                                    PenetrationTest
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/original/">
+                        <span class="chip bg-color">original</span>
+                    </a>
+                    
+                    <a href="/tags/webshellbypass/">
+                        <span class="chip bg-color">webshellbypass</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/penetrationtest/2024/11/articles/34f1892bb33c988c/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411041611473.jpg" class="responsive-img" alt="窥探wordpress CVE-2024-9593所谓代码执行漏洞的秘密">
+                        
+                        <span class="card-title">窥探wordpress CVE-2024-9593所谓代码执行漏洞的秘密</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -780,9 +792,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -800,54 +812,6 @@
                     
                     <a href="/tags/PenetrationTestingExample/">
                         <span class="chip bg-color">PenetrationTestingExample</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/androidreverse/2023/06/articles/9d4835eb0ff8f92b/">
-                    <div class="card-image">
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202306021016586.png" class="responsive-img" alt="某appvpn代理检测绕过算法定位">
-                        
-                        <span class="card-title">某appvpn代理检测绕过算法定位</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            过VPN检测
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-02
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/AndroidReverse/" class="post-category">
-                                    AndroidReverse
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Frida/">
-                        <span class="chip bg-color">Frida</span>
                     </a>
                     
                 </div>
