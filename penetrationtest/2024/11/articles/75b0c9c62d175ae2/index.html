@@ -438,7 +438,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    997
+                    999
                 </div>
                 
 
@@ -468,7 +468,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>从2024年9月4号我们开始测试软件除 log4j weblogic jboos 这三个模块以外的所有模块在1000万网站下的表现。到今天为止软件已经稳定运行两个月由于大概率已经跑了600万网站。为什么要测试1000万网站因为我们想超越自己。。另外一个exp如果增加一半原来能跑100万网站现在就成了50万效率下降了。所以我们用1000w条进行测试。目前据我们所知市面上跑百万网站的软件屈指可数。上千万的更加稀少。我们不确定1000万是否成功但是我们可以确定600万网站测试成功。目前流量已经跑了3.78TB。不管1000万能否顺利跑完到是可以确定的是我们在百万之内已经可以稳定运行我们搭载100多个exp。将近400多个exp。exp相对来说不是那么多。后续框架稳定以后将加入更多exp。后续最大开发url条数为100万条100万条配置好的话大概10天跑完。</p>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>从2024年9月4号我们开始测试软件除 log4j weblogic jboos 这三个模块以外的所有模块在1000万网站下的表现。到今天为止软件已经稳定运行两个月由于大概率已经跑了600万网站。为什么要测试1000万网站因为我们想超越自己。。另外一个exp如果增加一半原来能跑100万网站现在就成了50万效率下降了。所以我们用1000w条进行测试。目前据我们所知市面上跑百万网站的软件屈指可数。上千万的更加稀少。我们不确定1000万是否成功但是我们可以确定600万网站测试成功。目前流量已经跑了3.78TB。不管1000万能否顺利跑完到是可以确定的是我们在百万之内已经可以稳定运行我们搭载100多个模块。将近400多个exp。exp相对来说不是那么多。后续框架稳定以后将加入更多exp。后续最大开发url条数为100万条100万条配置好的话大概10天跑完。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091436686.png" alt="测试url"><br>exp截图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091510559.png" alt="exp截图"><br>在软件测试中跑出来的结果我们从中挑出来进行误报修正。发现git和shiro这些漏洞比较多。另外shiro之前只识别了框架现在加入了key判断判断出来单独放到一个文本中shro.txt中其中git也是由于有些漏洞没有测试环境可能存误报后续将尽可能修复如果修复不完全计划放到other.txt文本中方便区分。<br>更新关于shiro漏洞展示。当然我们在频道里面也说了在shiro漏洞探测中C#中貌似没有写过我们也是开创了这个先河检测shiro漏洞。使用C#<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091520002.png" alt="shiro"></p>
 <h2 id="tp5软件扫描结果"><a href="#tp5软件扫描结果" class="headerlink" title="tp5软件扫描结果"></a>tp5软件扫描结果</h2><p>从软件扫描这个貌似可以执行命令。当然如果你能执行命令那确实运气比较好。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091524314.png" alt="tp软件扫描结果"><br>我们测试了执行不了命令我们参数thinkphp5打法总结一里面看看能不执行phpinfo命令上poc。这个poc在我们打法里面有直接复制打就行了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091530439.png" alt="可以执行phpinfo"><br>那么我们是不是可以直接assert那不就起飞了。被waf无情的拦截。。。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091533595.png" alt="被拦击"><br>被云网盾waf拦截。这个waf之前没有见过不过是很强。经过测试发现这个是匹配filter[]&#x3D;assert  只要是这两个在一块必拦截。</p>
 <h2 id="bypass-云网盾waf"><a href="#bypass-云网盾waf" class="headerlink" title="bypass 云网盾waf"></a>bypass 云网盾waf</h2><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091535289.png" alt="云网盾waf"><br>既然知道规则那我们执行绕过。上截图<br>_method&#x3D;__construct&amp;filter[]%0a&#x3D;assert&amp;method&#x3D;get&amp;get[]&#x3D;phpinfo();<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411091542244.png" alt="bypass云网盾"><br>这拿shell就很容易了。当然我们也拿下目标网站了这里就不截图了。<br>所以我们不管是waf还什么我们得知道他拦截啥我们才能直接绕过。</p>
@@ -1005,7 +1005,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">39.7k</span>
+                        class="white-color">39.8k</span>
             
             
             
