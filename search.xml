@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>某诈骗平台渗透测试到代码审计前台getshell历程</title>
+      <link href="/penetrationtest/2024/11/articles/cbd79839949e8ffc/"/>
+      <url>/penetrationtest/2024/11/articles/cbd79839949e8ffc/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在某天刷某音的时候看到一个视频某音大黑客在展示。他打击某诈骗app的过程<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251559583.png" alt="起因"><br>然后我翻评论翻到底下有人说自己被诈骗了说在某个平台体现被拒绝了。并且他把这个截图带网址发到评论区了估计是想让抖音大黑阔帮忙看看能不能找回。如下图:<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251604302.png" alt="被骗人截图"><br>于是乎我抱着试一试的心态开始干了。</p><h2 id="渗透过程"><a href="#渗透过程" class="headerlink" title="渗透过程"></a>渗透过程</h2><p>由于是ip地址我在fofa 这些平台查询了一下同ip不同端口的情况显示就开放网站另外此有防火墙使用端口扫描工具开放端口扫描不到。只能从网站直接入手了。发现该系统是thinkphp 。有的大佬说沃日直接上rce 确实是有的使用的是thinkphp 5.0.23以下的也写上5.0.24但是这个真的是5.0.24<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251611763.png" alt="网站特征"><br>我们浏览了一波网站注册用户什么的没有发现明显的漏洞另外后台也找不到。这是忽然想起一波日志是不是可以看看。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251615062.png" alt="日志"><br>一看这种日志也没有发现什么价值。看了几个小时正当放弃的时候。正好这时候管理员上线了并且这个记录管理员账号密码。所以顺利拿到了管理员账号密码进去后台。并且日志里面也有后台地址。如果不翻不等那么估计也不会发现日志里面存在管理员账号。所以运气成分比较大<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251618121.png" alt="日志获取账号密码"><br>使用账号密码成功登录后台<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251620902.png" alt="成功登录后台"><br>找到后台当然是getshell。什么最快当然是上传这个诈骗平台没有使用waf直接上传getshell。开始使用冰蝎免杀shell。由于有disable_functioin所以上哥斯拉了。使用哥斯拉bypass diable_function成功执行命令<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251624686.png" alt="执行命令"><br>打包源代码</p><h2 id="代码审计发现0day漏洞"><a href="#代码审计发现0day漏洞" class="headerlink" title="代码审计发现0day漏洞"></a>代码审计发现0day漏洞</h2><p>我们打包代码以后使用adminer 脱裤以后在本地搭建网站对其进行代码审计。对了使用adminer 脱裤的最好使用phpmyadmin导入数据库.sql文件。这样不会报错。注意在脱裤的时候要知道数据库字符集编码和排序规则编码。这样才可以在本地搭建成功。在代码审计发现ssrf 漏洞可以直接读取任意文件。当然还有其他漏洞比如 反序列化。文件上传。文件上传配合反序列化漏洞可以直接拿shell。关于代码的我已经在频道发布了。没有加数据库那套系统是旧版本同样存在漏洞。自己审计吧。回头有空把这些集成到工具里面。另外在搞完这个站的时候。又有骚扰短信发过来了。运气好把这个骚扰短信的站点也给日了。这个涉及范围比较广用1500多个站点暂时就不发布文章了那个也是代码审计审计出来的0day漏洞直接进后台配合模板直接getshell。放到图吧。回头这些详细过程小范围分享一下。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251630255.png" alt="ssrf"><br>广告站点<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251639460.png" alt="广告站"></p><h2 id="代码审计渗透测试总结"><a href="#代码审计渗透测试总结" class="headerlink" title="代码审计渗透测试总结"></a>代码审计渗透测试总结</h2><p>(1)如何学习php代码审计:需要具备 php基础知识 需要会写简单的网站后台 需要知道thinkphp知识。需要会渗透测试。需要有php代码审计功底。具备这些你就可以挖了。这些是基础条件至于能不能挖到取决于代码安全程度和自己的功底。两者缺一不可。我们在频道群里面已经说了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251644971.png" alt="代码审计学习"><br>其他审计也是一样的。另外看一下mcv开发东东都是相通的再看看类继承,接口等等东西这在代码审计里面用的很多.<br>软件辅助渗透测试:<br>(2)软件大批量跑还是可以的这个站估计直接搞不太好搞得扫描😂。。。。还是得url多。然后exp多才可以啊。缺一不可啊这两个😏。搞出来脱裤，然后代码审计批量。不是tp站也不是知名漏洞是通过组件漏洞getshell得😂。在这个waf满天飞得时代不要一直依赖工具。工具只是辅助还是得靠自身。我审计的那个源码利用难度比较低但是有条件才能利用成功。这个漏洞只能打9分不理想。。。。通杀是通杀但通杀的不多。几千个网站后台想想就牛逼啊。这玩意是基于原始代码重新研发的我只有原始代码没有变形的代码这就难搞了。需要大多数通杀得搞到变形的代码在看看能不能配合利用。这也能成为所以得apt但是不是那种😂。后台倒是漏洞多没啥用。这混cve cvnd可以。实战不行。要搞还得是前台或者无视后台利用那才牛逼。前段时间搞得那个诈骗网站只要是默认代码都通杀。那个用的不多。那个也打9分吧不太满意。有个.net 得day的站那个是需要注册用户才能getshell。这种漏洞也就8分吧。不太满意。至于那种简单的上传，注入前台的没啥技术含量。是人都可以审计表面10分但是实际上也就值5分。。最后总结:这年头学技术不管是搞站单枪匹马不行还是，团队合作然后做代码审计搞内网可持续攻击。攻击供应商的站能打一批那绝对手握多少0day😂😏。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251647635.png" alt="配合软件拿下旁站获取目标源码"><br>就说这些下课吧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PenetrationTest </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PenetrationTestingExample </tag>
+            
+            <tag> CodeAuditExample </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>窥探wordpress CVE-2024-9593所谓代码执行漏洞的秘密</title>
       <link href="/penetrationtest/2024/11/articles/34f1892bb33c988c/"/>
       <url>/penetrationtest/2024/11/articles/34f1892bb33c988c/</url>
