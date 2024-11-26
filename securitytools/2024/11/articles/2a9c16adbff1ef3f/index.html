@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    931
+                    1k
                 </div>
                 
 
@@ -540,7 +540,7 @@ Connection: close</code></pre>
 <p>我们随便找个网站看看exp就是<a target="_blank" rel="noopener" href="https://5319.newadco.com//api/wxapps/_requestPost?url=http://dnslog%E5%9C%B0%E5%9D%80/&amp;data=">https://5319.newadco.com//api/wxapps/_requestPost?url=http://dnslog地址/&amp;data=</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261421596.png" alt="实战"><br>是不是可以这么理解。那我们编写的时候直接这么编写不就行了。我们看nuclei ssrf编写案例<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Z4IFUVFjhWHYtAUCxz50LQ">https://mp.weixin.qq.com/s/Z4IFUVFjhWHYtAUCxz50LQ</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261426697.png" alt="ssrf编写"><br>如果我们利用python或者自己写一个程序来实现ssrf那将会是很麻烦所以我们来介绍我们工具编写ssrf步骤。</p>
 <h2 id="工具编写ssrf漏洞代码展示"><a href="#工具编写ssrf漏洞代码展示" class="headerlink" title="工具编写ssrf漏洞代码展示"></a>工具编写ssrf漏洞代码展示</h2><p>使用我们的工具编写ssrf漏洞只需简单的按规则发送请求即可。注意:<br>其中<a target="_blank" rel="noopener" href="http://www.dnslog.cn/">www.dnslog.cn</a> 只能国内ip使用。<br/>这个只能国外地址使用 <a target="_blank" rel="noopener" href="https://dnslog.org/">https://dnslog.org</a><br/><br><a target="_blank" rel="noopener" href="https://oast.pro/">https://oast.pro/</a> 这个国内外ip都可以使用也就是nuclei使用的</p>
 <p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261435940.png" alt="编写实例"><br>如果返回的是vul exist!!! 那么就存在漏洞并且结果exp已经写出来了。<br>怎么样我们使用三个dns平台测试ssrf漏洞当然实战建议选择后面两个因为dnslog只能国内ip使用。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在觉得编写exp poc很难么。还觉得难的话那是没有遇到我们的软件。后续源码小范围分享的时候会在内部辅导教学编写exp。直到学会为止。前提是你得会渗透测试能看懂http报文。和会简单的编程最好是C#编写。在这个waf 满天飞的时代我们必须有一个属于自己的exp poc武器。我们的武器现在可以最少支持100万网站的所有模块的批量。目前在测试框架1000w url的批量。相信市面上很少有工具可以达到这个程度。等测试完毕在发布测试文章。今天就讲到这里吧。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在觉得编写exp poc很难么。还觉得难的话那是没有遇到我们的软件。后续源码小范围分享的时候会在内部辅导教学编写exp。直到学会为止。前提是你得会渗透测试能看懂http报文。和会简单的编程最好是C#编写。在这个waf 满天飞的时代我们必须有一个属于自己的exp poc武器。我们的武器现在可以最少支持100万网站的所有模块的批量。目前在测试框架1000w url的批量。相信市面上很少有工具可以达到这个程度。等测试完毕在发布测试文章。总之就是会发送get post这些请求包就行了。至于上传这个比较难。回头单独讲解吧。这个就写这么多吧。这个属于直达心脏比较危险你们懂得不适合大范围分享。因为我们的软件可以抗百万url。今天就讲到这里吧。</p>
 
                 
             </div>
@@ -1080,7 +1080,7 @@ Connection: close</code></pre>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">40.3k</span>
+                        class="white-color">40.4k</span>
             
             
             
