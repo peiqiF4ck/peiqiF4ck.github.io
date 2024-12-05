@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>js敏感信息查找工具改造版本-peiqiF4ck</title>
+      <link href="/codeaudit/2024/12/articles/fc6ad7808b830bbd/"/>
+      <url>/codeaudit/2024/12/articles/fc6ad7808b830bbd/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在我们渗透测试中遇到小程序把他的代码反编译出来或者是在泄露source map 下载源代码以后一个一个的找铭感信息太麻烦我在github中找到一个项目<a href="https://github.com/bingtangbanli/jsfinderPro">https://github.com/bingtangbanli/jsfinderPro</a> <br/> 感觉这个项目还可以但是某些地方需要稍微改动一下才能变得不过。这个在convention.txt 里面可以添加正则表达式丰富一下工具。</p><h2 id="改造截图"><a href="#改造截图" class="headerlink" title="改造截图"></a>改造截图</h2><p>我们可以自定义加正则表达式把Hae和burpapifingder里面正则加入里面。我加了一部分出来<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412051656549.png" alt="改造截图"><br>成品发到频道里面如果需要转载和修改请保留版权信息!!!<br>下载地址:<a href="https://t.me/SoftwareNoticeChannel/734">https://t.me/SoftwareNoticeChannel/734</a> <br/></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CodeAudit </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SecurityTools </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>代码审计之vscode xdebug动态调试php教程</title>
       <link href="/codeaudit/2024/11/articles/40395b9e6e72cc99/"/>
       <url>/codeaudit/2024/11/articles/40395b9e6e72cc99/</url>
@@ -70,9 +95,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTestingExample </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -149,9 +174,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> PenetrationTestingExample </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -713,9 +738,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -792,9 +817,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -819,9 +844,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -848,9 +873,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> autoDecoder </tag>
             
@@ -877,9 +902,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Brida </tag>
             
@@ -906,9 +931,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -933,9 +958,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> PenetrationTest </tag>
+            
+            <tag> Frida </tag>
             
         </tags>
       
@@ -1012,9 +1037,9 @@
       
         <tags>
             
-            <tag> Frida </tag>
-            
             <tag> original </tag>
+            
+            <tag> Frida </tag>
             
             <tag> Vip </tag>
             

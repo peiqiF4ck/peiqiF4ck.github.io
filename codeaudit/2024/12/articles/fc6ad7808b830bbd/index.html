@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="代码审计之vscode xdebug动态调试php教程, peiqiF4ck github">
-    <meta name="description" content="phpstudy下vscode apache调试遇到的问题讲解">
+    <meta name="keywords" content="js敏感信息查找工具改造版本-peiqiF4ck, peiqiF4ck github">
+    <meta name="description" content="js敏感信息查找工具改造版本-peiqiF4ck">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>代码审计之vscode xdebug动态调试php教程 | peiqiF4ck</title>
+    <title>js敏感信息查找工具改造版本-peiqiF4ck | peiqiF4ck</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -278,12 +278,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291523313.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412051656549.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">代码审计之vscode xdebug动态调试php教程</h1>
+                    <h1 class="description center-align post-title">js敏感信息查找工具改造版本-peiqiF4ck</h1>
                 </div>
             </div>
         </div>
@@ -399,8 +399,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/CodeAuditExample/">
-                                <span class="chip bg-color">CodeAuditExample</span>
+                            <a href="/tags/SecurityTools/">
+                                <span class="chip bg-color">SecurityTools</span>
                             </a>
                         
                     </div>
@@ -424,28 +424,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-11-29
+                    2024-12-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-11-29
+                    2024-12-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    945
+                    187
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -468,27 +468,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们在进行代码审计的时候遇到复杂的代码从静态一下子看不出来就需要动态调试。我前面的文章也说了。遇到一个骚扰广告那个站点就是thinkphp开发的不过我喜欢静态和输出语句进行审计。没有进行动态调试。哪个审计出一个day配合进入后台从同ip网站间接拿下目标网站。后续等有时间出个文章写写吧。今天主要讲的是动态调试</p>
-<h2 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h2><p>第一步:下载vscode,52破解分享的下载链接<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291510074.png" alt="vscode软件"><br>下载以后打开vscode 在商店里面搜索xdebug。我安卓的是1.14版本<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291512168.png" alt="xdebug"><br>安装好以后我们需要使用vscode打开要调试网站的目录并且在根目录创建一个文件内容为phpinfo();然后访问这个文件输出phpinfo内容<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291515932.png" alt="phpinfo"><br>把phpinfo 输出的所有内容复制到这个网站上面  <a target="_blank" rel="noopener" href="https://xdebug.org/wizard.php">https://xdebug.org/wizard.php</a>  记住是phpinfo输出的全部内容所有内容。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291516764.png" alt="分析phpinfo内容"><br>分析结果如下:<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291517126.png" alt="分析结果"><br>1:下载  php_xdebug-3.1.6-7.3-vc15-nts-x86_64.dll<br/><br>2:把下载好的dll文件复制到 E:\debugphp\Extensions\php\php7.3.4nts\ext<br/><br>3:然后在 E:\debugphp\Extensions\php\php7.3.4nts\php.ini 加入一行<br>zend_extension &#x3D; xdebug<br/><br>4：然后重启web服务器<br/><br>我们来操作<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291518415.png" alt="步骤二"><br>重命名的时候发现有php_xdeg我们可以把原来的搞个备份看看<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291520646.png" alt="步骤二"><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291521084.png" alt="步骤三"><br>重启一下网站。我看再次在phpinfo页面检测xdebug这个<br>是否支持调试关键phpinfo显示了xdebug选项<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291523313.png" alt="xdebug支持"><br>我们在商店搜索一下php debug。我们的xdebug版本是3.x的。所以复制红框里面的去php.ini里面<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291524749.png" alt="xdebug调试插件版本"><br>所以我们在php.ini加入</p>
-<pre class="language-ini" data-language="ini"><code class="language-ini"><span class="token key attr-name">xdebug.mode</span> <span class="token punctuation">=</span> <span class="token value attr-value">debug</span>
-<span class="token key attr-name">xdebug.start_with_request</span> <span class="token punctuation">=</span> <span class="token value attr-value">yes</span>
-<span class="token key attr-name">xdebug.client_port</span> <span class="token punctuation">=</span> <span class="token value attr-value">9000</span></code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291526628.png" alt="配置文件里面加入调试"><br>注意不同的xdebug 版本 输入的东西不一样。来到debug 图标然后创建launch.json文件<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291527345.png" alt="调试选项"><br>调试语言是php。注意这里要与php.ini里面配置的端口要一样。注意更改配置文件必须重启网站!!!!<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291528854.png" alt="调试配置文件"><br>我们来到后台登陆的代码处打上断点<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291530395.png" alt="测试断点"><br>然后点击开始在运行-启动调试出现下图状态说明开始调试了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291531565.png" alt="运行调试"><br>我们用网页访问提交账号密码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291532719.png" alt="显示正在提交"><br>我们再看vscode里面断住没有<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291534764.png" alt="断住了"><br>但是没调试一会儿出现下面错误。这是因为apache 超时了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291534861.png" alt="调试超时"><br>我们如何来解决这个问题呢我查询了大量资料发现他们讲的都不太行。<br><a target="_blank" rel="noopener" href="https://maoshu.fun/articles/801.html">https://maoshu.fun/articles/801.html</a><br/><br><a target="_blank" rel="noopener" href="https://h.opdwz.cn/feeds/SQAxf2OEme">https://h.opdwz.cn/feeds/SQAxf2OEme</a><br/><br>这下边的相对比较靠谱但是对于我们这里来说还是不太行。<br><a target="_blank" rel="noopener" href="https://httpd.apache.org/mod_fcgid/mod/mod_fcgid.html">https://httpd.apache.org/mod_fcgid/mod/mod_fcgid.html</a>   <br/><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37482307/article/details/92236264">https://blog.csdn.net/qq_37482307/article/details/92236264</a> <br/></p>
-<h2 id="解决phpstudy-apache调试出现超时的问题"><a href="#解决phpstudy-apache调试出现超时的问题" class="headerlink" title="解决phpstudy apache调试出现超时的问题"></a>解决phpstudy apache调试出现超时的问题</h2><p>我们来到phpino页面<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291539338.png" alt="phpinfo页面"><br>在这里 Loaded Configuration File 搜索  E:&#x2F;debugphp&#x2F;Extensions&#x2F;php&#x2F;php7.3.4nts&#x2F;<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291540570.png" alt="搜索截图"><br>打开我们搜索到文件然后添加下面的东东<br>发现真正的配置文件打开然后加入下面配置</p>
-<pre class="language-ini" data-language="ini"><code class="language-ini">ProcessLifeTime 3600
-    FcgidIOTimeout 3600
-    FcgidConnectTimeout 3600
-    FcgidOutputBufferSize 128
-    FcgidMaxRequestsPerProcess 1000
-    FcgidMinProcessesPerClass 0
-    FcgidMaxRequestLen 268435456   
-    FcgidInitialEnv PHP_FCGI_MAX_REQUESTS 1000
-    IPCConnectTimeout 3600
-    IPCCommTimeout 3600
-    FcgidIdleTimeout 3600
-    FcgidBusyTimeout 60000</code></pre>
-<p>添加后的截图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291542692.png" alt="添加后的截图"><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291543582.png" alt="这样调试就超过8分钟了"><br>杂谈:<br/><br>光加上这两个配置只能维持8-10分钟以后直接超时:<br/><br>IPCConnectTimeout 3000 <br/><br>IPCCommTimeout 3000<br/><br>另外可以加上这个配置在php.ini里面(没啥大用处感觉)<br/><br>   max_execution_time&#x3D;0<br><br/><br>注意修改完配置文件必须要重启网站否则不生效。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们使用vscode 动态调试php 就说到了这里。说个比较切合实际的话这都公元2024年了学点编程吧。尤其是php这个入门代码审计的语言。另外python这个是入门写简单exp poc的东东建议学习一下。行了今天就说到这里下课。</p>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在我们渗透测试中遇到小程序把他的代码反编译出来或者是在泄露source map 下载源代码以后一个一个的找铭感信息太麻烦我在github中找到一个项目<a target="_blank" rel="noopener" href="https://github.com/bingtangbanli/jsfinderPro">https://github.com/bingtangbanli/jsfinderPro</a> <br/> 感觉这个项目还可以但是某些地方需要稍微改动一下才能变得不过。这个在convention.txt 里面可以添加正则表达式丰富一下工具。</p>
+<h2 id="改造截图"><a href="#改造截图" class="headerlink" title="改造截图"></a>改造截图</h2><p>我们可以自定义加正则表达式把Hae和burpapifingder里面正则加入里面。我加了一部分出来<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412051656549.png" alt="改造截图"><br>成品发到频道里面如果需要转载和修改请保留版权信息!!!<br>下载地址:<a target="_blank" rel="noopener" href="https://t.me/SoftwareNoticeChannel/734">https://t.me/SoftwareNoticeChannel/734</a> <br/></p>
 
                 
             </div>
@@ -515,7 +496,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://peiqiF4ck.github.io/codeaudit/2024/11/articles/40395b9e6e72cc99/">https://peiqiF4ck.github.io/codeaudit/2024/11/articles/40395b9e6e72cc99/</a>
+                    <a href="https://peiqiF4ck.github.io/codeaudit/2024/12/articles/fc6ad7808b830bbd/">https://peiqiF4ck.github.io/codeaudit/2024/12/articles/fc6ad7808b830bbd/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -553,8 +534,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/CodeAuditExample/">
-                                    <span class="chip bg-color">CodeAuditExample</span>
+                                <a href="/tags/SecurityTools/">
+                                    <span class="chip bg-color">SecurityTools</span>
                                 </a>
                             
                         </div>
@@ -728,9 +709,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/codeaudit/2024/12/articles/fc6ad7808b830bbd/">
                     <div class="card-image">
@@ -747,9 +729,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-12-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -762,6 +744,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -780,23 +763,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/codeaudit/2024/11/articles/0a257de52c1f1075/">
+                <a href="/codeaudit/2024/11/articles/40395b9e6e72cc99/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411261704086.png" class="responsive-img" alt="zzzcms(asp) V1.5.6 版本代码执行漏洞分析">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202411291523313.png" class="responsive-img" alt="代码审计之vscode xdebug动态调试php教程">
                         
-                        <span class="card-title">zzzcms(asp) V1.5.6 版本代码执行漏洞分析</span>
+                        <span class="card-title">代码审计之vscode xdebug动态调试php教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            zzzcms(asp) V1.5.6 版本代码执行漏洞分析
+                            phpstudy下vscode apache调试遇到的问题讲解
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-29
                             </span>
                         <span class="publish-author">
                             
