@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>webframeworktools-1000万条网站测试成功</title>
+      <link href="/securitytools/2025/01/articles/e9c8349d34c76c05/"/>
+      <url>/securitytools/2025/01/articles/e9c8349d34c76c05/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在去年2024年7月份我们开始针对软件性能进行测试到。2024年12月软件测试完毕。总耗时将近4个月软件在1000万条url表现很好。跑了将近4个月没有出现奔溃现象。软件表现很不错。</p><h2 id="软件测试详细参数"><a href="#软件测试详细参数" class="headerlink" title="软件测试详细参数"></a>软件测试详细参数</h2><p>在软件将近4个月测试下软件表现很好测试没有崩溃。并且已经测试完毕。已知bug已经全部修复。稳定性没有任何问题。测试详情如下:<br>测试结束日期2024-12-23 结束时间 10:00<br>测试网站条数1000万条<br>全模块(除了log4j weblogic jboss 这个三个模块)耗时将近4个月测试完毕。<br>堪称完美测试。测试总流量7.3093TB。软件下载流量6.256TB。上传流量 1.053TB。这标志着我们软件在1000万网站的url下表现很完美。<br>接下来会对漏洞进行优化避免出现误报情况。😏😏😏😏😏😏。然后以后我们将专注漏洞。漏洞越多越好。<br>因为数量上已经足够了我们最起码可以自动化攻击1000万个网站。。<br>测试详细参数<br>测试cpu Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz   2.60 GHz  (2 个处理器) DDR3<br>服务器 Windows Server 2022 Standard Evaluation 21H2<br>操作系统:64位操作系统,基于x64 的处理器<br>内存:32.0GB<br>下载速度:1-2MB&#x2F;s 我们是用事实说话从来不说我们的软件牛逼。市面上可以承载百万,千万url不奔溃的少之又少。所以后续是集成越来越多漏洞。现在缺的就是漏洞和时间更多的是缺时间哈哈哈。现在是就差漏洞了。批量全球没有任何问题。鉴于软件危害巨大我们将后续着手关注源代码请感兴趣的准备好编程知识和$。我们将毫无保留的出最新版本源代码1000w url测试的😏。我们的一贯宗旨就是talking is cheap show me your code。遵循着实战就是真理。目前在exp poc这个领域能跑千万的软件我想是没有的。有源代码能写出其他软件稍微改改就行了<br>测试截图1<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202501201452329.png" alt="测试截图1"><br>测试截图2<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202501201452331.png" alt="测试截图2"><br>测试截图3<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202501201452799.png" alt="测试截图3"><br>测试截图4<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202501201453499.png" alt="测试截图4"></p><h2 id="软件视频教程"><a href="#软件视频教程" class="headerlink" title="软件视频教程"></a>软件视频教程</h2><p>软件使用视频教程<br>webframeworktools5.0 使用教程<br><a href="https://www.youtube.com/watch?v=TXG7W9WnbiI">https://www.youtube.com/watch?v=TXG7W9WnbiI</a> <br/><br>webframeworktools5.1 DLL生成器使用<br/><br><a href="https://www.youtube.com/watch?v=IkhE4cNVNso">https://www.youtube.com/watch?v=IkhE4cNVNso</a> <br/><br>webframeworktools5.1 自写dll教程。使用内部封装函数编写上传功能代码。上传内容使用内部封装函数可以转换任意文件内容。编写进行上传操作。内部代码不公开仅做演示操作。其他简单的编写可以去博客看get post的教程。简单的可以直接一键生成exp<br/><br><a href="https://www.youtube.com/watch?v=aLznRaoG_b4">https://www.youtube.com/watch?v=aLznRaoG_b4</a>  <br/><br>webframeworktools5.2 ini配置教程<br><a href="https://www.youtube.com/watch?v=DlupWCAbBgg">https://www.youtube.com/watch?v=DlupWCAbBgg</a>       <br/><br>                                视频教程已出。不会的自行学习。旧版本自写dll存在bug。如果没有输出结果属于正常。后续版本将纠正这个bug<br><a href="https://peiqif4ck.github.io/securitytools/2024/01/articles/1fee187af88e0843/">https://peiqif4ck.github.io/securitytools/2024/01/articles/1fee187af88e0843/</a>    WebFrameworkTools5.2 ini工具使用方法<br/><br><a href="https://peiqif4ck.github.io/securitytools/2023/09/articles/2633a9b907f3f584/#toc-heading-3">https://peiqif4ck.github.io/securitytools/2023/09/articles/2633a9b907f3f584/#toc-heading-3</a>   dll exp编写教程<br/><br><a href="https://peiqif4ck.github.io/securitytools/2024/10/articles/039303a532fb37a7/">https://peiqif4ck.github.io/securitytools/2024/10/articles/039303a532fb37a7/</a>  webframeworktools dll模式简单批量使用<br/><br><a href="https://github.com/peiqiF4ck/WebFrameworkTools-5.1-main">https://github.com/peiqiF4ck/WebFrameworkTools-5.1-main</a>   github地址  软件内置exp使用 方法更新<br/><br><a href="https://github.com/peiqiF4ck/ToolsUserDllplugin">https://github.com/peiqiF4ck/ToolsUserDllplugin</a>  dll编写教程</p><h2 id="授人以鱼不如授人以渔"><a href="#授人以鱼不如授人以渔" class="headerlink" title="授人以鱼不如授人以渔"></a>授人以鱼不如授人以渔</h2><p>有人老询问软件说软件攻防中url条数不够用。所以这次我们修改了一下url条数为10万条。中国大陆地区不可使用。使用请遵守法律法规。由于之前发布的软件被平台删除了所以我们在此补发一下软件下载地址。对于基础好的人不满足使用软件。或者自己有exp 或者0day漏洞缺少可以跑几千万上百万的软件框架。由于软件是免费的加上内地对网络安全越来越严格后续我们将不在对软件exp poc进行更新。你们自己购买源代码以后自己可以修改。源码分三批次发放。取决于大部分兄弟们的学习进度。综上所述:<br/><br>我们决定在2025年对软件源代码正式开售。软件具备千万级攻击能力。我们将对源代码购买人数做限制目前限制人数50人。50人出完我们将不在进行售卖。详情请看频道<a href="https://t.me/SoftwareNoticeChannel/775">https://t.me/SoftwareNoticeChannel/775</a> </p><h2 id="软件下载地址"><a href="#软件下载地址" class="headerlink" title="软件下载地址"></a>软件下载地址</h2><p><a href="https://www.upload.ee/files/17648235/WebFrameworkTools-10w.zip.html">https://www.upload.ee/files/17648235/WebFrameworkTools-10w.zip.html</a><br/><br>下载后请核对软件目录。注意发布版本为2024-08-31 不是最新版本。请勿对号入座。在youtube做的视频是最新版本。由于授权问题暂时发布不了。后续可能不会发布。在upload ee发布的软件除了自写dll有bug和dll生成器某些存在bug外。其他已知bug均修复完毕。想要源代码的特别要对软件使用方式要熟悉。视频和文字教程这些都已经发布。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202501201505486.png" alt="软件目录"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SecurityTools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CobaltStrike 4.9.1-客户端破解(一)</title>
       <link href="/penetrationtest/2025/01/articles/57e088d4a92e9e48/"/>
       <url>/penetrationtest/2025/01/articles/57e088d4a92e9e48/</url>
