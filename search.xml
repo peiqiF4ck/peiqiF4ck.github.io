@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>使用软件源代码编写phpmyadmin爆破模块以及实战5W网站测试</title>
+      <link href="/securitytools/2025/03/articles/1c4bc90eceabb786/"/>
+      <url>/securitytools/2025/03/articles/1c4bc90eceabb786/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了使购买源代码的用户提前熟悉源码和展示工具的性能。我们特意录制了获取到源代码以后如何进行简单的post get 上传 添加自定义 http请求头。这个前面两期视频教程已经说了<br/><br>1:简单的get post 上传 代码编写基础 <br/><br><a href="https://www.youtube.com/watch?v=VIjLxEuc9JM">https://www.youtube.com/watch?v=VIjLxEuc9JM</a> <br><br>2: post请求简单实战编写<br/><br><a href="https://youtu.be/otU2-ig3Nb8?si=tL3VacTYOYQSFg1a">https://youtu.be/otU2-ig3Nb8?si=tL3VacTYOYQSFg1a</a><br/><br>3: exp poc实战之phpmyadmin爆破模块开发以及实战演示5万网站使用默认账号密码进行爆破教程地址:<br/><br> <a href="https://www.youtube.com/watch?v=ujL5HHe3hZs">https://www.youtube.com/watch?v=ujL5HHe3hZs</a> </p><p>其中二和三位实战测试我们重点来看一下phpmyadmin 实战<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202503061439710.png" alt="实战爆破结果"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202503061440860.png" alt="工具爆破结果"></p><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202503061441549.png" alt="实战爆破结果"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们以前看类似phpmyadmin 这种工具图形化的写出来比较高大尚但是这我们这里。只要你会写单个的批量直接集成就行了。很简单。让以前你觉得很牛逼的工具瞬间变成平平无奇的工具。以前牛逼的工具在我们这里就是一个模块或者一个分支。并且我们的工具最少可以搭载百万条网站甚至是上千万条网站。学好功力大增如果遇到不会的我们会在群里培训写出exp你们去照着写手把手教。后续你们只需要考虑代码审计和0day 有xday直接自己集成。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SecurityTools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> original </tag>
+            
+            <tag> PenetrationTest </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>webframeworktools-1000万条网站测试成功</title>
       <link href="/securitytools/2025/01/articles/e9c8349d34c76c05/"/>
       <url>/securitytools/2025/01/articles/e9c8349d34c76c05/</url>
