@@ -278,7 +278,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240153621.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507251653469.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -492,7 +492,7 @@ $decodedContent | Set-Content -Path $destinationFile -ErrorAction Stop
 <p>上面替换成你自己的文件内容和文件名称。其中文件名称需要遵循<br>文件名称:必须10个字符<br/><br>文件内容: 754个字符<br/><br>具体截图如下:$base64String 必须是754个字符。构造好了以后编码以后。自己再次解码。看看解码以后是否是754个字符。另外文件名称也必须是10个。因为我们是套壳别人的东西所以要遵守规则。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240130501.png" alt="base64String内容"><br>使用powershell 生成 yso 所需要的exp<br>powershell -ExecutionPolicy Bypass -File 1.ps1<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240133565.png" alt="生成base64"><br>测试一下。完成第一步exp构造<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240135250.png" alt="成功标志"></p>
 <h2 id="2-如何使用ysoserial-exe-生成利用代码"><a href="#2-如何使用ysoserial-exe-生成利用代码" class="headerlink" title="(2)如何使用ysoserial.exe 生成利用代码"></a>(2)如何使用ysoserial.exe 生成利用代码</h2><p>使用github最新版本生成exp：<br>ysoserial.exe -o base64 -g 利用链 -f 格式 -c “powershell -EncodedCommand  第一步生成的base64<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240139716.png" alt="使用yso生成exp"><br>我们看到生成的exp以&#x2F;wEywC0AAQAA开头。</p>
 <h2 id="3-如何把yso生成的base64数据变成exp呢"><a href="#3-如何把yso生成的base64数据变成exp呢" class="headerlink" title="(3)如何把yso生成的base64数据变成exp呢"></a>(3)如何把yso生成的base64数据变成exp呢</h2><p>这里涉及到了二进制操作我们可以替换二进制。具体比较复杂我直接写了个利用工具。直接把第二步生成的放到payload.txt里面然后运行工具自动构造exp。<br/>下载地址:<a target="_blank" rel="noopener" href="https://github.com/peiqiF4ck/WebFrameworkTools-5.5-enhance/releases/tag/CVE-2025-53770exptools">https://github.com/peiqiF4ck/WebFrameworkTools-5.5-enhance/releases/tag/CVE-2025-53770exptools</a><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240143123.png" alt="第二步生成的直接放到工具里面"><br>构造出来以后直接放到burp里面利用就行了。至于返回结果有的是200有的是302。主要是看文件生成没有。最终效果<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240146443.png" alt="exp生成效果"><br>至于exp里面的MSOTlPn_Uri&#x3D;http%3A%2F%2F<a target="_blank" rel="noopener" href="http://www.itsc.org/">www.itsc.org</a> 的url可以换成目标的可以原来的不影响直接打就行了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240149453.png" alt="攻击效果"><br>直接上webshell了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240151319.png" alt="webshell"></p>
-<h2 id="武器化"><a href="#武器化" class="headerlink" title="武器化"></a>武器化</h2><p>我们直接武器化了。如下图我估计我们是除了漏洞发现者和首次利用者。我们算比较快的直接上webshell的了同时应该也是这个漏洞出来实战比较成功的<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240153621.png" alt="webshell"><br>直接集成到我们的webframeworktools 工具此工具之前已经测试可以跑几百万甚至上千万网站。对源码感兴趣的请看github 频道。只有5.3版本的其他版本的代码暂时不出。以后分享在youtube 和github优先博客次之。频道更次之。不会不懂得看视频教程吧。<br>现在最新版本5.5 增强版本增加 端口扫描 目录扫描 指纹识别 webtitle识别等四个模块。具体看youtube视频吧。</p>
+<h2 id="武器化"><a href="#武器化" class="headerlink" title="武器化"></a>武器化</h2><p>我们直接武器化了。如下图我估计我们是除了漏洞发现者和首次利用者。我们算比较快的直接上webshell的了同时应该也是这个漏洞出来实战比较成功的<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507251653469.png" alt="webshell"><br>直接集成到我们的webframeworktools 工具此工具之前已经测试可以跑几百万甚至上千万网站。对源码感兴趣的请看github 频道。只有5.3版本的其他版本的代码暂时不出。以后分享在youtube 和github优先博客次之。频道更次之。不会不懂得看视频教程吧。<br>现在最新版本5.5 增强版本增加 端口扫描 目录扫描 指纹识别 webtitle识别等四个模块。具体看youtube视频吧。</p>
 
                 
             </div>
@@ -744,7 +744,7 @@ $decodedContent | Set-Content -Path $destinationFile -ErrorAction Stop
                 <a href="/securitytools/2025/07/articles/5e8ed1a8f96203bb/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507240153621.png" class="responsive-img" alt="实战CVE-2025-53770漏洞讲解实战坑点并且武器化掉直接集成到我们的webframeworktools实现一键批量getshell展示">
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202507251653469.png" class="responsive-img" alt="实战CVE-2025-53770漏洞讲解实战坑点并且武器化掉直接集成到我们的webframeworktools实现一键批量getshell展示">
                         
                         <span class="card-title">实战CVE-2025-53770漏洞讲解实战坑点并且武器化掉直接集成到我们的webframeworktools实现一键批量getshell展示</span>
                     </div>
